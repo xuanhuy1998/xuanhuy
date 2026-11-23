@@ -1,0 +1,569 @@
+<title>Hồ sơ website KHUNG</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anybody:wdth,wght@50..150,400..800&family=Be+Vietnam+Pro:wght@400;500;600&display=swap">
+<style>
+/* Layout: working document — sticky contents rail on the left, one reading column; wireframes break out wider. Same tokens as the site prototype. */
+:root{
+  --cyc:#E3E5E1; --paper:#EEF0EC; --sheet:#F7F8F6; --ink:#131514; --ink-2:#4B524D; --line:#C3C8C1;
+  --key:#00B140; --key-text:#007A2C; --on-key:#06140B; --wf:#7B847E;
+  --display:"Anybody","Archivo","Arial Narrow",system-ui,sans-serif;
+  --body:"Be Vietnam Pro","Segoe UI",system-ui,-apple-system,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --cyc:#171A18; --paper:#1F2321; --sheet:#242926; --ink:#E5E9E3; --ink-2:#9BA49D; --line:#363D38; --key:#22C55E; --key-text:#4ADE80; --on-key:#04120A; --wf:#7F8983; color-scheme:dark}}
+:root[data-theme="dark"]{--cyc:#171A18; --paper:#1F2321; --sheet:#242926; --ink:#E5E9E3; --ink-2:#9BA49D; --line:#363D38; --key:#22C55E; --key-text:#4ADE80; --on-key:#04120A; --wf:#7F8983; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--cyc);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.65;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+a{color:inherit;text-decoration-color:var(--key);text-underline-offset:3px}
+:focus-visible{outline:2px solid var(--key);outline-offset:3px}
+h1,h2,h3,h4{text-wrap:balance;margin:0;line-height:1.2}
+h1,h2{font-family:var(--display)}
+p,ul,ol{margin:0}
+.layout{max-width:1240px;margin-inline:auto;display:grid;grid-template-columns:220px minmax(0,1fr);gap:56px;padding-block:40px 80px}
+@media (max-width:960px){.layout{grid-template-columns:1fr;gap:24px}}
+
+/* rail */
+.rail{position:sticky;top:calc(env(safe-area-inset-top,0px) + 24px);align-self:start;font-size:.9rem}
+.rail .brand{font-family:var(--display);font-weight:800;font-variation-settings:"wdth" 150;font-size:1.2rem;display:flex;align-items:center;gap:8px}
+.rail .brand i{width:16px;height:12px;border:2px solid currentColor;position:relative}
+.rail .brand i::after{content:"";position:absolute;inset:2px;background:var(--key)}
+.rail ol{list-style:none;padding:0;margin-top:20px;display:grid;gap:2px;counter-reset:r}
+.rail li a{display:flex;gap:10px;text-decoration:none;color:var(--ink-2);padding:5px 0}
+.rail li a::before{counter-increment:r;content:counter(r);font-variant-numeric:tabular-nums;color:var(--wf);width:1.2em}
+.rail li a:hover,.rail li a.on{color:var(--ink)}
+.rail .proto{display:block;margin-top:22px;background:var(--key);color:var(--on-key);text-decoration:none;font-weight:600;padding:11px 14px;border-radius:2px}
+@media (max-width:960px){.rail{position:static}.rail ol{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}}
+
+/* doc */
+.doc{min-width:0}
+.cover{padding-bottom:40px;border-bottom:1.5px solid var(--ink)}
+.cover h1{font-size:clamp(2.2rem,5vw,3.8rem);font-weight:760;font-variation-settings:"wdth" 118}
+.cover p{margin-top:16px;max-width:62ch;color:var(--ink-2);font-size:1.075rem}
+.cover dl{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin:28px 0 0}
+.cover dt{font-size:.8rem;color:var(--ink-2)}
+.cover dd{margin:0;font-weight:500}
+@media (max-width:640px){.cover dl{grid-template-columns:1fr 1fr}}
+section.part{padding-block:56px 8px;scroll-margin-top:16px}
+section.part>h2{font-size:clamp(1.7rem,3.4vw,2.4rem);font-weight:720;font-variation-settings:"wdth" 112;display:flex;gap:16px;align-items:baseline}
+section.part>h2 small{font:600 1rem var(--body);color:var(--key-text);font-variant-numeric:tabular-nums}
+.intro{margin-top:12px;color:var(--ink-2);max-width:66ch}
+h3.sub{font-size:1.2rem;font-weight:600;margin-top:40px}
+.prose{max-width:68ch}
+.prose p+p{margin-top:10px}
+
+/* audience table */
+.tbl{overflow-x:auto;margin-top:24px;border-top:1.5px solid var(--ink)}
+table{border-collapse:collapse;width:100%;min-width:720px;font-size:.93rem}
+th,td{text-align:left;vertical-align:top;padding:12px 14px 12px 0;border-bottom:1px solid var(--line)}
+th{font-weight:600;font-size:.82rem;color:var(--ink-2)}
+td b{font-weight:600}
+.kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:24px}
+.kpis div{background:var(--sheet);border:1px solid var(--line);padding:16px}
+.kpis b{display:block;font-family:var(--display);font-size:1.5rem;font-weight:700;font-variant-numeric:tabular-nums}
+.kpis span{color:var(--ink-2);font-size:.9rem}
+@media (max-width:640px){.kpis{grid-template-columns:1fr}}
+
+/* sitemap tree */
+.tree{margin-top:24px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.tree .root{grid-column:1/-1;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;background:var(--ink);color:var(--cyc);padding:14px 18px;border-radius:2px}
+.tree .root code{color:var(--cyc);opacity:.7}
+.node{background:var(--sheet);border:1px solid var(--line);padding:14px;min-width:0}
+.node h4{font-size:1rem;font-weight:600}
+.node code,.tree code{font-size:.8rem;color:var(--ink-2);font-family:var(--body);font-variant-numeric:tabular-nums}
+.node ul{list-style:none;padding:0;margin-top:10px;display:grid;gap:6px;font-size:.88rem;border-top:1px dashed var(--line);padding-top:10px}
+.node ul li span{display:block;color:var(--ink-2);font-size:.8rem}
+.node.global{grid-column:1/-1;background:transparent;border-style:dashed}
+.node.global ul{grid-template-columns:repeat(auto-fill,minmax(220px,1fr));border-top:0;padding-top:0}
+@media (max-width:860px){.tree{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.tree{grid-template-columns:1fr}}
+
+/* journeys */
+.journey{margin-top:22px;border:1px solid var(--line);background:var(--sheet);padding:18px}
+.journey h4{font-size:1rem;font-weight:600}
+.journey p.who{color:var(--ink-2);font-size:.9rem;margin-top:2px}
+.journey ol{list-style:none;padding:0;margin-top:14px;display:flex;flex-wrap:wrap;gap:8px;align-items:stretch;counter-reset:j}
+.journey li{counter-increment:j;flex:1 1 150px;min-width:0;border-top:3px solid var(--key);padding-top:8px;font-size:.88rem}
+.journey li::before{content:"Bước " counter(j);display:block;font-size:.75rem;color:var(--ink-2)}
+.journey li b{display:block;font-weight:600}
+
+/* wireframes */
+.wf-wrap{margin-top:24px;display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:28px;align-items:start}
+.wf-wrap.narrow{grid-template-columns:300px minmax(0,1fr)}
+@media (max-width:900px){.wf-wrap,.wf-wrap.narrow{grid-template-columns:1fr}}
+.wf{border:1.5px solid var(--ink);background:var(--sheet);padding:12px;display:grid;gap:10px;min-width:0;font-size:.7rem;color:var(--wf)}
+.wf.phone{max-width:300px;border-radius:18px;padding:14px 12px 22px}
+.r{display:grid;gap:10px}
+.c2{grid-template-columns:minmax(0,5fr) minmax(0,7fr)}.c3{grid-template-columns:repeat(3,minmax(0,1fr))}.c4{grid-template-columns:repeat(4,minmax(0,1fr))}.c84{grid-template-columns:minmax(0,2fr) minmax(0,1fr)}.c6{grid-template-columns:repeat(6,minmax(0,1fr))}.c12{grid-template-columns:repeat(2,minmax(0,1fr))}
+.wf{overflow:hidden}.wf .r>*{min-width:0}
+.bx{border:1px dashed var(--wf);padding:8px;display:grid;gap:6px;align-content:start;position:relative;min-width:0}
+.bx.solid{border-style:solid}
+.img{position:relative;border:1px solid var(--wf);background:
+  linear-gradient(to top right,transparent calc(50% - .6px),var(--wf) 50%,transparent calc(50% + .6px)),
+  linear-gradient(to top left,transparent calc(50% - .6px),var(--wf) 50%,transparent calc(50% + .6px));min-height:60px}
+.img.v169{aspect-ratio:16/9;min-height:0;max-width:100%}
+.img.v239{aspect-ratio:2.39/1;min-height:0;max-width:100%}
+.img.v916{aspect-ratio:9/16;min-height:0;max-width:100%}
+.img em{position:absolute;left:6px;top:4px;font-style:normal;background:var(--sheet);padding:0 4px}
+.ln{height:5px;background:var(--line);border-radius:2px}
+.ln.s{width:60%}.ln.xs{width:35%}
+.hd{height:12px;background:var(--wf);border-radius:2px;width:80%}
+.hd.big{height:20px}
+.bt{height:16px;width:72px;border:1px solid var(--ink);border-radius:2px}
+.bt.k{background:var(--key);border-color:var(--key)}
+.chip{height:12px;width:40px;border:1px solid var(--wf);border-radius:99px;display:inline-block}
+.lbl{font-size:.68rem;color:var(--ink-2)}
+.flex{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.m{position:absolute;right:-8px;top:-8px;width:20px;height:20px;border-radius:50%;background:var(--ink);color:var(--cyc);font:600 .7rem/20px var(--body);text-align:center;font-style:normal;z-index:1}
+.notes{list-style:none;padding:0;display:grid;gap:12px;font-size:.92rem;counter-reset:n}
+.notes li{display:grid;grid-template-columns:22px 1fr;gap:10px}
+.notes li::before{counter-increment:n;content:counter(n);width:20px;height:20px;border-radius:50%;background:var(--ink);color:var(--cyc);font:600 .7rem/20px var(--body);text-align:center;margin-top:2px}
+.notes b{font-weight:600}
+.wf-title{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:44px;align-items:baseline}
+.wf-title h3{font-size:1.2rem;font-weight:600}
+.wf-title span{color:var(--ink-2);font-size:.85rem}
+
+/* ui system */
+.swatches{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin-top:20px}
+.sw{border:1px solid var(--line);background:var(--sheet)}
+.sw div{height:64px}
+.sw p{padding:8px 10px;font-size:.82rem}
+.sw p b{display:block;font-weight:600}
+.sw p span{color:var(--ink-2);font-variant-numeric:tabular-nums}
+.type{margin-top:20px;border-top:1.5px solid var(--ink)}
+.type>div{display:grid;grid-template-columns:150px minmax(0,1fr);gap:16px;padding:14px 0;border-bottom:1px solid var(--line);align-items:baseline}
+.type .spec{font-size:.8rem;color:var(--ink-2);font-variant-numeric:tabular-nums}
+@media (max-width:640px){.type>div{grid-template-columns:1fr;gap:4px}}
+.comps{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:20px}
+.comp{background:var(--sheet);border:1px solid var(--line);padding:18px;display:grid;gap:14px;align-content:start;min-width:0}
+.comp h4{font-size:.95rem;font-weight:600}
+.comp .row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.comp p{font-size:.88rem;color:var(--ink-2)}
+@media (max-width:760px){.comps{grid-template-columns:1fr}}
+.b{display:inline-flex;align-items:center;font:600 .9rem var(--body);padding:11px 18px;border-radius:2px;border:0;cursor:pointer;text-decoration:none}
+.b.key{background:var(--key);color:var(--on-key)}
+.b.ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--ink)}
+.b.link{padding:0 0 2px;border-bottom:1.5px solid var(--key);border-radius:0;background:none;color:var(--ink)}
+.fc{display:inline-block;border:1.5px solid var(--line);padding:6px 12px;border-radius:99px;font-size:.85rem}
+.fc.on{background:var(--ink);color:var(--cyc);border-color:var(--ink)}
+.field{display:grid;gap:5px;font-size:.85rem;font-weight:500}
+.field span.in{border:1.5px solid var(--ink-2);padding:9px 11px;font-weight:400;color:var(--ink-2);border-radius:2px;background:var(--cyc)}
+.field.focus span.in{border-color:var(--key);box-shadow:0 0 0 3px color-mix(in srgb,var(--key) 25%,transparent);color:var(--ink)}
+.field.error span.in{border-color:#D93636}
+.field small{font-weight:400;color:#C02828}
+:root[data-theme="dark"] .field small{color:#FF8A8A}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .field small{color:#FF8A8A}}
+.pcard{display:grid;gap:8px}
+.pcard .fr{aspect-ratio:16/9;background:linear-gradient(160deg,#DCE3EA,#8A98A8 45%,#1E2632);position:relative;border-radius:2px;max-width:100%}
+.pcard .fr span{position:absolute;left:8px;bottom:8px;background:rgba(0,0,0,.55);color:#fff;font-size:.72rem;padding:2px 6px;border-radius:2px;font-variant-numeric:tabular-nums}
+.pcard b{font-weight:600}
+.pcard .tags{display:flex;gap:6px;flex-wrap:wrap}
+.pcard .tags span{font-size:.72rem;color:var(--ink-2);border:1px solid var(--line);padding:1px 8px;border-radius:99px}
+.rules{margin-top:20px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 28px}
+.rules div{border-top:1px solid var(--line);padding-top:12px}
+.rules h4{font-size:.98rem;font-weight:600}
+.rules p{font-size:.9rem;color:var(--ink-2);margin-top:4px}
+@media (max-width:760px){.rules{grid-template-columns:1fr}}
+
+/* content */
+.page-copy{margin-top:28px;background:var(--sheet);border:1px solid var(--line)}
+.page-copy>header{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:14px 18px;border-bottom:1px solid var(--line);align-items:baseline}
+.page-copy>header h3{font-size:1.15rem;font-weight:600}
+.page-copy>header code{font-family:var(--body);font-size:.82rem;color:var(--ink-2)}
+.page-copy .body{padding:6px 18px 18px;display:grid;gap:0}
+.blk{display:grid;grid-template-columns:140px minmax(0,1fr);gap:16px;padding:12px 0;border-bottom:1px dashed var(--line)}
+.blk:last-child{border-bottom:0}
+.blk>span{font-size:.8rem;color:var(--ink-2);padding-top:3px}
+.blk .t{max-width:66ch}
+.blk .t p+p,.blk .t ul{margin-top:6px}
+.blk .t ul{padding-left:18px}
+.blk .t .h{font-family:var(--display);font-weight:700;font-variation-settings:"wdth" 112;font-size:1.25rem;line-height:1.25}
+@media (max-width:640px){.blk{grid-template-columns:1fr;gap:4px}}
+.seo{margin-top:20px}
+.seo td:first-child{white-space:nowrap;font-weight:600}
+.flag{display:inline-block;font-size:.75rem;background:color-mix(in srgb,var(--key) 18%,transparent);color:var(--key-text);padding:1px 8px;border-radius:99px;margin-left:6px;font-weight:600;vertical-align:middle}
+.next{margin-top:24px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.next>div{background:var(--sheet);border:1px solid var(--line);padding:18px}
+.next h4{font-size:1rem;font-weight:600}
+.next ul{margin-top:8px;padding-left:18px;font-size:.92rem;display:grid;gap:4px}
+@media (max-width:760px){.next{grid-template-columns:1fr}}
+</style>
+
+<div class="layout">
+<aside class="rail" aria-label="Mục lục">
+  <div class="brand"><i></i>KHUNG</div>
+  <ol>
+    <li><a href="#dinh-huong">Định hướng</a></li>
+    <li><a href="#sitemap">Cấu trúc website</a></li>
+    <li><a href="#hanh-trinh">Hành trình người dùng</a></li>
+    <li><a href="#wireframe">Wireframe</a></li>
+    <li><a href="#ui">Hệ thống UI</a></li>
+    <li><a href="#ux">Nguyên tắc UX</a></li>
+    <li><a href="#noi-dung">Nội dung</a></li>
+    <li><a href="#tiep-theo">Bước tiếp theo</a></li>
+  </ol>
+  <a class="proto" href="site.html">Mở bản dựng trang chủ</a>
+</aside>
+
+<main class="doc">
+  <header class="cover">
+    <h1>Hồ sơ website KHUNG Studio</h1>
+    <p>Cấu trúc, wireframe, hệ thống giao diện và nội dung cho website của một studio sáng tạo làm thiết kế 2D, motion graphics, VFX compositing và 3D CGI. Tên KHUNG, địa chỉ, số liệu và dự án là giả định; thay bằng thông tin thật trước khi lên sóng.</p>
+    <dl>
+      <div><dt>Loại website</dt><dd>Portfolio và thu brief</dd></div>
+      <div><dt>Số trang mẫu</dt><dd>9 mẫu, khoảng 25 URL</dd></div>
+      <div><dt>Ngôn ngữ</dt><dd>Tiếng Việt, tiếng Anh</dd></div>
+      <div><dt>Hành động chính</dt><dd>Gửi brief dự án</dd></div>
+    </dl>
+  </header>
+
+  <!-- 1 -->
+  <section class="part" id="dinh-huong">
+    <h2><small>1</small>Định hướng</h2>
+    <p class="intro">Khách hàng của studio hậu kỳ mua bằng mắt. Họ cần thấy chất lượng hình ảnh trong vài giây, rồi cần bằng chứng rằng studio làm được đúng loại việc họ có. Website vì vậy xoay quanh hai thứ: showreel và trang breakdown dự án.</p>
+    <div class="tbl"><table>
+      <thead><tr><th>Đối tượng</th><th>Họ cần biết</th><th>Bằng chứng thuyết phục</th><th>Trang quan trọng nhất</th></tr></thead>
+      <tbody>
+        <tr><td><b>Brand manager, marketing</b><br>Khách hàng trực tiếp</td><td>Studio có làm được ngành của mình không, mất bao lâu, khoảng bao nhiêu tiền</td><td>Dự án cùng ngành, quy trình rõ ràng, khung giá tham khảo</td><td>Dịch vụ, Dự án, Gửi brief</td></tr>
+        <tr><td><b>Agency quảng cáo, production house</b><br>Thuê ngoài hậu kỳ</td><td>Năng lực kỹ thuật, pipeline, công suất, chất lượng file bàn giao</td><td>Breakdown từng lớp render, danh sách phần mềm, số node render</td><td>Chi tiết dự án, Studio</td></tr>
+        <tr><td><b>Đạo diễn, producer phim và MV</b></td><td>Studio có hiểu ngôn ngữ điện ảnh, xử lý được cảnh quay thật không</td><td>Trước và sau comp, keying, set extension</td><td>Chi tiết dự án, VFX compositing</td></tr>
+        <tr><td><b>Ứng viên</b><br>Artist, kỹ thuật viên</td><td>Studio làm dự án gì, dùng công cụ gì, môi trường ra sao</td><td>Credits ghi tên artist, nhật ký breakdown, vị trí đang tuyển</td><td>Studio, Tuyển dụng</td></tr>
+      </tbody>
+    </table></div>
+    <h3 class="sub">Chỉ số đo hiệu quả</h3>
+    <div class="kpis">
+      <div><b>Brief đạt chuẩn</b><span>Số brief có đủ loại dự án, ngân sách và deadline mỗi tháng. Đây là chỉ số chính.</span></div>
+      <div><b>Xem hết showreel</b><span>Tỷ lệ người xem quá 50% thời lượng showreel trên trang chủ.</span></div>
+      <div><b>Đọc case study</b><span>Tỷ lệ người vào chi tiết dự án rồi cuộn tới phần breakdown.</span></div>
+    </div>
+  </section>
+
+  <!-- 2 -->
+  <section class="part" id="sitemap">
+    <h2><small>2</small>Cấu trúc website</h2>
+    <p class="intro">Menu chính có năm mục cộng một nút hành động. Bốn mảng dịch vụ có trang riêng để làm SEO theo từ khoá và để mỗi trang dẫn thẳng tới dự án cùng mảng.</p>
+    <div class="tree">
+      <div class="root"><b>Trang chủ</b><code>/</code></div>
+      <div class="node"><h4>Dự án</h4><code>/du-an</code>
+        <ul><li>Danh sách, lọc theo mảng, ngành, định dạng</li><li>Chi tiết dự án<span>/du-an/[ten-du-an]</span></li></ul></div>
+      <div class="node"><h4>Dịch vụ</h4><code>/dich-vu</code>
+        <ul><li>Thiết kế 2D<span>/dich-vu/thiet-ke-2d</span></li><li>Motion graphics<span>/dich-vu/motion-graphics</span></li><li>VFX compositing<span>/dich-vu/vfx-compositing</span></li><li>3D CGI<span>/dich-vu/3d-cgi</span></li></ul></div>
+      <div class="node"><h4>Quy trình</h4><code>/quy-trinh</code>
+        <ul><li>Sáu bước sản xuất</li><li>Khung thời gian theo loại dự án</li><li>Câu hỏi thường gặp về báo giá</li></ul></div>
+      <div class="node"><h4>Studio</h4><code>/studio</code>
+        <ul><li>Giới thiệu, đội ngũ</li><li>Pipeline và hạ tầng</li><li>Tuyển dụng<span>/tuyen-dung, /tuyen-dung/[vi-tri]</span></li><li>Nhật ký breakdown<span>/nhat-ky, /nhat-ky/[bai-viet]</span></li></ul></div>
+      <div class="node"><h4>Liên hệ</h4><code>/lien-he</code>
+        <ul><li>Form gửi brief 3 bước</li><li>Email, điện thoại, địa chỉ</li><li>Trang cảm ơn<span>/lien-he/da-gui</span></li></ul></div>
+      <div class="node"><h4>Trang phụ</h4><code>footer</code>
+        <ul><li>Chính sách bảo mật</li><li>Trang 404 có showreel ngắn</li><li>Bản tiếng Anh<span>/en/...</span></li></ul></div>
+      <div class="node global"><h4>Thành phần dùng chung mọi trang</h4>
+        <ul><li><b>Header</b>: logo, 5 mục menu, nút Gửi brief dự án, đổi ngôn ngữ</li><li><b>Nút Gửi brief cố định</b> ở cạnh dưới trên điện thoại</li><li><b>Trình phát showreel</b> mở toàn màn hình, có phụ đề</li><li><b>Footer</b>: liên hệ, mạng xã hội, tuyển dụng, chính sách</li></ul></div>
+    </div>
+  </section>
+
+  <!-- 3 -->
+  <section class="part" id="hanh-trinh">
+    <h2><small>3</small>Hành trình người dùng</h2>
+    <p class="intro">Ba luồng chính. Mỗi bước có một lối đi tiếp rõ ràng; không trang nào là ngõ cụt.</p>
+    <div class="journey"><h4>Brand manager tìm studio làm TVC có CGI</h4><p class="who">Đến từ Google hoặc quảng cáo, đang so sánh 3–5 studio</p>
+      <ol><li><b>Trang chủ</b>Xem hero render pass và showreel</li><li><b>3D CGI</b>Đọc hạng mục, khung giá, thời gian</li><li><b>Dự án cùng ngành</b>Lọc theo ngành đồ uống</li><li><b>Chi tiết dự án</b>Xem breakdown và kết quả</li><li><b>Gửi brief</b>Form 3 bước, nhận phản hồi trong 1 ngày</li></ol></div>
+    <div class="journey"><h4>Producer của agency cần đối tác hậu kỳ</h4><p class="who">Đến từ link Vimeo hoặc Behance gửi qua email</p>
+      <ol><li><b>Chi tiết dự án</b>Vào thẳng trang dự án được chia sẻ</li><li><b>Breakdown</b>Chuyển các lớp wireframe, clay, comp</li><li><b>Studio</b>Kiểm tra pipeline, công suất render</li><li><b>Liên hệ trực tiếp</b>Email producer, không cần qua form</li></ol></div>
+    <div class="journey"><h4>Artist 3D tìm việc</h4><p class="who">Đến từ mạng xã hội hoặc nhóm tuyển dụng</p>
+      <ol><li><b>Dự án</b>Xem credits ghi tên người làm</li><li><b>Studio</b>Đội ngũ, môi trường, phần mềm</li><li><b>Tuyển dụng</b>Chọn vị trí</li><li><b>Nộp hồ sơ</b>Gửi link reel và CV</li></ol></div>
+  </section>
+
+  <!-- 4 -->
+  <section class="part" id="wireframe">
+    <h2><small>4</small>Wireframe</h2>
+    <p class="intro">Wireframe mức thấp cho sáu mẫu trang chính. Số tròn trên khung khớp với ghi chú bên cạnh. Bản giao diện hoàn chỉnh của trang chủ nằm trong <a href="site.html">bản dựng</a>.</p>
+
+    <div class="wf-title"><h3>Trang chủ, máy tính</h3><span>1440 px, lưới 12 cột</span></div>
+    <div class="wf-wrap">
+      <div class="wf" aria-label="Wireframe trang chủ trên máy tính">
+        <div class="r" style="grid-template-columns:1fr auto auto;align-items:center"><span class="hd" style="width:60px"></span><span class="flex"><span class="ln" style="width:30px"></span><span class="ln" style="width:30px"></span><span class="ln" style="width:30px"></span><span class="ln" style="width:30px"></span><span class="ln" style="width:30px"></span></span><span class="bt k"></span></div>
+        <div class="r c2" style="align-items:end">
+          <div class="bx" style="border:0;padding:0"><span class="hd big"></span><span class="hd big" style="width:70%"></span><span class="hd big" style="width:50%"></span><span class="ln"></span><span class="ln s"></span><span class="flex"><span class="bt k"></span><span class="bt"></span></span></div>
+          <div class="bx solid"><i class="m">1</i><div class="img v169"><em>Khung xem 3D</em></div><span class="flex"><span class="chip"></span><span class="chip"></span><span class="chip"></span><span class="chip"></span><span class="lbl" style="margin-left:auto">TC 00:00:01:24</span></span></div>
+        </div>
+        <div class="bx"><i class="m">2</i><span class="lbl">Dịch vụ: 4 hàng dạng lớp</span>
+          <div class="r c4"><span class="ln"></span><span class="ln"></span><span class="ln s"></span><span class="ln xs"></span></div><div class="r c4"><span class="ln"></span><span class="ln"></span><span class="ln s"></span><span class="ln xs"></span></div><div class="r c4"><span class="ln"></span><span class="ln"></span><span class="ln s"></span><span class="ln xs"></span></div><div class="r c4"><span class="ln"></span><span class="ln"></span><span class="ln s"></span><span class="ln xs"></span></div></div>
+        <div class="bx"><i class="m">3</i><span class="lbl">Dự án chọn lọc</span><span class="flex"><span class="chip"></span><span class="chip"></span><span class="chip"></span><span class="chip"></span></span>
+          <div class="r c84"><div class="img v239"></div><div class="img v169"></div></div><div class="r c3"><div class="img v169"></div><div class="img v169"></div><div class="img v169"></div></div></div>
+        <div class="bx"><i class="m">4</i><span class="lbl">Quy trình 6 bước</span><div class="r c3"><span class="ln"></span><span class="ln"></span><span class="ln"></span></div><div class="r c3"><span class="ln"></span><span class="ln"></span><span class="ln"></span></div></div>
+        <div class="r c12"><div class="bx"><span class="lbl">Studio: số liệu</span><span class="ln"></span><span class="ln s"></span></div><div class="bx"><span class="lbl">Pipeline phần mềm</span><span class="flex"><span class="chip"></span><span class="chip"></span><span class="chip"></span><span class="chip"></span><span class="chip"></span></span></div></div>
+        <div class="bx solid" style="background:color-mix(in srgb,var(--key) 22%,transparent)"><i class="m">5</i><div class="r c12"><div style="display:grid;gap:6px"><span class="hd"></span><span class="ln s"></span></div><div style="display:grid;gap:6px"><span class="r c12"><span class="bx" style="min-height:16px"></span><span class="bx" style="min-height:16px"></span></span><span class="bx" style="min-height:30px"></span><span class="bt" style="background:var(--ink)"></span></div></div></div>
+        <div class="r c4"><span class="ln"></span><span class="ln s"></span><span class="ln s"></span><span class="ln s"></span></div>
+      </div>
+      <ol class="notes">
+        <li><span><b>Khung xem render pass.</b> Thay cho video nền tự chạy. Người xem chuyển Wireframe, Clay, Lighting, Comp để thấy quy trình 3D/VFX ngay ở màn hình đầu. Bản thật dùng 4 đoạn video ngắn từ một dự án thật.</span></li>
+        <li><span><b>Dịch vụ dạng lớp.</b> Mỗi hàng là một mảng: tên, mô tả, file bàn giao, phần mềm, liên kết sang trang dịch vụ.</span></li>
+        <li><span><b>Lưới dự án có lọc.</b> Ô rộng 2.39:1 cho phim và TVC, ô 16:9 cho phần còn lại. Rê chuột phát đoạn xem trước 4 giây không tiếng.</span></li>
+        <li><span><b>Quy trình.</b> Đánh số vì đây là trình tự thật, kèm thời gian từng bước.</span></li>
+        <li><span><b>Khối gửi brief màu phông xanh.</b> Form ngắn 4 trường; form đầy đủ ở trang Liên hệ.</span></li>
+      </ol>
+    </div>
+
+    <div class="wf-title"><h3>Trang chủ, điện thoại</h3><span>390 px</span></div>
+    <div class="wf-wrap narrow">
+      <div class="wf phone" aria-label="Wireframe trang chủ trên điện thoại">
+        <div class="r" style="grid-template-columns:1fr auto;align-items:center"><span class="hd" style="width:50px"></span><span class="bt" style="width:40px"></span></div>
+        <span class="hd big"></span><span class="hd big" style="width:60%"></span><span class="ln"></span><span class="ln s"></span>
+        <div class="bx solid"><i class="m">1</i><div class="img v169"></div><span class="flex"><span class="chip"></span><span class="chip"></span><span class="chip"></span><span class="chip"></span></span></div>
+        <div class="bx"><span class="lbl">Dịch vụ</span><span class="ln"></span><span class="ln s"></span><span class="ln"></span><span class="ln s"></span></div>
+        <div class="bx"><i class="m">2</i><span class="lbl">Dự án</span><span class="flex"><span class="chip"></span><span class="chip"></span><span class="chip"></span></span><div class="img v169"></div><span class="ln s"></span><div class="img v169"></div><span class="ln s"></span></div>
+        <div class="bx"><span class="lbl">Quy trình</span><span class="ln"></span><span class="ln"></span><span class="ln"></span></div>
+        <div class="bx solid" style="background:var(--key);border-color:var(--key)"><i class="m">3</i><span class="lbl" style="color:var(--on-key)">Nút Gửi brief cố định</span></div>
+      </div>
+      <ol class="notes">
+        <li><span><b>Khung xem đặt dưới tiêu đề.</b> Không tự chuyển pass nếu người dùng bật giảm chuyển động; chạm để chuyển.</span></li>
+        <li><span><b>Dự án một cột.</b> Không có hover nên hiển thị ảnh tĩnh đẹp nhất; chạm để mở trang dự án. Bộ lọc cuộn ngang.</span></li>
+        <li><span><b>Nút Gửi brief cố định.</b> Hiện sau khi cuộn qua hero, ẩn khi bàn phím mở hoặc khi đã ở khối liên hệ.</span></li>
+      </ol>
+    </div>
+
+    <div class="wf-title"><h3>Trang dịch vụ</h3><span>Mẫu dùng chung cho 4 mảng</span></div>
+    <div class="wf-wrap">
+      <div class="wf" aria-label="Wireframe trang dịch vụ">
+        <div class="r" style="grid-template-columns:1fr auto auto;align-items:center"><span class="hd" style="width:60px"></span><span class="ln" style="width:120px"></span><span class="bt k"></span></div>
+        <div class="r c2"><div style="display:grid;gap:6px;align-content:end"><span class="lbl">Dịch vụ / 3D CGI</span><span class="hd big"></span><span class="ln"></span><span class="ln s"></span></div><div class="img v169"><em>Video vòng lặp</em></div></div>
+        <div class="bx"><i class="m">1</i><span class="lbl">Hạng mục làm được</span><div class="r c3"><div class="bx"><span class="ln"></span><span class="ln s"></span></div><div class="bx"><span class="ln"></span><span class="ln s"></span></div><div class="bx"><span class="ln"></span><span class="ln s"></span></div></div></div>
+        <div class="bx solid"><i class="m">2</i><span class="lbl">Trước và sau: kéo thanh trượt</span><div class="img v239"></div></div>
+        <div class="bx"><i class="m">3</i><span class="lbl">Dự án của mảng này</span><div class="r c3"><div class="img v169"></div><div class="img v169"></div><div class="img v169"></div></div></div>
+        <div class="r c12"><div class="bx"><i class="m">4</i><span class="lbl">Thời gian và khung giá</span><span class="ln"></span><span class="ln"></span><span class="ln s"></span></div><div class="bx"><span class="lbl">Câu hỏi thường gặp</span><span class="ln"></span><span class="ln"></span><span class="ln"></span></div></div>
+        <div class="bx solid" style="background:color-mix(in srgb,var(--key) 22%,transparent)"><span class="hd" style="width:50%"></span><span class="bt" style="background:var(--ink)"></span></div>
+      </div>
+      <ol class="notes">
+        <li><span><b>Hạng mục.</b> 3–6 thẻ, mỗi thẻ là một sản phẩm cụ thể khách có thể đặt, kèm định dạng bàn giao.</span></li>
+        <li><span><b>Trước và sau.</b> Một thanh kéo so sánh plate gốc với khung đã comp. Đây là bằng chứng mạnh nhất cho VFX và 3D.</span></li>
+        <li><span><b>Dự án lọc sẵn.</b> Chỉ dự án có mảng này, mới nhất trước.</span></li>
+        <li><span><b>Khung giá tham khảo.</b> Ghi "từ ... triệu" theo hạng mục. Khách B2B lọc studio theo ngân sách; có giá giúp brief gửi về đúng tầm.</span></li>
+      </ol>
+    </div>
+
+    <div class="wf-title"><h3>Danh sách dự án</h3><span>/du-an</span></div>
+    <div class="wf-wrap">
+      <div class="wf" aria-label="Wireframe danh sách dự án">
+        <div class="r" style="grid-template-columns:1fr auto auto;align-items:center"><span class="hd" style="width:60px"></span><span class="ln" style="width:120px"></span><span class="bt k"></span></div>
+        <span class="hd big" style="width:30%"></span>
+        <div class="bx"><i class="m">1</i><div class="r" style="grid-template-columns:repeat(3,auto) 1fr;gap:14px;align-items:center"><span class="flex"><span class="lbl">Mảng</span><span class="chip"></span><span class="chip"></span><span class="chip"></span></span><span class="flex"><span class="lbl">Ngành</span><span class="chip"></span><span class="chip"></span></span><span class="flex"><span class="lbl">Định dạng</span><span class="chip"></span><span class="chip"></span></span><span class="lbl" style="justify-self:end">24 dự án</span></div></div>
+        <div class="r c3"><div class="bx" style="border:0;padding:0"><i class="m">2</i><div class="img v169"></div><span class="ln s"></span><span class="flex"><span class="chip"></span><span class="chip"></span></span></div><div class="bx" style="border:0;padding:0"><div class="img v169"></div><span class="ln s"></span></div><div class="bx" style="border:0;padding:0"><div class="img v169"></div><span class="ln s"></span></div></div>
+        <div class="r c3"><div class="bx" style="border:0;padding:0"><div class="img v169"></div><span class="ln s"></span></div><div class="bx" style="border:0;padding:0"><div class="img v169"></div><span class="ln s"></span></div><div class="bx" style="border:0;padding:0"><div class="img v169"></div><span class="ln s"></span></div></div>
+        <div class="bx" style="justify-items:center"><i class="m">3</i><span class="bt"></span></div>
+      </div>
+      <ol class="notes">
+        <li><span><b>Ba nhóm lọc.</b> Chọn nhiều giá trị, hiện số dự án khớp, ghi bộ lọc vào URL để chia sẻ được.</span></li>
+        <li><span><b>Thẻ dự án.</b> Khung hình đặc trưng, tên dự án, định dạng, thời lượng, các mảng đã làm. Không ghi tên khách nếu chưa được phép.</span></li>
+        <li><span><b>Xem thêm.</b> Tải thêm 9 dự án mỗi lần, giữ vị trí cuộn khi quay lại từ trang chi tiết.</span></li>
+      </ol>
+    </div>
+
+    <div class="wf-title"><h3>Chi tiết dự án</h3><span>/du-an/[ten-du-an]</span></div>
+    <div class="wf-wrap">
+      <div class="wf" aria-label="Wireframe chi tiết dự án">
+        <div class="r" style="grid-template-columns:1fr auto auto;align-items:center"><span class="hd" style="width:60px"></span><span class="ln" style="width:120px"></span><span class="bt k"></span></div>
+        <div class="bx solid"><i class="m">1</i><div class="img v239"><em>Phim hoàn chỉnh</em></div></div>
+        <span class="hd big" style="width:55%"></span>
+        <div class="bx"><i class="m">2</i><div class="r c6"><span class="ln"></span><span class="ln"></span><span class="ln"></span><span class="ln"></span><span class="ln"></span><span class="ln"></span></div></div>
+        <div class="r c3"><div style="display:grid;gap:6px"><span class="lbl">Brief</span><span class="ln"></span><span class="ln"></span><span class="ln s"></span></div><div style="display:grid;gap:6px"><span class="lbl">Thử thách</span><span class="ln"></span><span class="ln"></span><span class="ln s"></span></div><div style="display:grid;gap:6px"><span class="lbl">Cách làm</span><span class="ln"></span><span class="ln"></span><span class="ln s"></span></div></div>
+        <div class="bx solid"><i class="m">3</i><span class="flex"><span class="chip"></span><span class="chip"></span><span class="chip"></span><span class="chip"></span><span class="chip"></span></span><div class="img v239"><em>Breakdown theo lớp</em></div></div>
+        <div class="bx"><i class="m">4</i><span class="lbl">Styleframe</span><div class="r c3"><div class="img v169"></div><div class="img v169"></div><div class="img v169"></div></div></div>
+        <div class="r c12"><div class="bx"><i class="m">5</i><span class="lbl">Credits</span><span class="ln"></span><span class="ln s"></span><span class="ln"></span></div><div class="bx"><span class="lbl">Dự án tiếp theo</span><div class="img v169"></div></div></div>
+      </div>
+      <ol class="notes">
+        <li><span><b>Phim hoàn chỉnh trên cùng.</b> Ảnh poster tải trước, video chỉ tải khi bấm phát. Có phụ đề.</span></li>
+        <li><span><b>Hàng thông tin.</b> Khách hàng, agency, vai trò của studio, định dạng, thời lượng, năm.</span></li>
+        <li><span><b>Breakdown.</b> Cùng điều khiển với khung xem ở trang chủ: plate gốc, tracking, CG, comp, chỉnh màu. Phần producer của agency đọc kỹ nhất.</span></li>
+        <li><span><b>Styleframe.</b> Bấm để phóng to, vuốt để chuyển trên điện thoại.</span></li>
+        <li><span><b>Credits ghi tên artist.</b> Tốt cho tuyển dụng và cho uy tín đội ngũ.</span></li>
+      </ol>
+    </div>
+
+    <div class="wf-title"><h3>Liên hệ và gửi brief</h3><span>/lien-he</span></div>
+    <div class="wf-wrap">
+      <div class="wf" aria-label="Wireframe trang liên hệ">
+        <div class="r" style="grid-template-columns:1fr auto auto;align-items:center"><span class="hd" style="width:60px"></span><span class="ln" style="width:120px"></span><span class="bt k"></span></div>
+        <div class="r c2">
+          <div style="display:grid;gap:8px;align-content:start"><span class="hd big"></span><span class="ln"></span><span class="ln s"></span><div class="bx"><i class="m">1</i><span class="lbl">Producer phụ trách</span><span class="ln s"></span><span class="ln xs"></span></div><div class="bx"><span class="lbl">Địa chỉ studio</span><span class="ln"></span><span class="ln s"></span></div></div>
+          <div class="bx solid"><i class="m">2</i><span class="flex"><span class="lbl">Bước 1 Dịch vụ</span><span class="lbl">Bước 2 Dự án</span><span class="lbl">Bước 3 Liên hệ</span></span><div class="ln" style="background:var(--key);width:33%"></div>
+            <div class="r c12"><span class="bx" style="min-height:34px"></span><span class="bx" style="min-height:34px"></span><span class="bx" style="min-height:34px"></span><span class="bx" style="min-height:34px"></span></div>
+            <span class="bx" style="min-height:40px"><span class="lbl">Tải brief, moodboard (PDF, tối đa 20 MB)</span></span><span class="flex" style="justify-content:space-between"><span class="bt"></span><span class="bt k"></span></span></div>
+        </div>
+      </div>
+      <ol class="notes">
+        <li><span><b>Một người thật.</b> Ảnh, tên, email và số điện thoại của producer giúp agency bỏ qua form.</span></li>
+        <li><span><b>Form ba bước.</b> Bước 1 chọn mảng (nhiều lựa chọn), bước 2 thời lượng, deadline, ngân sách, bước 3 tên, công ty, email. Lưu nháp khi chuyển bước; báo lỗi ngay dưới trường.</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 5 -->
+  <section class="part" id="ui">
+    <h2><small>5</small>Hệ thống UI</h2>
+    <p class="intro">Ý tưởng hình ảnh lấy từ phim trường: nền xám như phông cyclorama, màu nhấn là xanh phông keying và chỉ dùng cho hành động. Hình ảnh dự án luôn là thứ có màu nhiều nhất trên trang. Có cả chế độ sáng và tối.</p>
+
+    <h3 class="sub">Màu</h3>
+    <div class="swatches">
+      <div class="sw"><div style="background:#E3E5E1"></div><p><b>Cyclorama</b><span>#E3E5E1 / tối #171A18</span><br>Nền trang</p></div>
+      <div class="sw"><div style="background:#EEF0EC"></div><p><b>Paper</b><span>#EEF0EC / tối #1F2321</span><br>Bề mặt nổi, thẻ</p></div>
+      <div class="sw"><div style="background:#131514"></div><p><b>Ink</b><span>#131514 / tối #E5E9E3</span><br>Chữ chính, viền nhấn</p></div>
+      <div class="sw"><div style="background:#4B524D"></div><p><b>Ink 2</b><span>#4B524D / tối #9BA49D</span><br>Chữ phụ, nhãn</p></div>
+      <div class="sw"><div style="background:#C3C8C1"></div><p><b>Line</b><span>#C3C8C1 / tối #333A35</span><br>Đường kẻ, viền thẻ</p></div>
+      <div class="sw"><div style="background:#00B140"></div><p><b>Chroma key</b><span>#00B140 / tối #22C55E</span><br>Nút chính, khối brief</p></div>
+      <div class="sw"><div style="background:#101312"></div><p><b>Viewport</b><span>#101312</span><br>Khung video, cả hai chế độ</p></div>
+    </div>
+    <p class="intro" style="font-size:.9rem">Bốn màu nhận diện từng mảng: 2D vàng #F2B705, Motion đỏ #E5484D, VFX xanh phông #00B140, 3D xanh dương #3E63DD. Chỉ dùng làm vạch nhỏ cạnh tên mảng, không dùng làm nền.</p>
+
+    <h3 class="sub">Chữ</h3>
+    <div class="type">
+      <div><span class="spec">Display XL<br>Anybody 780, độ rộng 118<br>40–72 px</span><span style="font-family:var(--display);font-weight:780;font-variation-settings:'wdth' 118;font-size:clamp(2rem,4.5vw,3.4rem);line-height:1.14">Từ khung dây đến khung hình cuối.</span></div>
+      <div><span class="spec">Display L<br>Anybody 720, độ rộng 112<br>28–40 px</span><span style="font-family:var(--display);font-weight:720;font-variation-settings:'wdth' 112;font-size:clamp(1.6rem,3vw,2.4rem);line-height:1.15">Bốn mảng, một pipeline</span></div>
+      <div><span class="spec">Tiêu đề thẻ<br>Be Vietnam Pro 600<br>17–20 px</span><span style="font-weight:600;font-size:1.15rem">TVC nước tăng lực: Thành phố không ngủ</span></div>
+      <div><span class="spec">Thân bài<br>Be Vietnam Pro 400<br>16–17 px, giãn dòng 1.6</span><span>KHUNG là studio hậu kỳ tại TP.HCM. Chúng tôi làm thiết kế 2D, motion graphics, VFX compositing và 3D CGI cho TVC, phim ngắn và nội dung mạng xã hội.</span></div>
+      <div><span class="spec">Nhãn và số liệu<br>Be Vietnam Pro 500<br>13 px, số đều cột</span><span style="font-size:.8125rem;font-weight:500;font-variant-numeric:tabular-nums">TC 00:00:12:08  2.39:1  25 fps</span></div>
+    </div>
+    <p class="intro" style="font-size:.9rem">Anybody là font có trục độ rộng: kéo rộng cho tiêu đề tạo cảm giác khung hình điện ảnh, và có thể chuyển động độ rộng trong logo animation. Be Vietnam Pro được thiết kế cho tiếng Việt nên dấu đặt chuẩn ở mọi cỡ. Giãn dòng tiêu đề tối thiểu 1.14 để dấu không chạm dòng trên.</p>
+
+    <h3 class="sub">Thành phần</h3>
+    <div class="comps">
+      <div class="comp"><h4>Nút</h4><div class="row"><span class="b key">Gửi brief dự án</span><span class="b ghost">Xem showreel 2026</span><span class="b link">Xem mảng 3D</span></div><p>Nút xanh chỉ dùng cho hành động gửi brief, tối đa một nút xanh trên mỗi màn hình. Bo góc 2 px như góc khung phim.</p></div>
+      <div class="comp"><h4>Bộ lọc</h4><div class="row"><span class="fc on">Tất cả</span><span class="fc">2D</span><span class="fc">Motion</span><span class="fc">VFX</span><span class="fc">3D CGI</span></div><p>Dạng viên thuốc để phân biệt với nút. Trạng thái chọn đổi nền đặc, không chỉ đổi màu chữ.</p></div>
+      <div class="comp"><h4>Thẻ dự án</h4><div class="pcard"><div class="fr"><span>16:9  00:15</span></div><b>Ra mắt xe điện: Packshot CGI</b><div class="tags"><span>Key visual + 15s</span><span>3D CGI</span></div></div><p>Khung hình ghi tỉ lệ và thời lượng, thông tin người trong nghề tìm đầu tiên.</p></div>
+      <div class="comp"><h4>Trường nhập</h4><div class="field"><span>Email công việc</span><span class="in">ten@congty.vn</span></div><div class="field focus"><span>Tên của bạn</span><span class="in">Minh Anh</span></div><div class="field error"><span>Deadline</span><span class="in">15/02</span><small>Ngày giao phải sau hôm nay ít nhất 7 ngày. Chọn ngày khác hoặc ghi chú dự án gấp.</small></div></div>
+    </div>
+  </section>
+
+  <!-- 6 -->
+  <section class="part" id="ux">
+    <h2><small>6</small>Nguyên tắc UX</h2>
+    <div class="rules">
+      <div><h4>Video không làm chậm trang</h4><p>Mỗi video có ảnh poster. Hero tải trong 2,5 giây trên 4G. Đoạn xem trước dưới 4 MB, phát khi rê chuột hoặc khi lọt vào màn hình, không tiếng.</p></div>
+      <div><h4>Một hành động chính</h4><p>Nút Gửi brief dự án có mặt ở header, cuối mỗi trang và cố định trên điện thoại. Mọi nút khác dùng kiểu viền hoặc liên kết.</p></div>
+      <div><h4>Bằng chứng trước, lời giới thiệu sau</h4><p>Mỗi trang dịch vụ đưa hình trước và sau lên trước đoạn mô tả. Mỗi khẳng định về năng lực dẫn tới một dự án cụ thể.</p></div>
+      <div><h4>Nói như người trong nghề</h4><p>Dùng thuật ngữ khách B2B quen: TVC, styleframe, animatic, keying, render pass. Giải thích ngắn khi dùng lần đầu trên trang dịch vụ.</p></div>
+      <div><h4>Tôn trọng giảm chuyển động</h4><p>Khi hệ điều hành bật giảm chuyển động: không tự chuyển pass, không parallax, video chỉ phát khi bấm. Mọi nội dung vẫn đọc được ở trạng thái tĩnh.</p></div>
+      <div><h4>Dễ tiếp cận</h4><p>Độ tương phản chữ từ 4,5:1. Viền focus xanh rõ ràng. Video có phụ đề tiếng Việt và tiếng Anh. Điều khiển bằng bàn phím được toàn bộ.</p></div>
+      <div><h4>Form không làm mất công</h4><p>Bước 1 chỉ cần bấm chọn. Lưu nháp giữa các bước. Báo lỗi ngay dưới trường, nói rõ cách sửa. Sau khi gửi: hiện tên producer và thời gian phản hồi.</p></div>
+      <div><h4>Chia sẻ được</h4><p>Bộ lọc dự án và pass breakdown ghi vào URL, để producer gửi đúng khung hình cho đồng nghiệp. Ảnh chia sẻ mạng xã hội riêng cho mỗi dự án.</p></div>
+    </div>
+  </section>
+
+  <!-- 7 -->
+  <section class="part" id="noi-dung">
+    <h2><small>7</small>Nội dung</h2>
+    <p class="intro">Giọng văn: thẳng, cụ thể, như producer nói chuyện với khách. Câu ngắn, động từ rõ, có số liệu thật. Tránh tính từ sáo rỗng như "đỉnh cao", "đột phá", "hàng đầu". Các con số có nhãn <span class="flag">thay số thật</span> là giả định.</p>
+
+    <article class="page-copy"><header><h3>Trang chủ</h3><code>/</code></header><div class="body">
+      <div class="blk"><span>Tiêu đề hero</span><div class="t"><p class="h">Từ khung dây đến khung hình cuối.</p></div></div>
+      <div class="blk"><span>Mô tả hero</span><div class="t"><p>KHUNG là studio hậu kỳ tại TP.HCM. Chúng tôi làm thiết kế 2D, motion graphics, VFX compositing và 3D CGI cho TVC, phim ngắn và nội dung mạng xã hội.</p></div></div>
+      <div class="blk"><span>Nút</span><div class="t"><p>Gửi brief dự án / Xem showreel 2026</p></div></div>
+      <div class="blk"><span>Chú thích pass</span><div class="t"><ul><li>Wireframe: lưới đa giác của mô hình, bước đầu tiên của dựng hình 3D.</li><li>Clay: khối xám không chất liệu để duyệt hình dáng và bố cục khung hình.</li><li>Lighting: thêm ánh sáng chính, đèn viền và chất liệu.</li><li>Comp: ghép nền, bóng đổ, độ nhiễu phim và khung 2.39:1, ra khung hình cuối.</li></ul></div></div>
+      <div class="blk"><span>Khối dịch vụ</span><div class="t"><p><b>Bốn mảng, một pipeline.</b> Mỗi dự án đi qua cùng một đường ống sản xuất. Bạn làm việc với một đầu mối, từ styleframe đầu tiên đến file master giao đài.</p></div></div>
+      <div class="blk"><span>Khối dự án</span><div class="t"><p><b>Dự án chọn lọc.</b> Mỗi dự án có trang breakdown riêng: brief, cách làm, các lớp trước và sau khi comp, và đội ngũ tham gia.</p></div></div>
+      <div class="blk"><span>Khối studio</span><div class="t"><p>Chúng tôi là nhóm nghệ sĩ và kỹ thuật viên làm việc chung trên một render farm. Họa sĩ 2D ngồi cạnh artist Houdini, nên ý tưởng đi thẳng vào sản xuất mà không thất lạc.</p><p>18 thành viên toàn thời gian, thành lập 2016, 140+ dự án đã giao, 64 node render GPU <span class="flag">thay số thật</span></p></div></div>
+      <div class="blk"><span>Khối brief</span><div class="t"><p><b>Có kịch bản, moodboard hay chỉ một ý tưởng?</b> Gửi cho chúng tôi những gì bạn đang có. Producer sẽ phản hồi trong một ngày làm việc kèm câu hỏi và khung báo giá.</p></div></div>
+    </div></article>
+
+    <article class="page-copy"><header><h3>Dịch vụ: Thiết kế 2D</h3><code>/dich-vu/thiet-ke-2d</code></header><div class="body">
+      <div class="blk"><span>Tiêu đề</span><div class="t"><p class="h">Chốt phong cách trước khi bấm render.</p></div></div>
+      <div class="blk"><span>Mô tả</span><div class="t"><p>Mọi dự án chuyển động bắt đầu bằng một khung hình tĩnh. Chúng tôi vẽ styleframe, key visual và minh hoạ để bạn duyệt màu, bố cục và chất cảm trước khi tốn ngày công animation.</p></div></div>
+      <div class="blk"><span>Hạng mục</span><div class="t"><ul><li><b>Styleframe</b>: 3–6 khung đại diện cho phim, 2 hướng phong cách.</li><li><b>Key visual chiến dịch</b>: bộ ảnh chính và bản chuyển đổi cho OOH, social, POSM.</li><li><b>Minh hoạ và nhân vật</b>: thiết kế nhân vật, bảng biểu cảm, turnaround cho animation.</li><li><b>Nhận diện chuyển động</b>: quy tắc chuyển động cho logo, chữ, chuyển cảnh.</li></ul></div></div>
+      <div class="blk"><span>Thời gian, giá</span><div class="t"><p>Styleframe 4–6 ngày, từ 25 triệu đồng cho 2 hướng. Key visual từ 40 triệu đồng. <span class="flag">thay giá thật</span></p></div></div>
+      <div class="blk"><span>Hỏi đáp</span><div class="t"><p><b>Styleframe có được dùng làm ảnh quảng cáo không?</b> Có. Chúng tôi vẽ ở độ phân giải in ấn nếu bạn báo trước trong brief.</p><p><b>Tôi đã có KV từ agency khác?</b> Chúng tôi chuyển KV sang chuyển động và giữ nguyên guideline.</p></div></div>
+    </div></article>
+
+    <article class="page-copy"><header><h3>Dịch vụ: Motion graphics</h3><code>/dich-vu/motion-graphics</code></header><div class="body">
+      <div class="blk"><span>Tiêu đề</span><div class="t"><p class="h">Thông điệp rõ trong 6 giây đầu.</p></div></div>
+      <div class="blk"><span>Mô tả</span><div class="t"><p>Người xem lướt qua quảng cáo sau vài giây. Chúng tôi dựng nhịp hình theo nhạc và voice-over để thông điệp chính xuất hiện trước khi họ kịp lướt.</p></div></div>
+      <div class="blk"><span>Hạng mục</span><div class="t"><ul><li><b>Explainer</b> 60–90 giây cho sản phẩm công nghệ, tài chính, y tế.</li><li><b>Logo animation và ident</b> 3–10 giây, kèm âm thanh.</li><li><b>Nội dung dọc 9:16</b> cho TikTok, Reels, Shorts, giao theo bộ.</li><li><b>Title sequence</b> cho phim, chương trình, sự kiện.</li></ul></div></div>
+      <div class="blk"><span>Thời gian, giá</span><div class="t"><p>Explainer 60 giây: 3–4 tuần, từ 80 triệu đồng. Bộ 6 video dọc 15 giây: 2 tuần, từ 60 triệu đồng. <span class="flag">thay giá thật</span></p></div></div>
+      <div class="blk"><span>Hỏi đáp</span><div class="t"><p><b>Có cần kịch bản sẵn không?</b> Không bắt buộc. Chúng tôi viết kịch bản và lời thoại nếu bạn có thông điệp chính.</p><p><b>Bàn giao những gì?</b> File master, các tỉ lệ khung đã thống nhất và file nguồn After Effects khi được yêu cầu.</p></div></div>
+    </div></article>
+
+    <article class="page-copy"><header><h3>Dịch vụ: VFX compositing</h3><code>/dich-vu/vfx-compositing</code></header><div class="body">
+      <div class="blk"><span>Tiêu đề</span><div class="t"><p class="h">Người xem chỉ thấy khung hình cuối.</p></div></div>
+      <div class="blk"><span>Mô tả</span><div class="t"><p>Chúng tôi ghép cảnh quay thật với đồ hoạ máy tính sao cho không ai nhận ra đường ghép. Từ xoá dây cáp đến dựng cả thành phố phía sau diễn viên.</p></div></div>
+      <div class="blk"><span>Hạng mục</span><div class="t"><ul><li><b>Keying phông xanh</b>, giữ chi tiết tóc, khói, vật trong suốt.</li><li><b>Tracking và matchmove</b> 2D, 3D để gắn CG vào cảnh quay máy chuyển động.</li><li><b>Clean-up, rotoscope</b>: xoá dây, logo, người qua đường, vật thể thừa.</li><li><b>Set extension</b>: mở rộng bối cảnh, thay bầu trời, thêm đám đông.</li><li><b>Chỉnh màu</b> trên DaVinci Resolve, giao master theo chuẩn đài.</li></ul></div></div>
+      <div class="blk"><span>Có mặt tại hiện trường</span><div class="t"><p>VFX supervisor của chúng tôi có thể ra set để đặt điểm tracking, chụp HDRI và đo ánh sáng. Làm đúng từ lúc quay rẻ hơn sửa ở hậu kỳ.</p></div></div>
+      <div class="blk"><span>Thời gian, giá</span><div class="t"><p>Tính theo shot và độ khó. Shot keying cơ bản từ 3 triệu đồng; set extension từ 15 triệu đồng mỗi shot. <span class="flag">thay giá thật</span></p></div></div>
+    </div></article>
+
+    <article class="page-copy"><header><h3>Dịch vụ: 3D CGI</h3><code>/dich-vu/3d-cgi</code></header><div class="body">
+      <div class="blk"><span>Tiêu đề</span><div class="t"><p class="h">Sản phẩm của bạn, trước khi nó được sản xuất.</p></div></div>
+      <div class="blk"><span>Mô tả</span><div class="t"><p>Dựng sản phẩm từ file CAD hoặc ảnh chụp, đặt vào bất kỳ bối cảnh nào và quay ở góc máy không thể quay thật. Phù hợp ra mắt sản phẩm mới, bất động sản chưa xây, chất lỏng và hiệu ứng khó kiểm soát ngoài đời.</p></div></div>
+      <div class="blk"><span>Hạng mục</span><div class="t"><ul><li><b>Packshot sản phẩm</b>: chai, lon, mỹ phẩm, thiết bị điện tử, xe.</li><li><b>Mô phỏng</b>: chất lỏng, hạt, khói, vải trên Houdini.</li><li><b>Phim kiến trúc</b>: căn hộ mẫu, tiện ích, toàn cảnh dự án.</li><li><b>Nhân vật 3D</b>: dựng hình, rigging, animation.</li></ul></div></div>
+      <div class="blk"><span>Thời gian, giá</span><div class="t"><p>Packshot 15 giây: 3–4 tuần, từ 150 triệu đồng. Phim kiến trúc 90 giây: 6–8 tuần, từ 350 triệu đồng. <span class="flag">thay giá thật</span></p></div></div>
+      <div class="blk"><span>Hỏi đáp</span><div class="t"><p><b>Cần chuẩn bị gì?</b> File CAD hoặc sản phẩm mẫu, ảnh tham khảo chất liệu, logo dạng vector.</p><p><b>Có giao file render pass riêng không?</b> Có. Chúng tôi giao EXR đa lớp để agency tự chỉnh màu nếu cần.</p></div></div>
+    </div></article>
+
+    <article class="page-copy"><header><h3>Chi tiết dự án mẫu</h3><code>/du-an/thanh-pho-khong-ngu</code></header><div class="body">
+      <div class="blk"><span>Tiêu đề</span><div class="t"><p class="h">Thành phố không ngủ</p><p>TVC 30 giây cho một nhãn nước tăng lực <span class="flag">dự án giả định</span></p></div></div>
+      <div class="blk"><span>Thông tin</span><div class="t"><p>Khách hàng: Nhãn nước tăng lực. Agency: Agency sáng tạo. Vai trò: 3D CGI, VFX compositing, chỉnh màu. Định dạng: 30s, 15s, 6s; 16:9 và 9:16. Năm: 2026.</p></div></div>
+      <div class="blk"><span>Brief</span><div class="t"><p>Ra mắt bao bì mới cho mùa thi. Lon sản phẩm phải là nhân vật chính trong một thành phố về đêm, nơi năng lượng chạy dọc các toà nhà như dòng điện.</p></div></div>
+      <div class="blk"><span>Thử thách</span><div class="t"><p>Bao bì mới chưa được sản xuất khi quay. Cảnh diễn viên quay trên phông xanh trong một ngày, thành phố phải dựng hoàn toàn bằng CG và khớp ánh sáng với cảnh quay thật.</p></div></div>
+      <div class="blk"><span>Cách làm</span><div class="t"><p>Dựng lon từ file thiết kế bao bì, mô phỏng giọt nước ngưng tụ trên Houdini. VFX supervisor ra set chụp HDRI và đặt điểm tracking. Thành phố được dựng theo module để thay góc máy nhanh khi khách đổi animatic.</p></div></div>
+      <div class="blk"><span>Breakdown</span><div class="t"><p>Plate gốc phông xanh, Tracking, Thành phố CG, Lon sản phẩm, Comp, Chỉnh màu.</p></div></div>
+      <div class="blk"><span>Credits</span><div class="t"><p>Đạo diễn hình ảnh CG, VFX supervisor, artist Houdini, compositor, colorist, producer. Ghi tên thật từng người khi có.</p></div></div>
+    </div></article>
+
+    <article class="page-copy"><header><h3>Quy trình</h3><code>/quy-trinh</code></header><div class="body">
+      <div class="blk"><span>Tiêu đề</span><div class="t"><p class="h">Bạn luôn biết dự án đang ở bước nào.</p></div></div>
+      <div class="blk"><span>Các bước</span><div class="t"><ul>
+        <li><b>Nhận brief</b> (1–2 ngày): đọc kịch bản, moodboard, ngân sách, deadline. Gửi báo giá theo hạng mục.</li>
+        <li><b>Concept và styleframe</b> (4–6 ngày): 2–3 hướng hình ảnh tĩnh để chốt phong cách.</li>
+        <li><b>Animatic</b> (3–5 ngày): dựng thô đúng thời lượng, khớp nhạc và voice-over.</li>
+        <li><b>Sản xuất</b> (10–20 ngày): dựng 3D, animation, mô phỏng, quay phông xanh nếu cần. Bản xem giữa kỳ.</li>
+        <li><b>Comp và chỉnh màu</b> (4–7 ngày): ghép lớp, keying, chỉnh màu, âm thanh. Hai vòng sửa.</li>
+        <li><b>Bàn giao</b> (1–2 ngày): master theo chuẩn đài và nền tảng, bản cắt ngắn, file nguồn.</li></ul></div></div>
+      <div class="blk"><span>Vòng sửa</span><div class="t"><p>Mỗi bước có hai vòng sửa trong báo giá. Thay đổi sau khi đã chốt animatic được báo giá riêng trước khi làm.</p></div></div>
+    </div></article>
+
+    <article class="page-copy"><header><h3>Studio và tuyển dụng</h3><code>/studio, /tuyen-dung</code></header><div class="body">
+      <div class="blk"><span>Tiêu đề studio</span><div class="t"><p class="h">Một phòng, một render farm, bốn mảng nghề.</p></div></div>
+      <div class="blk"><span>Giới thiệu</span><div class="t"><p>KHUNG bắt đầu năm 2016 với ba người làm motion graphics trong một căn phòng thuê. Hôm nay studio có 18 người: họa sĩ 2D, animator, artist 3D, compositor, colorist và producer. Chúng tôi giữ quy mô vừa đủ để mỗi dự án có người làm từ đầu đến cuối. <span class="flag">thay câu chuyện thật</span></p></div></div>
+      <div class="blk"><span>Hạ tầng</span><div class="t"><p>64 node render GPU, lưu trữ 200 TB, phòng chỉnh màu hiệu chuẩn chuẩn Rec.709. Quản lý dự án trên ShotGrid để khách xem bản nháp và để lại ghi chú theo từng khung hình. <span class="flag">thay số thật</span></p></div></div>
+      <div class="blk"><span>Tuyển dụng</span><div class="t"><p class="h" style="font-size:1.1rem">Làm việc thật, có tên trong credits.</p><p>Mỗi dự án ghi tên người làm. Bạn được thử Houdini, Nuke, Blender trên phần cứng đủ mạnh và học từ người đi trước qua buổi review hàng tuần.</p><ul><li>Compositor (Nuke), 2+ năm kinh nghiệm</li><li>Artist FX Houdini, 2+ năm kinh nghiệm</li><li>Motion designer (After Effects), 1+ năm kinh nghiệm</li></ul><p>Nộp hồ sơ: gửi link reel và CV, ghi vị trí ở tiêu đề email.</p></div></div>
+    </div></article>
+
+    <article class="page-copy"><header><h3>Liên hệ và gửi brief</h3><code>/lien-he</code></header><div class="body">
+      <div class="blk"><span>Tiêu đề</span><div class="t"><p class="h">Kể cho chúng tôi về dự án.</p><p>Càng nhiều chi tiết, báo giá càng sát. Chưa có đủ thông tin cũng không sao, producer sẽ hỏi thêm.</p></div></div>
+      <div class="blk"><span>Bước 1</span><div class="t"><p><b>Bạn cần làm gì?</b> Thiết kế 2D / Motion graphics / VFX compositing / 3D CGI / Chưa chắc, cần tư vấn</p></div></div>
+      <div class="blk"><span>Bước 2</span><div class="t"><p><b>Về dự án.</b> Loại dự án, thời lượng, ngày cần bàn giao, ngân sách dự kiến, mô tả ngắn, tải brief hoặc moodboard.</p></div></div>
+      <div class="blk"><span>Bước 3</span><div class="t"><p><b>Liên hệ với bạn.</b> Họ tên, công ty, email công việc, số điện thoại (không bắt buộc).</p></div></div>
+      <div class="blk"><span>Nút</span><div class="t"><p>Tiếp tục / Quay lại / Gửi brief</p></div></div>
+      <div class="blk"><span>Thông báo lỗi</span><div class="t"><ul><li>Chọn ít nhất một mảng để chúng tôi chuyển brief cho đúng người.</li><li>Email chưa đúng định dạng, ví dụ ten@congty.vn.</li><li>File lớn hơn 20 MB. Gửi link Google Drive hoặc WeTransfer trong phần mô tả.</li></ul></div></div>
+      <div class="blk"><span>Sau khi gửi</span><div class="t"><p><b>Đã nhận brief.</b> Producer Nguyễn Minh sẽ trả lời qua email của bạn trước 17:00 ngày làm việc tiếp theo. <span class="flag">thay tên thật</span></p></div></div>
+    </div></article>
+
+    <h3 class="sub">Tiêu đề và mô tả SEO</h3>
+    <div class="tbl seo"><table>
+      <thead><tr><th>Trang</th><th>Thẻ title</th><th>Meta description</th></tr></thead>
+      <tbody>
+        <tr><td>Trang chủ</td><td>KHUNG Studio: Motion graphics, VFX và 3D CGI tại TP.HCM</td><td>Studio hậu kỳ làm thiết kế 2D, motion graphics, VFX compositing và 3D CGI cho TVC, phim và nội dung số. Gửi brief, nhận phản hồi trong một ngày.</td></tr>
+        <tr><td>Thiết kế 2D</td><td>Styleframe và key visual cho TVC | KHUNG Studio</td><td>Styleframe, key visual, minh hoạ và nhận diện chuyển động. Chốt phong cách trước khi sản xuất.</td></tr>
+        <tr><td>Motion graphics</td><td>Làm video motion graphics, explainer | KHUNG Studio</td><td>Explainer, logo animation, video dọc 9:16 và title sequence, dựng nhịp theo nhạc và thông điệp.</td></tr>
+        <tr><td>VFX compositing</td><td>Dịch vụ VFX compositing, keying phông xanh | KHUNG Studio</td><td>Keying, tracking, clean-up, set extension và chỉnh màu cho TVC, MV và phim.</td></tr>
+        <tr><td>3D CGI</td><td>Dựng 3D CGI sản phẩm và phim kiến trúc | KHUNG Studio</td><td>Packshot sản phẩm, mô phỏng chất lỏng, phim kiến trúc và nhân vật 3D, render ảnh thật.</td></tr>
+        <tr><td>Dự án</td><td>Dự án TVC, VFX và 3D đã thực hiện | KHUNG Studio</td><td>Xem dự án theo mảng, ngành và định dạng, kèm breakdown từng lớp render.</td></tr>
+        <tr><td>Liên hệ</td><td>Gửi brief dự án | KHUNG Studio</td><td>Gửi kịch bản, moodboard hoặc ý tưởng. Producer phản hồi trong một ngày làm việc kèm khung báo giá.</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <!-- 8 -->
+  <section class="part" id="tiep-theo">
+    <h2><small>8</small>Bước tiếp theo</h2>
+    <div class="next">
+      <div><h4>Thông tin cần từ bạn</h4><ul><li>Tên studio, logo, màu thương hiệu nếu đã có</li><li>Showreel mới nhất và 6–12 dự án được phép công bố</li><li>Cảnh quay trước và sau cho 2–3 dự án VFX, 3D</li><li>Số liệu thật: số người, năm thành lập, số dự án, hạ tầng</li><li>Khung giá tham khảo cho từng mảng, hoặc quyết định ẩn giá</li><li>Tên, ảnh, liên hệ của producer phụ trách brief</li></ul></div>
+      <div><h4>Đề xuất kỹ thuật</h4><ul><li>Next.js, xuất trang tĩnh cho tốc độ và SEO</li><li>CMS headless (Sanity hoặc Payload) để tự thêm dự án, bài viết, vị trí tuyển dụng</li><li>Video qua Vimeo Pro hoặc Mux: tự chọn chất lượng theo mạng</li><li>Form brief gửi về email và Google Sheets hoặc CRM</li><li>Hosting Vercel, Google Analytics 4 đo ba chỉ số ở mục 1</li></ul></div>
+    </div>
+  </section>
+</main>
+</div>
+<script>
+(()=>{const links=[...document.querySelectorAll('.rail li a')],secs=links.map(a=>document.querySelector(a.getAttribute('href')));
+const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.toggle('on',l.getAttribute('href')==='#'+e.target.id))}})},{rootMargin:'-20% 0px -70% 0px'});
+secs.forEach(s=>s&&io.observe(s));})();
+</script>
