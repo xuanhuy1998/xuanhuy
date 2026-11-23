@@ -124,13 +124,56 @@ button,input,select,textarea{font:inherit;color:inherit}
 @media (max-width:860px){.tgrid{grid-template-columns:1fr}}
 
 /* STATS */
-.stats{background:var(--y);color:var(--y-ink);margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px)))}
+.stats{background:var(--y);color:var(--y-ink);margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px)));margin-top:16px}
 .stats .shell{display:grid;grid-template-columns:repeat(var(--n,4),minmax(0,1fr));padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 .stats .s{text-align:center;padding:30px 12px;border-left:1px solid rgba(22,21,27,.16)}
 .stats .s:first-child{border-left:0}
 .stats b{display:block;font:300 clamp(2.2rem,4vw,3.2rem)/1.1 var(--display);font-variant-numeric:tabular-nums}
 .stats span{font-size:.82rem;font-weight:500}
 @media (max-width:700px){.stats .shell{grid-template-columns:1fr 1fr}.stats .s:nth-child(odd){border-left:0}.stats .s:nth-child(n+3){border-top:1px solid rgba(22,21,27,.16)}}
+
+/* PROBLEM, USE CASES, PRICING, FAQ */
+.problem{padding-block:72px 16px;display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:28px 40px;align-items:end}
+.problem p.lead{color:var(--ink-2);font-size:1.02rem;max-width:52ch}
+.points{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:8px;grid-column:1/-1}
+.points div{border-top:2px solid var(--ink);padding-top:12px}
+.points b{display:block;font:600 1rem var(--body)}
+.points span{font-size:.9rem;color:var(--ink-2)}
+@media (max-width:860px){.problem{grid-template-columns:1fr}.points{grid-template-columns:1fr 1fr}}
+@media (max-width:480px){.points{grid-template-columns:1fr}}
+.uses{padding-block:56px 16px}
+.ugrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:28px}
+.uc{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;display:flex;flex-direction:column;gap:8px;text-decoration:none;color:inherit;min-width:0}
+.uc h3{font:600 1.05rem var(--body)}
+.uc p{font-size:.92rem;color:var(--ink-2);flex:1}
+.uc span{font-size:.82rem;font-weight:600;margin-top:6px}
+a.uc:hover{border-color:var(--ink)}
+@media (max-width:860px){.ugrid{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.ugrid{grid-template-columns:1fr}}
+.tabsep{align-self:center;font-size:.78rem;color:var(--ink-2);margin-left:10px;padding-left:14px;border-left:1px solid var(--line)}
+.pricing{padding-block:56px 24px}
+.pgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:28px}
+.tier{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.tier:nth-child(2){background:var(--dark);color:var(--on-dark);border-color:var(--dark)}
+.tier h3{font:600 1.05rem var(--body)}
+.tier .pr{font:400 clamp(1.7rem,2.6vw,2.2rem)/1.15 var(--display)}
+.tier .fo{font-size:.9rem;color:var(--ink-2)}
+.tier:nth-child(2) .fo{color:var(--on-dark-2)}
+.tier ul{list-style:none;padding:0;display:grid;gap:6px;font-size:.9rem;border-top:1px solid var(--line);padding-top:12px;margin-top:4px}
+.tier:nth-child(2) ul{border-color:rgba(255,255,255,.14)}
+.tier li::before{content:"✓";margin-right:8px;font-weight:700}
+.pnote{margin-top:16px;font-size:.88rem;color:var(--ink-2)}
+@media (max-width:860px){.pgrid{grid-template-columns:1fr}}
+.faq{padding-block:56px 24px;display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:40px}
+.faq details{border-bottom:1px solid var(--line);padding-block:14px}
+.faq details:first-child{border-top:1px solid var(--line)}
+.faq summary{cursor:pointer;font:600 1.02rem var(--body);list-style:none;display:flex;justify-content:space-between;gap:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-weight:400;font-size:1.3rem;line-height:1}
+.faq details[open] summary::after{content:"−"}
+.faq details p{margin-top:8px;color:var(--ink-2);font-size:.95rem;max-width:62ch}
+@media (max-width:860px){.faq{grid-template-columns:1fr;gap:16px}}
+.cta p.ctx{font-size:.95rem;margin-top:12px;max-width:52ch}
 
 /* STUDIO + PROCESS */
 .studio{padding-block:72px 24px;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:48px}
@@ -145,7 +188,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 @media (max-width:860px){.studio{grid-template-columns:1fr}}
 @media (max-width:480px){.team{grid-template-columns:1fr}}
 .process{padding-block:56px 72px}
-.steps{list-style:none;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:28px;counter-reset:s}
+.steps{list-style:none;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-top:28px;counter-reset:s}
 .steps li{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px;display:grid;gap:6px;align-content:start;counter-increment:s}
 .steps li::before{content:counter(s,decimal-leading-zero);font:500 1.6rem var(--display);font-variant-numeric:tabular-nums}
 .steps h3{font:600 1.02rem var(--body)}
@@ -284,14 +327,14 @@ footer a{color:var(--ink);font-weight:600}
   <div class="nav">
     <a class="logo" href="#trang-chu" aria-label="Hlab.studio, trang chủ"><i></i><span>Hlab<em>.studio</em></span></a>
     <nav class="pillnav" aria-label="Điều hướng chính">
-      <a href="#du-an">Dự án</a><a href="#khach-hang">Khách hàng</a><a href="#studio">Studio</a><a href="#quy-trinh">Quy trình</a>
+      <a href="#du-an">Dự án</a><a href="#dich-vu">Dịch vụ</a><a href="#quy-trinh">Quy trình</a><a href="#bang-gia">Bảng giá</a><a href="#hoi-dap">Hỏi đáp</a>
     </nav>
     <div class="nav-r">
-      <a class="pill-w" href="#lien-he">Liên hệ <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4.5 11.5l7-7M5.5 4.5h6v6"/></svg></a>
+      <a class="pill-w" href="#lien-he">Trao đổi về dự án <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4.5 11.5l7-7M5.5 4.5h6v6"/></svg></a>
       <button class="menu" id="menuBtn" aria-label="Mở menu" aria-expanded="false"><span></span></button>
     </div>
   </div>
-  <nav class="mnav" aria-label="Menu điện thoại"><a href="#du-an">Dự án</a><a href="#khach-hang">Khách hàng</a><a href="#studio">Studio</a><a href="#quy-trinh">Quy trình</a><a href="#lien-he">Liên hệ</a></nav>
+  <nav class="mnav" aria-label="Menu điện thoại"><a href="#du-an">Dự án</a><a href="#dich-vu">Dịch vụ</a><a href="#quy-trinh">Quy trình</a><a href="#bang-gia">Bảng giá</a><a href="#hoi-dap">Hỏi đáp</a><a href="#lien-he">Trao đổi về dự án</a></nav>
   <div class="hero-g">
     <div>
       <span class="badge" id="hBadge"><b></b><span></span></span>
@@ -299,15 +342,16 @@ footer a{color:var(--ink);font-weight:600}
       <p class="lede" id="hLede"></p>
       <div class="acts">
         <a class="btn-y" href="#du-an">Xem dự án <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8 3v10M3.5 8.5L8 13l4.5-4.5"/></svg></a>
+        <a class="btn-o" href="#lien-he" id="heroCta">Trao đổi về dự án</a>
         <a class="btn-o" id="reelLink" href="#trang-chu" target="_blank" rel="noopener" hidden>Xem showreel đầy đủ</a>
       </div>
     </div>
     <div class="stage">
       <div class="vp" id="vp">
-        <canvas id="hero" role="img" aria-label="Mô hình 3D hiển thị theo lớp render đang chọn"></canvas>
+        <canvas id="hero" role="img" aria-label="Đoạn motion 2D minh hoạ, hiển thị theo bước đang chọn"></canvas>
         <div class="vctl" id="vctl">
-          <div class="passes" role="group" aria-label="Chọn lớp render">
-            <button data-p="0" aria-pressed="false">Wireframe</button><button data-p="1" aria-pressed="false">Clay</button><button data-p="2" aria-pressed="false">Lighting</button><button data-p="3" aria-pressed="true">Comp</button>
+          <div class="passes" role="group" aria-label="Chọn bước sản xuất">
+            <button data-p="0" aria-pressed="false">Phác thảo</button><button data-p="1" aria-pressed="false">Styleframe</button><button data-p="2" aria-pressed="true">Animation</button>
           </div>
           <span class="tc">TC <b id="tc">00:00:00:00</b></span>
         </div>
@@ -316,10 +360,21 @@ footer a{color:var(--ink);font-weight:600}
   </div>
 </header>
 
+</div>
+<section class="stats" id="stats" aria-label="Số liệu studio"><div class="shell" id="statsIn"></div></section>
+<div class="shell">
 <main id="vHome">
+  <section class="problem" aria-labelledby="h-prob" id="probSec">
+    <h2 class="sec-t" id="h-prob"></h2><p class="lead" id="probText"></p>
+    <div class="points" id="points"></div>
+  </section>
   <section class="featured" aria-labelledby="h-feat" id="featSec">
     <div class="fhead"><h2 class="sec-t" id="h-feat">Dự án nổi bật</h2><p class="sec-d">Bấm vào dự án để xem trang chi tiết và kéo thanh so sánh trước và sau.</p></div>
     <div class="fgrid" id="fgrid"></div>
+  </section>
+  <section class="uses" id="dich-vu" aria-labelledby="h-uses">
+    <h2 class="sec-t" id="h-uses">Thiết kế và video của bạn sẽ dùng ở đâu</h2>
+    <div class="ugrid" id="ugrid"></div>
   </section>
   <section class="work" id="du-an" aria-labelledby="h-work">
     <h2 class="sec-t" id="h-work">Tất cả dự án</h2>
@@ -327,33 +382,36 @@ footer a{color:var(--ink);font-weight:600}
     <div class="catintro"><p id="catDesc"></p><div class="subs" role="group" aria-label="Lọc theo mục con" id="subs"></div></div>
     <div class="grid" id="grid"><p class="empty">Đang tải dự án…</p></div>
   </section>
+  <section class="process" id="quy-trinh" aria-labelledby="h-qt">
+    <h2 class="sec-t" id="h-qt">Quy trình làm việc</h2>
+    <p class="sec-d" style="margin-top:10px">Đơn giản và rõ ràng: bạn luôn biết dự án đang ở bước nào và bước tiếp theo là gì.</p>
+    <ol class="steps" id="steps"></ol>
+  </section>
+  <section class="pricing" id="bang-gia" aria-labelledby="h-price">
+    <h2 class="sec-t" id="h-price">Giá rõ ràng. Không dùng template.</h2>
+    <p class="sec-d" id="priceNote" style="margin-top:10px"></p>
+    <div class="pgrid" id="pgrid"></div>
+    <p class="pnote" id="priceExtra"></p>
+  </section>
   <section class="clients" id="khach-hang" aria-labelledby="h-cl">
     <h2 class="sec-t" id="h-cl">Khách hàng đã làm cùng chúng tôi</h2>
     <div class="wm" id="wm"></div>
     <div class="tgrid" id="tgrid"></div>
   </section>
-</main>
-</div>
-
-<section class="stats" id="stats" aria-label="Số liệu studio"><div class="shell" id="statsIn"></div></section>
-
-<div class="shell">
-<div id="vHome2">
   <section class="studio" id="studio" aria-labelledby="h-st">
     <div><h2 class="sec-t" id="h-st">Studio</h2><p class="intro" id="stIntro"></p><ul class="tools" id="tools"></ul></div>
     <div class="team" id="team"></div>
   </section>
-  <section class="process" id="quy-trinh" aria-labelledby="h-qt">
-    <h2 class="sec-t" id="h-qt">Quy trình làm việc</h2>
-    <p class="sec-d" style="margin-top:10px">Thời gian tham khảo cho một TVC 30 giây có CGI. Dự án 2D thường nhanh hơn một nửa.</p>
-    <ol class="steps" id="steps"></ol>
+  <section class="faq" id="hoi-dap" aria-labelledby="h-faq">
+    <h2 class="sec-t" id="h-faq">Câu hỏi thường gặp</h2>
+    <div id="faqList"></div>
   </section>
-</div>
+</main>
 <main id="vDetail" hidden></main>
 <main id="vCms" hidden></main>
 
 <section class="cta" id="lien-he" aria-labelledby="h-cta">
-  <h2 id="h-cta">Bạn có dự án cần làm? Gửi brief, chúng tôi trả lời trong một ngày làm việc.</h2>
+  <div><h2 id="h-cta">Bạn có dự án cần làm?</h2><p class="ctx" id="ctaText"></p></div>
   <div class="ct">
     <div><span>Email</span><b id="em"></b><button data-copy="em">Sao chép</button></div>
     <div><span>Điện thoại</span><b id="ph"></b><button data-copy="ph">Sao chép</button></div>
@@ -374,10 +432,10 @@ let DF='"Inter Tight",sans-serif';
 
 /* ================= categories & fonts (fixed lists) ================= */
 const CATS=[
- {id:'2d',name:'Thiết kế 2D',subs:['Key visual','Styleframe','Minh hoạ','Nhận diện'],raw:'Phác thảo',fin:'Hoàn thiện',desc:'Key visual, styleframe, minh hoạ và nhận diện thương hiệu.'},
- {id:'motion',name:'Motion graphics',subs:['Explainer','Logo animation','Social 9:16','Title sequence'],raw:'Storyboard',fin:'Khung hình cuối',desc:'Explainer, logo animation, video dọc và title sequence.'},
- {id:'vfx',name:'VFX compositing',subs:['Keying','Set extension','Clean-up','Chỉnh màu'],raw:'Plate gốc',fin:'Bản comp',desc:'Keying phông xanh, mở rộng bối cảnh, xoá vật thể và chỉnh màu.'},
- {id:'3d',name:'3D CGI',subs:['Packshot','Kiến trúc','Mô phỏng','Game'],raw:'Clay',fin:'Render',desc:'Packshot sản phẩm, phim kiến trúc, mô phỏng và trailer game.'}];
+ {id:'motion',name:'Motion graphics 2D',primary:true,subs:['Explainer','Video mạng xã hội','Logo animation','UI animation','Title sequence'],raw:'Storyboard',fin:'Khung hình cuối',desc:'Explainer, video mạng xã hội, logo animation, UI animation và title sequence.'},
+ {id:'2d',name:'Thiết kế 2D',primary:true,subs:['Key visual','Styleframe','Minh hoạ','Nhận diện','Infographic'],raw:'Phác thảo',fin:'Hoàn thiện',desc:'Key visual, styleframe, minh hoạ, nhận diện thương hiệu và infographic.'},
+ {id:'vfx',name:'VFX compositing',subs:['Keying','Set extension','Clean-up','Chỉnh màu'],raw:'Plate gốc',fin:'Bản comp',desc:'Dịch vụ bổ trợ: keying phông xanh, mở rộng bối cảnh, xoá vật thể và chỉnh màu.'},
+ {id:'3d',name:'3D CGI',subs:['Packshot','Kiến trúc','Mô phỏng','Game'],raw:'Clay',fin:'Render',desc:'Dịch vụ bổ trợ: packshot sản phẩm, phim kiến trúc, mô phỏng và trailer game.'}];
 const catOf=id=>CATS.find(c=>c.id===id)||CATS[0];
 const FONTS={
  inter:{n:'Gọn, trung tính',d:'Inter Tight',b:'Inter',dw:400,tt:'uppercase',ls:'-.005em',w:'300;400;500;600;700'},
@@ -547,7 +605,17 @@ function renderHome(){const s=SITE||{},hero=s.hero||{};
   setReel(reel.video?media(reel.video):'',reel.poster?media(reel.poster):'');
   const V=visible(),F=V.filter(p=>p.featured).slice(0,3);
   $('featSec').hidden=!F.length;$('fgrid').innerHTML=F.map(cardHTML).join('');
-  $('tabs').innerHTML=[['all','Tất cả',V.length],...CATS.map(c=>[c.id,c.name,V.filter(p=>p.cat===c.id).length])].map(([id,n,k])=>`<button data-c="${id}" aria-pressed="${id===cat}">${n} <i>${k}</i></button>`).join('');
+  const tb=([id,n,k])=>`<button data-c="${id}" aria-pressed="${id===cat}">${n} <i>${k}</i></button>`,cn=c=>[c.id,c.name,V.filter(p=>p.cat===c.id).length];
+  $('tabs').innerHTML=[['all','Tất cả',V.length],...CATS.filter(c=>c.primary).map(cn)].map(tb).join('')+'<span class="tabsep">Dịch vụ bổ trợ</span>'+CATS.filter(c=>!c.primary).map(cn).map(tb).join('');
+  const pb=s.problem||{};$('probSec').hidden=!pb.title;$('h-prob').textContent=pb.title||'';$('probText').textContent=pb.text||'';
+  $('points').innerHTML=(pb.points||[]).map(x=>`<div><b>${esc(x.title)}</b><span>${esc(x.text)}</span></div>`).join('');
+  const uc=s.useCases||[];$('dich-vu').hidden=!uc.length;
+  $('ugrid').innerHTML=uc.map(u=>{const pj=V.find(x=>x.id===u.project);return pj?`<a class="uc" href="#du-an-${esc(pj.id)}"><h3>${esc(u.title)}</h3><p>${esc(u.text)}</p><span>Xem ví dụ: ${esc(pj.title)} →</span></a>`:`<div class="uc"><h3>${esc(u.title)}</h3><p>${esc(u.text)}</p></div>`}).join('');
+  const pc=s.pricing||{};$('bang-gia').hidden=!pc.show||!(pc.tiers||[]).length;$('priceNote').textContent=pc.note||'';$('priceExtra').textContent=pc.extra||'';
+  $('pgrid').innerHTML=(pc.tiers||[]).map(t=>`<div class="tier"><h3>${esc(t.name)}</h3><span class="pr">${esc(t.price)}</span><p class="fo">${esc(t.for)}</p>${(t.items||[]).length?`<ul>${t.items.map(i=>`<li>${esc(i)}</li>`).join('')}</ul>`:''}</div>`).join('');
+  const fq=s.faq||[];$('hoi-dap').hidden=!fq.length;$('faqList').innerHTML=fq.map(f=>`<details><summary>${esc(f.q)}</summary><p>${esc(f.a)}</p></details>`).join('');
+  const cta=s.cta||{};$('h-cta').textContent=cta.title||'Bạn có dự án cần làm?';$('ctaText').textContent=cta.text||'';
+  const hc2=(s.hero||{}).cta;$('heroCta').textContent=hc2||'Trao đổi về dự án';
   renderFilter();
   const cl=s.clients||[],tt=s.testimonials||[];$('khach-hang').hidden=!cl.length&&!tt.length;
   $('wm').innerHTML=cl.map(x=>`<span>${esc(x)}</span>`).join('');
@@ -562,7 +630,7 @@ function renderHome(){const s=SITE||{},hero=s.hero||{};
   $('foot').textContent=`© ${new Date().getFullYear()} Hlab.studio${ct.address?'. '+ct.address:''}`;
   requestAnimationFrame(()=>fillThumbs($('fgrid')))}
 function renderFilter(){const V=visible();
-  $('catDesc').textContent=cat==='all'?'Chọn một hạng mục để xem từng mảng dịch vụ.':catOf(cat).desc;
+  $('catDesc').textContent=cat==='all'?'Thế mạnh chính: motion graphics 2D và thiết kế 2D. VFX và 3D là dịch vụ bổ trợ.':catOf(cat).desc;
   $('subs').innerHTML=cat==='all'?'':['all',...catOf(cat).subs].map(x=>`<button data-s="${esc(x)}" aria-pressed="${x===sb}">${x==='all'?'Tất cả mục':esc(x)}</button>`).join('');
   const list=V.filter(p=>(cat==='all'||p.cat===cat)&&(sb==='all'||p.sub===sb));
   $('grid').innerHTML=list.length?list.map(cardHTML).join(''):'<p class="empty">Chưa có dự án ở mục này.</p>';requestAnimationFrame(()=>fillThumbs($('grid')))}
@@ -591,7 +659,7 @@ function renderDetail(id){const V=visible(),p=V.find(x=>x.id===id)||(CAN_EDIT?PR
 let CAN_EDIT=false,ARTF=null,heroActive=true;
 function route(){const h=decodeURIComponent(location.hash.slice(1));
   const det=h.startsWith('du-an-'),cms=h==='quan-tri',home=!det&&!cms;
-  $('vHome').hidden=$('vHome2').hidden=!home;$('stats').hidden=!home||!(SITE.stats||[]).length;
+  $('vHome').hidden=!home;$('stats').hidden=!home||!(SITE.stats||[]).length;
   $('vDetail').hidden=!det;$('vCms').hidden=!cms;$('lien-he').hidden=cms;$('top').classList.toggle('compact',!home);heroActive=home;
   if(home)document.title='Hlab.studio';
   if(det){renderDetail(h.slice(6));scrollTo(0,0)}
@@ -708,6 +776,15 @@ function cmsPage(){const s=CMS.draftSite;s.hero=s.hero||{};s.showreel=s.showreel
     ${fld('Tiêu đề lớn','hero.title',s.hero.title,{full:true})}${fld('Đoạn giới thiệu','hero.lede',s.hero.lede,{full:true,area:true})}</div>
    <div class="imgs">${dropHTML('reel','Video showreel ngắn','MP4 hoặc WebM dưới 15 MB, 15–30 giây, không tiếng. Tự chạy lặp ở đầu trang thay cho khối 3D.','video/mp4,video/webm')}${dropHTML('poster','Ảnh poster cho video','Hiện trong lúc video đang tải.')}</div>
    <p class="err" id="imgErr" role="alert"></p>
+   <h2>Vấn đề của khách</h2><div class="fg">${fld('Tiêu đề','problem.title',(s.problem||{}).title,{full:true})}${fld('Đoạn mô tả','problem.text',(s.problem||{}).text,{full:true,area:true})}
+    ${fld('Lý do chọn Hlab','points',lines((s.problem||{}).points,x=>`${x.title} | ${x.text}`),{full:true,area:true,hint:'Mỗi dòng: tiêu đề | mô tả. Nên 4 dòng.'})}</div>
+   <h2>Dùng ở đâu</h2>${fld('Mỗi dòng: tiêu đề | mô tả | đường dẫn dự án ví dụ','useCases',lines(s.useCases,x=>`${x.title} | ${x.text} | ${x.project||''}`),{full:true,area:true,hint:'Đường dẫn dự án là phần sau "du-an-" trong link, ví dụ explainer-vi-dien-tu. Để trống nếu không có.'})}
+   <h2>Bảng giá</h2><div class="checks"><label><input type="checkbox" id="pShow" ${(s.pricing||{}).show?'checked':''}> Hiện bảng giá trên website</label></div>
+   <div class="fg">${fld('Ghi chú trên bảng giá','pricing.note',(s.pricing||{}).note,{full:true})}
+    ${fld('Các gói','tiers',lines((s.pricing||{}).tiers,x=>`${x.name} | ${x.price} | ${x.for} | ${(x.items||[]).join('; ')}`),{full:true,area:true,hint:'Mỗi dòng một gói: tên | giá | dành cho | mục 1; mục 2; mục 3. Nên 3 gói.'})}
+    ${fld('Ghi chú dưới bảng giá','pricing.extra',(s.pricing||{}).extra,{full:true})}</div>
+   <h2>Hỏi đáp</h2>${fld('Mỗi dòng: câu hỏi | trả lời','faq',lines(s.faq,x=>`${x.q} | ${x.a}`),{full:true,area:true})}
+   <h2>Lời kêu gọi cuối trang</h2><div class="fg">${fld('Tiêu đề','cta.title',(s.cta||{}).title,{full:true})}${fld('Đoạn mô tả','cta.text',(s.cta||{}).text,{full:true,area:true})}${fld('Chữ trên nút ở đầu trang','hero.cta',s.hero.cta,{full:true})}</div>
    <h2>Số liệu</h2>${fld('Mỗi dòng: con số | nhãn','stats',lines(s.stats,x=>`${x.value} | ${x.label}`),{full:true,area:true,hint:'Ví dụ: 140+ | Dự án đã giao. Tối đa 4 dòng; để trống để ẩn dải số liệu.'})}
    <h2>Khách hàng</h2><div class="fg">${fld('Tên khách hàng','clients',(s.clients||[]).join('\n'),{area:true,hint:'Mỗi dòng một tên'})}
     ${fld('Nhận xét','testimonials',lines(s.testimonials,x=>`${x.quote} | ${x.name} | ${x.role}`),{area:true,hint:'Mỗi dòng: lời nhận xét | tên | chức vụ'})}</div>
@@ -722,8 +799,13 @@ function cmsPage(){const s=CMS.draftSite;s.hero=s.hero||{};s.showreel=s.showreel
     else if(k==='testimonials')s.testimonials=split(v).map(a=>({quote:a[0],name:a[1]||'',role:a[2]||''}));
     else if(k==='team')s.studio.team=split(v).map(a=>({name:a[0],role:a[1]||''}));
     else if(k==='tools')s.studio.tools=v.split(',').map(x=>x.trim()).filter(Boolean);
+    else if(k==='points'){s.problem=s.problem||{};s.problem.points=split(v).map(a=>({title:a[0],text:a.slice(1).join(' | ')}))}
+    else if(k==='useCases')s.useCases=split(v).map(a=>({title:a[0],text:a[1]||'',project:slugify(a[2]||'')}));
+    else if(k==='tiers'){s.pricing=s.pricing||{};s.pricing.tiers=split(v).map(a=>({name:a[0],price:a[1]||'',for:a[2]||'',items:(a[3]||'').split(';').map(x=>x.trim()).filter(Boolean)}))}
+    else if(k==='faq')s.faq=split(v).map(a=>({q:a[0],a:a.slice(1).join(' | ')}));
     else if(k==='process')s.process=split(v).map(a=>({title:a[0],time:a[1]||'',desc:a.slice(2).join(' | ')}));
     else{const [a,b]=k.split('.');s[a]=s[a]||{};s[a][b]=v}markDirty()}));
+  $('pShow').onchange=e=>{s.pricing=s.pricing||{};s.pricing.show=e.target.checked;markDirty()};
   const pv=()=>{const r=$('pv_reel'),po=$('pv_poster');r.innerHTML='';po.innerHTML='';
     if(s.showreel.video){const v=document.createElement('video');v.src=media(s.showreel.video);v.muted=true;v.loop=true;v.playsInline=true;v.autoplay=!reduce;r.appendChild(v)}else r.textContent='Chưa có video: đầu trang đang dùng khối 3D';
     if(s.showreel.poster){const im=new Image();im.src=media(s.showreel.poster);im.alt='';po.appendChild(im)}else po.textContent='Chưa có ảnh'};pv();
@@ -766,22 +848,52 @@ function setReel(src,poster){const vp=$('vp');let v=vp.querySelector('video');us
   if(!src){if(v)v.remove();return}
   if(!v){v=document.createElement('video');v.muted=true;v.loop=true;v.playsInline=true;v.setAttribute('aria-label','Showreel Hlab.studio');vp.prepend(v)}
   if(v.getAttribute('src')!==src)v.src=src;if(poster)v.poster=poster;if(reduce)v.controls=true;else{v.autoplay=true;v.play().catch(()=>{})}}
-const hv=$('hero'),K=knot(.34),btns=[...document.querySelectorAll('.passes button')],tcEl=$('tc');
-let pass=3,auto=!reduce,ang=.6,frame=0,hw=0,hh=0,hc;
-function setPass(n){pass=n;btns.forEach((b,i)=>b.setAttribute('aria-pressed',i===n));if(reduce)drawHero()}
+const hv=$('hero'),btns=[...document.querySelectorAll('.passes button')],tcEl=$('tc');
+let pass=2,auto=!reduce,T=0,frame=0,hw=0,hh=0,hc;
+const MODES=['sketch','frame','motion'];
+function setPass(n){pass=n;btns.forEach((b,i)=>b.setAttribute('aria-pressed',i===n));if(reduce||pass!==2)drawHero()}
 btns.forEach((b,i)=>b.addEventListener('click',()=>{auto=false;setPass(i)}));
 function sizeHero(){hw=hv.getBoundingClientRect().width;if(!hw)return;hh=hw/1.25;hc=prep(hv,hw,hh);drawHero()}
-function drawHero(){if(!hc||useReel)return;const c=hc,w=hw,h=hh;
-  if(pass===3){const g=c.createLinearGradient(0,0,0,h);g.addColorStop(0,'#2A2350');g.addColorStop(.6,'#3A3348');g.addColorStop(1,'#141219');c.fillStyle=g;c.fillRect(0,0,w,h)}
-  else{c.fillStyle=pass===1?'#2B2A31':'#0E0D12';c.fillRect(0,0,w,h)}
-  if(pass===0){c.strokeStyle='rgba(255,255,255,.06)';c.lineWidth=1;for(let x=0;x<w;x+=w/14){c.beginPath();c.moveTo(x,0);c.lineTo(x,h);c.stroke()}for(let y=0;y<h;y+=w/14){c.beginPath();c.moveTo(0,y);c.lineTo(w,y);c.stroke()}}
-  render3d(c,w,h,[{...K,col:[255,214,64],gl:.6}],{mode:['wire','clay','final','final'][pass],rz:ang,ry:.35*Math.sin(ang*.7),rx:.55,scale:.36,oy:.47,rim:[140,120,255]});if(pass===3)post(c,w,h,.5)}
+const clamp01=v=>Math.min(1,Math.max(0,v)),seg=(t,a,b)=>clamp01((t-a)/(b-a));
+const EZ={out:t=>1-Math.pow(1-t,3),back:t=>{const c=1.70158;return 1+(c+1)*Math.pow(t-1,3)+c*Math.pow(t-1,2)},
+  bounce:t=>{const n=7.5625,d=2.75;if(t<1/d)return n*t*t;if(t<2/d)return n*(t-=1.5/d)*t+.75;if(t<2.5/d)return n*(t-=2.25/d)*t+.9375;return n*(t-=2.625/d)*t+.984375}};
+const HCOL={bg1:'#25223A',bg2:'#151320',sun:'#FFE23A',bar:'#FF6B5B',mint:'#2BD4A4',ink:'#FFFFFF',paper:'#F2F0EA',pencil:'#5E5D59'};
+function pose(t,w,h){const c=EZ.back(seg(t,.02,.3));
+  return{circ:{x:w*(.14+.54*c),y:h*(.4-.2*Math.sin(Math.PI*clamp01(c))),r:h*.19*(.35+.65*EZ.out(seg(t,.02,.18)))},
+    bar:w*.42*EZ.out(seg(t,.2,.4)),
+    letters:['H','L','A','B'].map((ch,i)=>({ch,k:EZ.bounce(seg(t,.28+i*.06,.5+i*.06))})),
+    sq:EZ.out(seg(t,.5,.74)),dots:EZ.out(seg(t,.6,.8)),
+    fade:1-EZ.out(seg(t,.9,1))}}
+function scene(c,w,h,P,sketch,alpha=1){c.save();c.globalAlpha=alpha*(sketch?1:P.fade);
+  const fill=(col)=>{if(sketch){c.strokeStyle=HCOL.pencil;c.lineWidth=1.4;c.stroke()}else{c.fillStyle=col;c.fill()}};
+  if(P.circ.r>.5){c.beginPath();c.arc(P.circ.x,P.circ.y,P.circ.r,0,Math.PI*2);fill(HCOL.sun)}
+  if(P.bar>1){c.beginPath();c.rect(w*.1,h*.74,P.bar,h*.05);fill(HCOL.bar)}
+  const fs=h*.26;c.font=`700 ${fs}px ${DF}`;c.textBaseline='alphabetic';let x=w*.1;
+  for(const L of P.letters){const y=-h*.1+(h*.66+h*.1)*L.k;if(sketch){c.strokeStyle=HCOL.pencil;c.lineWidth=1.2;c.strokeText(L.ch,x,y)}else{c.fillStyle=HCOL.ink;c.fillText(L.ch,x,y)}x+=c.measureText(L.ch).width+fs*.04}
+  if(P.sq>0){c.beginPath();const x0=w*.62,x1=w*.92,n=60;for(let i=0;i<=n*P.sq;i++){const u=i/n,px=x0+(x1-x0)*u,py=h*.16+Math.sin(u*Math.PI*4)*h*.035;i?c.lineTo(px,py):c.moveTo(px,py)}
+    c.lineCap='round';c.lineWidth=sketch?1.4:h*.022;c.strokeStyle=sketch?HCOL.pencil:HCOL.mint;c.stroke()}
+  for(let i=0;i<5;i++){const r=h*.012*P.dots;if(r<=0)continue;c.beginPath();c.arc(w*(.64+i*.065),h*.84,r,0,7);fill(i%2?HCOL.mint:HCOL.ink)}
+  c.restore()}
+function drawHero(){if(!hc||useReel)return;const c=hc,w=hw,h=hh,mode=MODES[pass];
+  if(mode==='sketch'){c.fillStyle=HCOL.paper;c.fillRect(0,0,w,h);const P=pose(.86,w,h);
+    c.save();c.strokeStyle='rgba(94,93,89,.3)';c.setLineDash([4,5]);[1/3,2/3].forEach(k=>{c.beginPath();c.moveTo(w*k,0);c.lineTo(w*k,h);c.moveTo(0,h*k);c.lineTo(w,h*k);c.stroke()});
+    c.strokeStyle='rgba(94,93,89,.8)';c.beginPath();for(let i=0;i<=30;i++){const q=pose(.02+i/30*.28,w,h).circ;i?c.lineTo(q.x,q.y):c.moveTo(q.x,q.y)}c.stroke();c.restore();
+    scene(c,w,h,P,true);c.fillStyle=HCOL.pencil;c.font='500 12px Inter,sans-serif';
+    c.fillText('nảy vào, ease-out',w*.16,h*.12);c.fillText('chữ rơi lần lượt, bounce',w*.1,h*.94);c.fillText('vẽ nét',w*.8,h*.28);return}
+  const g=c.createLinearGradient(0,0,0,h);g.addColorStop(0,HCOL.bg1);g.addColorStop(1,HCOL.bg2);c.fillStyle=g;c.fillRect(0,0,w,h);
+  if(mode==='frame'){scene(c,w,h,pose(.86,w,h),false);return}
+  for(let k=4;k>=1;k--)scene(c,w,h,pose(Math.max(0,T-k*.014),w,h),false,.09*(5-k));
+  scene(c,w,h,pose(T,w,h),false);
+  const ty=h-16;c.fillStyle='rgba(255,255,255,.16)';c.fillRect(14,ty,w-28,2);c.fillStyle=HCOL.sun;c.fillRect(14,ty,(w-28)*T,2);
+  [.02,.3,.4,.5,.74,.9].forEach(k=>{c.save();c.translate(14+(w-28)*k,ty+1);c.rotate(Math.PI/4);c.fillStyle=k<=T?HCOL.sun:'rgba(255,255,255,.45)';c.fillRect(-3,-3,6,6);c.restore()})}
 new ResizeObserver(sizeHero).observe(hv);
 const tc=f=>{const p=n=>String(n).padStart(2,'0'),s=Math.floor(f/25);return`${p(Math.floor(s/3600))}:${p(Math.floor(s/60)%60)}:${p(s%60)}:${p(f%25)}`};
 let last=0,acc=0,pt=0,vis=true;new IntersectionObserver(e=>{vis=e[0].isIntersecting}).observe(hv);
-function loop(t){requestAnimationFrame(loop);if(!vis||document.hidden||!heroActive||useReel){last=t;return}const dt=Math.min(.1,(t-last)/1000||0);last=t;ang+=dt*.4;acc+=dt;
-  if(auto){pt+=dt;if(pt>2.6){pt=0;setPass((pass+1)%4)}}if(acc>=.04){frame+=Math.floor(acc*25);acc%=.04;tcEl.textContent=tc(frame)}drawHero()}
-setPass(reduce?3:0);if(!reduce)requestAnimationFrame(loop);
+function loop(t){requestAnimationFrame(loop);if(!vis||document.hidden||!heroActive||useReel){last=t;return}const dt=Math.min(.1,(t-last)/1000||0);last=t;
+  T=(T+dt/4.2)%1;acc+=dt;if(acc>=.04){frame+=Math.floor(acc*25);acc%=.04;tcEl.textContent=tc(frame)}
+  if(auto){pt+=dt;const hold=pass===2?8.4:2.6;if(pt>hold){pt=0;setPass((pass+1)%3);if(pass===2)T=0}}
+  if(pass===2)drawHero()}
+if(reduce){setPass(1)}else{setPass(0);requestAnimationFrame(loop)}
 
 /* ================= misc ================= */
 document.querySelectorAll('[data-copy]').forEach(b=>b.addEventListener('click',()=>{const el=$(b.dataset.copy);const ok=()=>{b.textContent='Đã sao chép';setTimeout(()=>b.textContent='Sao chép',1600)};

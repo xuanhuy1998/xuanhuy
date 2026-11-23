@@ -1,8 +1,9 @@
 {
  "hero": {
   "badge": "Đang nhận dự án quý 1/2026",
-  "title": "Hình ảnh cho thương hiệu, từ phác thảo đến khung hình cuối",
-  "lede": "Hlab.studio làm thiết kế 2D, motion graphics, VFX compositing và 3D CGI cho TVC, phim và nội dung số. Dưới đây là những gì chúng tôi đã làm."
+  "title": "Thiết kế 2D và motion graphics cho thương hiệu",
+  "lede": "Hlab.studio giúp thương hiệu và agency kể câu chuyện bằng hình: key visual, styleframe, explainer, video mạng xã hội và logo animation. Cần thêm VFX hay 3D, cùng một đội làm luôn.",
+  "cta": "Trao đổi về dự án"
  },
  "showreel": {
   "video": null,
@@ -15,16 +16,16 @@
    "label": "Dự án đã giao"
   },
   {
+   "value": "90+",
+   "label": "Video motion 2D"
+  },
+  {
    "value": "18",
-   "label": "Artist toàn thời gian"
+   "label": "Designer và animator"
   },
   {
    "value": "2016",
    "label": "Năm thành lập"
-  },
-  {
-   "value": "8",
-   "label": "Ngành hàng"
   }
  ],
  "clients": [
@@ -37,9 +38,9 @@
  ],
  "testimonials": [
   {
-   "quote": "Shot set extension con đèo nhìn như quay thật. Đạo diễn bên tôi không chỉ ra được đường ghép.",
+   "quote": "Styleframe đầu tiên đã đúng tinh thần thương hiệu, cả team bên tôi duyệt trong một buổi họp.",
    "name": "Thu Hà",
-   "role": "Producer, production house"
+   "role": "Brand manager, ngân hàng số"
   },
   {
    "quote": "Bộ 6 video dọc giao trong 10 ngày, đúng nhịp nhạc từng cái.",
@@ -53,7 +54,7 @@
   }
  ],
  "studio": {
-  "intro": "Hlab.studio là nhóm họa sĩ, animator, artist 3D và compositor làm chung trên một pipeline. Mỗi dự án có một người làm từ đầu đến cuối, nên ý tưởng không thất lạc giữa các khâu.",
+  "intro": "Hlab.studio là nhóm designer, họa sĩ minh hoạ và animator 2D, có thêm compositor và artist 3D cho các dự án cần. Mỗi dự án có một người làm từ đầu đến cuối, nên phong cách không bị lệch giữa các khâu.",
   "team": [
    {
     "name": "Hoàng Lâm",
@@ -64,56 +65,52 @@
     "role": "Art director 2D"
    },
    {
-    "name": "Đức Minh",
-    "role": "VFX supervisor"
+    "name": "Minh Khoa",
+    "role": "Lead motion designer"
    },
    {
-    "name": "Bảo Anh",
-    "role": "Lead 3D artist"
+    "name": "Đức Minh",
+    "role": "VFX và 3D supervisor"
    }
   ],
   "tools": [
-   "Houdini",
-   "Nuke",
-   "Blender",
-   "Cinema 4D",
-   "Redshift",
    "After Effects",
-   "DaVinci Resolve",
+   "Illustrator",
    "Photoshop",
-   "Illustrator"
+   "Procreate",
+   "Figma",
+   "Rive",
+   "Lottie",
+   "Premiere Pro",
+   "Nuke",
+   "Blender"
   ]
  },
  "process": [
   {
-   "title": "Nhận brief",
-   "time": "1–2 ngày",
-   "desc": "Đọc kịch bản, moodboard, ngân sách và deadline. Gửi báo giá theo hạng mục."
+   "title": "Brief và kịch bản",
+   "time": "2–4 ngày",
+   "desc": "Làm rõ mục tiêu, người xem và kênh phát. Viết kịch bản gắn thông điệp với lời kêu gọi."
   },
   {
-   "title": "Styleframe",
+   "title": "Styleframe và storyboard",
    "time": "4–6 ngày",
-   "desc": "2–3 hướng hình ảnh tĩnh để chốt phong cách trước khi sản xuất."
+   "desc": "Chốt phong cách bằng 2–3 khung hình mẫu, rồi vẽ storyboard cho toàn bộ cảnh."
   },
   {
-   "title": "Animatic",
-   "time": "3–5 ngày",
-   "desc": "Dựng thô đúng thời lượng, khớp nhạc và voice-over."
+   "title": "Voice-over và animatic",
+   "time": "2–3 ngày",
+   "desc": "Thu giọng đọc, dựng thô đúng thời lượng để duyệt nhịp trước khi animation."
   },
   {
-   "title": "Sản xuất",
-   "time": "10–20 ngày",
-   "desc": "Dựng 3D, animation, mô phỏng, quay phông xanh. Bản xem giữa kỳ."
+   "title": "Animation",
+   "time": "7–15 ngày",
+   "desc": "Dựng chuyển động 2D, âm thanh và hiệu ứng. Gửi bản xem giữa kỳ."
   },
   {
-   "title": "Comp và chỉnh màu",
-   "time": "4–7 ngày",
-   "desc": "Ghép lớp, keying, chỉnh màu, âm thanh. Hai vòng sửa."
-  },
-  {
-   "title": "Bàn giao",
+   "title": "Bàn giao và bản cắt",
    "time": "1–2 ngày",
-   "desc": "Master theo chuẩn đài và nền tảng, bản cắt ngắn, file nguồn."
+   "desc": "File cho trang chủ, quảng cáo, mạng xã hội; thêm bản cắt ngắn nếu cần."
   }
  ],
  "contact": {
@@ -121,5 +118,126 @@
   "phone": "028 7300 0000",
   "address": "TP.HCM"
  },
- "font": "inter"
+ "font": "inter",
+ "problem": {
+  "title": "Thông điệp của bạn hay. Nhưng người xem chỉ cho bạn 3 giây.",
+  "text": "Trên mạng xã hội, người xem lướt qua trước khi kịp hiểu bạn bán gì. Chúng tôi biến thông điệp phức tạp thành hình ảnh và chuyển động dễ hiểu ngay từ khung hình đầu.",
+  "points": [
+   {
+    "title": "Kịch bản trước, hình sau",
+    "text": "Chốt thông điệp và người xem trước khi vẽ khung hình đầu tiên."
+   },
+   {
+    "title": "Không dùng template",
+    "text": "Mỗi dự án được vẽ và dựng riêng theo thương hiệu."
+   },
+   {
+    "title": "Đúng định dạng từng kênh",
+    "text": "Một lần sản xuất, giao đủ 16:9, 9:16 và 1:1."
+   },
+   {
+    "title": "Đồng hành lâu dài",
+    "text": "Hiểu thương hiệu một lần, làm tiếp mỗi mùa chiến dịch."
+   }
+  ]
+ },
+ "useCases": [
+  {
+   "title": "Ra mắt sản phẩm",
+   "text": "Video 30–60 giây giải thích sản phẩm mới, đặt trên trang chủ và quảng cáo.",
+   "project": "explainer-vi-dien-tu"
+  },
+  {
+   "title": "Video mạng xã hội",
+   "text": "Bộ video dọc 9:16 cho TikTok, Reels; thông điệp chính trong 2 giây đầu.",
+   "project": "6-video-doc-mua-he"
+  },
+  {
+   "title": "Chiến dịch mùa vụ",
+   "text": "Key visual và bộ chuyển đổi cho Tết, hè, khai trương, khuyến mãi.",
+   "project": "key-visual-tet-2026"
+  },
+  {
+   "title": "Nhận diện chuyển động",
+   "text": "Logo animation và quy tắc chuyển động cho chữ, chuyển cảnh.",
+   "project": "logo-animation-chuoi-gym"
+  },
+  {
+   "title": "Giải thích dịch vụ phức tạp",
+   "text": "Explainer cho tài chính, bảo hiểm, y tế: quy trình rối thành câu chuyện dễ hiểu.",
+   "project": "explainer-bao-hiem-suc-khoe"
+  },
+  {
+   "title": "Báo cáo và trình chiếu",
+   "text": "Infographic, slide động, intro sự kiện và màn hình LED.",
+   "project": "infographic-bao-cao-thuong-nien"
+  }
+ ],
+ "pricing": {
+  "show": true,
+  "note": "Giá tham khảo cho dự án tại Việt Nam. Báo giá chính xác sau khi xem brief.",
+  "extra": "VFX compositing và 3D CGI: báo giá theo shot và độ phức tạp.",
+  "tiers": [
+   {
+    "name": "Thiết kế 2D",
+    "price": "từ 15 triệu",
+    "for": "Key visual, styleframe, bộ minh hoạ",
+    "items": [
+     "2 hướng concept",
+     "2 vòng sửa",
+     "File in và file số"
+    ]
+   },
+   {
+    "name": "Motion 2D ngắn",
+    "price": "từ 30 triệu",
+    "for": "Video 15–30 giây, logo animation, video mạng xã hội",
+    "items": [
+     "Kịch bản và storyboard",
+     "Animation 2D dựng riêng",
+     "1 bản chính và 2 tỉ lệ khung"
+    ]
+   },
+   {
+    "name": "Explainer 60–90 giây",
+    "price": "từ 60 triệu",
+    "for": "Ra mắt sản phẩm, giải thích dịch vụ",
+    "items": [
+     "Kịch bản và voice-over",
+     "Minh hoạ nhân vật riêng",
+     "Bản cắt ngắn cho quảng cáo"
+    ]
+   }
+  ]
+ },
+ "faq": [
+  {
+   "q": "Một dự án mất bao lâu?",
+   "a": "Key visual 1–2 tuần. Video motion 30 giây 2–3 tuần. Explainer 60–90 giây 3–5 tuần, tuỳ tốc độ duyệt."
+  },
+  {
+   "q": "Tôi cần chuẩn bị gì?",
+   "a": "Mục tiêu, thông điệp chính, guideline thương hiệu và vài ví dụ bạn thích. Chưa có kịch bản cũng được, chúng tôi viết cùng bạn."
+  },
+  {
+   "q": "Có dùng template không?",
+   "a": "Không. Mỗi dự án được vẽ và dựng riêng theo thương hiệu."
+  },
+  {
+   "q": "Có dùng AI không?",
+   "a": "Có, cho nghiên cứu và hỗ trợ viết kịch bản. Thiết kế và animation do artist làm."
+  },
+  {
+   "q": "Bàn giao những gì?",
+   "a": "File master, các tỉ lệ 16:9, 9:16, 1:1, và file nguồn khi được yêu cầu."
+  },
+  {
+   "q": "Có làm VFX và 3D không?",
+   "a": "Có, đây là dịch vụ bổ trợ. Khi video motion cần ghép cảnh quay hoặc dựng sản phẩm 3D, cùng một đội làm luôn."
+  }
+ ],
+ "cta": {
+  "title": "Sẵn sàng kể câu chuyện của bạn bằng hình?",
+  "text": "Gửi mục tiêu, thông điệp và kênh phát. Chúng tôi trả lời trong một ngày làm việc với hướng làm, thời gian và khung báo giá. Không ép mua."
+ }
 }
