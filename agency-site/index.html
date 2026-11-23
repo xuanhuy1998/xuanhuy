@@ -355,7 +355,7 @@ body{background-color:var(--page);background-image:radial-gradient(circle,rgba(2
 @media (max-width:420px){.passes button{padding:6px 8px;font-size:.72rem}.stk{font-size:.74rem;padding:6px 11px}}
 .ticker{background:var(--ink);color:var(--page);margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px)));margin-top:30px;rotate:-1.2deg;overflow:hidden;padding-block:14px;position:relative;z-index:2}
 .tk{display:flex;width:max-content;gap:28px;animation:tk 42s linear infinite;font:600 clamp(1.8rem,4vw,3.2rem)/1.15 var(--display);letter-spacing:-.02em;white-space:nowrap;align-items:center}
-.tk span:nth-child(4n+3){color:transparent;-webkit-text-stroke:1.2px var(--page)}
+.tk span:nth-child(4n+3){color:var(--y)}
 .tk i{font-style:normal;color:var(--y);font-size:.55em}
 @keyframes tk{to{transform:translateX(-50%)}}
 .stats{margin-top:0}
@@ -391,7 +391,7 @@ a.uc:hover{transform:translateY(-3px)}
 .cmt{border-radius:22px}
 .faq summary{padding-block:8px;font-size:1.06rem}
 .wm{font:600 clamp(1.1rem,2vw,1.5rem) var(--display);color:var(--on-dark)}
-.wm span:nth-child(even){color:transparent;-webkit-text-stroke:1px var(--on-dark-2)}
+.wm span:nth-child(even){color:var(--on-dark-2)}
 .cta{position:relative;overflow:hidden}
 .cta::before{content:"";position:absolute;width:260px;height:260px;border-radius:50%;background:var(--coral);right:-70px;top:-120px}
 .cta::after{content:"";position:absolute;width:150px;height:28px;border-radius:999px;background:var(--ink);left:46%;bottom:-8px;rotate:-12deg}
