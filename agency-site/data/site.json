@@ -144,39 +144,45 @@
  "useCases": [
   {
    "title": "Ra mắt sản phẩm",
-   "text": "Video 30–60 giây giải thích sản phẩm mới, đặt trên trang chủ và quảng cáo.",
-   "project": "explainer-vi-dien-tu"
+   "text": "Video 30–60 giây cho thấy sản phẩm dùng thế nào và lợi ích ra sao, đặt trên trang chủ và quảng cáo.",
+   "project": "explainer-vi-dien-tu",
+   "pain": "Sản phẩm mới, người xem chưa hiểu nó giải quyết việc gì."
   },
   {
    "title": "Video mạng xã hội",
-   "text": "Bộ video dọc 9:16 cho TikTok, Reels; thông điệp chính trong 2 giây đầu.",
-   "project": "6-video-doc-mua-he"
+   "text": "Bộ video dọc 9:16 nhịp nhanh, thông điệp chính nằm ngay khung hình đầu.",
+   "project": "6-video-doc-mua-he",
+   "pain": "Người xem lướt qua trong 2 giây, thông điệp chưa kịp xuất hiện."
   },
   {
    "title": "Chiến dịch mùa vụ",
-   "text": "Key visual và bộ chuyển đổi cho Tết, hè, khai trương, khuyến mãi.",
-   "project": "key-visual-tet-2026"
+   "text": "Một key visual chính và bộ chuyển đổi cho OOH, POSM, social, giữ đúng một phong cách.",
+   "project": "key-visual-tet-2026",
+   "pain": "Mỗi mùa cần hàng chục ấn phẩm cùng một tinh thần, làm gấp dễ lệch."
   },
   {
    "title": "Nhận diện chuyển động",
-   "text": "Logo animation và quy tắc chuyển động cho chữ, chuyển cảnh.",
-   "project": "logo-animation-chuoi-gym"
+   "text": "Logo animation và quy tắc chuyển động cho chữ, chuyển cảnh, dùng chung mọi video.",
+   "project": "logo-animation-chuoi-gym",
+   "pain": "Logo tĩnh đứng yên trên video, mỗi kênh dựng một kiểu."
   },
   {
    "title": "Giải thích dịch vụ phức tạp",
-   "text": "Explainer cho tài chính, bảo hiểm, y tế: quy trình rối thành câu chuyện dễ hiểu.",
-   "project": "explainer-bao-hiem-suc-khoe"
+   "text": "Explainer 90 giây giải thích quyền lợi và quy trình bằng hình, thay cho tài liệu dài.",
+   "project": "explainer-bao-hiem-suc-khoe",
+   "pain": "Sản phẩm bảo hiểm, tài chính nhiều điều khoản, khách đọc tờ rơi không hiểu."
   },
   {
    "title": "Báo cáo và trình chiếu",
-   "text": "Infographic, slide động, intro sự kiện và màn hình LED.",
-   "project": "infographic-bao-cao-thuong-nien"
+   "text": "Infographic và slide động biến số liệu thành câu chuyện, kèm bản ngắn cho mạng xã hội.",
+   "project": "infographic-bao-cao-thuong-nien",
+   "pain": "Báo cáo dày số liệu, người đọc bỏ qua."
   }
  ],
  "pricing": {
   "show": true,
-  "note": "Giá tham khảo cho dự án tại Việt Nam. Báo giá chính xác sau khi xem brief.",
-  "extra": "VFX compositing và 3D CGI: báo giá theo shot và độ phức tạp.",
+  "note": "Giá tham khảo cho dự án tại Việt Nam. Giá đã gồm kịch bản, thiết kế, animation và 2 vòng sửa mỗi bước.",
+  "extra": "Chưa gồm voice-over chuyên nghiệp và nhạc bản quyền. Thêm bản ngôn ngữ khác từ 20% giá gốc. VFX compositing và 3D CGI: báo giá theo shot và độ phức tạp.",
   "tiers": [
    {
     "name": "Thiết kế 2D",
@@ -234,10 +240,48 @@
   {
    "q": "Có làm VFX và 3D không?",
    "a": "Có, đây là dịch vụ bổ trợ. Khi video motion cần ghép cảnh quay hoặc dựng sản phẩm 3D, cùng một đội làm luôn."
+  },
+  {
+   "q": "Có phát sinh chi phí không?",
+   "a": "Chỉ khi bạn đổi hướng sau khi đã duyệt một bước, hoặc sửa quá số vòng trong báo giá. Chúng tôi báo giá phần thêm và chờ bạn đồng ý bằng văn bản trước khi làm."
+  },
+  {
+   "q": "Thanh toán mấy đợt?",
+   "a": "Hai đợt: 50% khi ký hợp đồng và 50% khi bàn giao bản cuối."
+  },
+  {
+   "q": "Ai sở hữu video và file nguồn?",
+   "a": "Bạn sở hữu video thành phẩm và toàn quyền sử dụng trên mọi kênh. File nguồn (After Effects, Illustrator) được bàn giao khi có trong báo giá."
+  },
+  {
+   "q": "Có làm gấp được không?",
+   "a": "Có. Phụ phí tính theo mức rút ngắn thời gian, báo trước khi nhận dự án."
+  },
+  {
+   "q": "Có làm bản tiếng Anh hoặc ngôn ngữ khác không?",
+   "a": "Có. Chỉ cần thay voice-over và phụ đề, không làm lại từ đầu. Mỗi ngôn ngữ thêm từ 20% giá video gốc."
   }
  ],
  "cta": {
   "title": "Sẵn sàng kể câu chuyện của bạn bằng hình?",
   "text": "Gửi mục tiêu, thông điệp và kênh phát. Chúng tôi trả lời trong một ngày làm việc với hướng làm, thời gian và khung báo giá. Không ép mua."
- }
+ },
+ "commitments": [
+  {
+   "title": "Bạn duyệt trước khi chúng tôi làm tiếp",
+   "text": "Kịch bản, styleframe, storyboard, animatic và bản nháp đều cần bạn duyệt. Không bước nào bắt đầu khi bước trước chưa chốt."
+  },
+  {
+   "title": "Không có hoá đơn bất ngờ",
+   "text": "Mỗi bước có 2 vòng sửa trong báo giá. Mọi chi phí thêm đều được báo và bạn đồng ý bằng văn bản trước."
+  },
+  {
+   "title": "Mốc ngày rõ ràng",
+   "text": "Ngày giao kịch bản, styleframe, bản nháp và bản cuối được ghi trong hợp đồng."
+  },
+  {
+   "title": "File là của bạn",
+   "text": "Bàn giao file thành phẩm và quyền sử dụng đầy đủ; file nguồn theo thoả thuận trong báo giá."
+  }
+ ]
 }
