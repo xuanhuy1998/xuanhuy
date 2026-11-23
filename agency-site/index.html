@@ -331,6 +331,72 @@ footer a{color:var(--ink);font-weight:600}
 @media (prefers-reduced-motion:reduce){.pc .th img,.pc .th canvas{transition:none}}
 .fab{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:20;display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:#fff;text-decoration:none;border-radius:999px;padding:12px 18px;font:600 .88rem var(--body);box-shadow:0 8px 24px rgba(0,0,0,.25)}
 .fab b{width:22px;height:22px;border-radius:50%;background:var(--y);color:var(--y-ink);display:grid;place-items:center;font-size:.75rem}
+
+/* ===== UI UPGRADE: studio artboard ===== */
+[hidden]{display:none!important}
+html,body{overflow-x:clip}
+:root{--violet:#7C5CFF;--coral:#FF6B5B;--mint:#2BD4A4;--blue:#3E63DD;--page:#F4F3EE}
+body{background-color:var(--page);background-image:radial-gradient(circle,rgba(22,21,27,.085) 1px,transparent 1.4px);background-size:22px 22px}
+.sec-t{font-size:clamp(2.1rem,4.4vw,3.5rem);line-height:1.08;letter-spacing:-.02em;font-weight:600}
+.hero h1{font-size:clamp(2.5rem,6vw,5.2rem);line-height:1.08}
+@media (min-width:881px){.hero-g{grid-template-columns:minmax(0,6fr) minmax(0,5fr)}}
+.hero h1,.hero .lede,.hero .acts{animation:rise .9s cubic-bezier(.2,.8,.2,1) both}
+.hero .lede{animation-delay:.08s}.hero .acts{animation-delay:.16s}
+@keyframes rise{from{transform:translateY(28px)}to{transform:none}}
+.stk{position:absolute;z-index:3;font:700 .84rem var(--body);padding:8px 14px;border-radius:999px;box-shadow:0 10px 24px rgba(0,0,0,.35);white-space:nowrap;
+  animation:pop .7s cubic-bezier(.3,1.6,.5,1) both,bob 5s ease-in-out .7s infinite}
+.stk.s1{background:var(--y);color:var(--y-ink);top:-12px;left:-14px;rotate:-8deg}
+.stk.s2{background:var(--coral);color:var(--y-ink);top:34%;right:-16px;rotate:7deg;animation-delay:.15s,-1.6s}
+.stk.s3{background:var(--mint);color:#0B2E25;bottom:70px;left:-20px;rotate:4deg;animation-delay:.3s,-3.2s}
+@keyframes pop{from{scale:.55}to{scale:1}}
+@keyframes bob{0%,100%{translate:0 0}50%{translate:0 -8px}}
+.passes button{white-space:nowrap}
+@media (max-width:880px){.vp canvas,.vp video{aspect-ratio:16/10}.stk.s1{left:-4px}.stk.s2{right:-4px}.stk.s3{left:auto;right:-4px;top:-12px;bottom:auto}}
+@media (max-width:420px){.passes button{padding:6px 8px;font-size:.72rem}.stk{font-size:.74rem;padding:6px 11px}}
+.ticker{background:var(--ink);color:var(--page);margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px)));margin-top:30px;rotate:-1.2deg;overflow:hidden;padding-block:14px;position:relative;z-index:2}
+.tk{display:flex;width:max-content;gap:28px;animation:tk 42s linear infinite;font:600 clamp(1.8rem,4vw,3.2rem)/1.15 var(--display);letter-spacing:-.02em;white-space:nowrap;align-items:center}
+.tk span:nth-child(4n+3){color:transparent;-webkit-text-stroke:1.2px var(--page)}
+.tk i{font-style:normal;color:var(--y);font-size:.55em}
+@keyframes tk{to{transform:translateX(-50%)}}
+.stats{margin-top:0}
+.stats b{font-weight:500;letter-spacing:-.03em}
+.pc{transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.pc:hover{transform:translateY(-4px)}
+.pc .th{border-radius:18px}
+.pc h3{font-size:1.08rem;font-weight:600}
+.pc .tg{display:inline-flex;align-items:center;gap:6px;font-weight:600;color:var(--ink)}
+.pc .tg::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--cc,var(--ink-2))}
+.pc[data-cat="motion"]{--cc:var(--violet)}.pc[data-cat="2d"]{--cc:var(--coral)}.pc[data-cat="vfx"]{--cc:var(--mint)}.pc[data-cat="3d"]{--cc:var(--blue)}
+.fgrid .pc:first-child h3{font-size:clamp(1.3rem,2.2vw,1.8rem)}
+body.cc .pc,body.cc .pc *{cursor:none}
+.cur{position:fixed;left:0;top:0;width:84px;height:84px;margin:-42px 0 0 -42px;border-radius:50%;background:var(--y);color:var(--y-ink);display:grid;place-items:center;font:700 .9rem var(--body);pointer-events:none;z-index:30;scale:0;transition:scale .25s cubic-bezier(.3,1.6,.5,1)}
+.cur.on{scale:1}
+.uc{position:relative;padding-top:66px;border-radius:22px;transition:transform .3s cubic-bezier(.2,.8,.2,1)}
+a.uc:hover{transform:translateY(-3px)}
+.uc::before{content:"";position:absolute;left:22px;top:22px;width:28px;height:28px}
+.ugrid>:nth-child(6n+1)::before{border-radius:50%;background:var(--y)}
+.ugrid>:nth-child(6n+2)::before{background:var(--coral);clip-path:polygon(50% 0,100% 100%,0 100%)}
+.ugrid>:nth-child(6n+3)::before{background:var(--mint);border-radius:7px;rotate:12deg}
+.ugrid>:nth-child(6n+4)::before{background:var(--violet);border-radius:28px 28px 0 0;height:14px;top:36px}
+.ugrid>:nth-child(6n+5)::before{background:var(--blue);clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%)}
+.ugrid>:nth-child(6n+6)::before{background:var(--coral);border-radius:50%;width:12px;height:12px;top:30px;box-shadow:16px 0 0 var(--coral),32px 0 0 var(--coral)}
+.steps{position:relative;padding-top:28px}
+.steps::before{content:"";position:absolute;left:0;right:0;top:9px;height:2px;background:var(--ink);opacity:.2}
+.steps li{position:relative}
+.steps li::after{content:"";position:absolute;top:-25px;left:22px;width:12px;height:12px;background:var(--y);border:2px solid var(--ink);rotate:45deg}
+.steps li::before{font:600 2rem var(--display)}
+@media (max-width:860px){.steps::before{display:none}.steps{padding-top:0}.steps li::after{top:24px;left:auto;right:22px}}
+.tier{border-radius:24px;transition:transform .3s cubic-bezier(.2,.8,.2,1)}
+.tier:hover{transform:translateY(-4px) rotate(-.4deg)}
+.cmt{border-radius:22px}
+.faq summary{padding-block:8px;font-size:1.06rem}
+.wm{font:600 clamp(1.1rem,2vw,1.5rem) var(--display);color:var(--on-dark)}
+.wm span:nth-child(even){color:transparent;-webkit-text-stroke:1px var(--on-dark-2)}
+.cta{position:relative;overflow:hidden}
+.cta::before{content:"";position:absolute;width:260px;height:260px;border-radius:50%;background:var(--coral);right:-70px;top:-120px}
+.cta::after{content:"";position:absolute;width:150px;height:28px;border-radius:999px;background:var(--ink);left:46%;bottom:-8px;rotate:-12deg}
+.cta>*{position:relative;z-index:1}
+@media (prefers-reduced-motion:reduce){.tk,.stk,.hero h1,.hero .lede,.hero .acts{animation:none}.pc,.tier,.uc{transition:none}.cur{display:none}}
 </style>
 
 <div class="shell">
@@ -358,6 +424,7 @@ footer a{color:var(--ink);font-weight:600}
       </div>
     </div>
     <div class="stage">
+      <span class="stk s1" aria-hidden="true">Key visual</span><span class="stk s2" aria-hidden="true">Explainer 60s</span><span class="stk s3" aria-hidden="true">Logo animation</span>
       <div class="vp" id="vp">
         <canvas id="hero" role="img" aria-label="Đoạn motion 2D minh hoạ, hiển thị theo bước đang chọn"></canvas>
         <div class="vctl" id="vctl">
@@ -372,6 +439,7 @@ footer a{color:var(--ink);font-weight:600}
 </header>
 
 </div>
+<div class="ticker" id="ticker" aria-hidden="true"><div class="tk" id="tk"></div></div>
 <section class="stats" id="stats" aria-label="Số liệu studio"><div class="shell" id="statsIn"></div></section>
 <div class="shell">
 <main id="vHome">
@@ -433,11 +501,12 @@ footer a{color:var(--ink);font-weight:600}
   </div>
 </section>
 <footer><span id="foot">© 2026 Hlab.studio</span><a href="#quan-tri" id="adminLink" hidden>Quản trị nội dung</a></footer>
-<a class="fab" href="#quan-tri" id="adminFab" hidden><b>✎</b>Quản trị</a>
+<aside aria-label="Quản trị nhanh"><a class="fab" href="#quan-tri" id="adminFab" hidden><b>✎</b>Quản trị</a></aside>
 </div>
 
 <script>
 (()=>{
+document.documentElement.lang='vi';
 const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 const $=id=>document.getElementById(id);
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -597,7 +666,7 @@ async function load(){
 function thumbNode(p,w,h){
   if(p.cover){const im=new Image();im.src=media(p.cover);im.alt='';im.loading='lazy';im.decoding='async';return im}
   const cv=document.createElement('canvas');if(p.art)drawArt(cv,p.art,w,h,false);return cv}
-function cardHTML(p){return`<a class="pc" href="#du-an-${esc(p.id)}" data-id="${esc(p.id)}"><div class="th"><span class="ba">Xem chi tiết</span></div>
+function cardHTML(p){return`<a class="pc" href="#du-an-${esc(p.id)}" data-id="${esc(p.id)}" data-cat="${esc(p.cat)}"><div class="th"><span class="ba">Xem chi tiết</span></div>
   <div class="mt"><h3>${esc(p.title)}</h3><span class="tg">${esc(catOf(p.cat).name)}</span></div><p class="sub">${esc([p.sub,p.industry,p.year].filter(Boolean).join(', '))}</p>${(p.results||[])[0]?`<p class="res">${esc(p.results[0])}</p>`:''}</a>`}
 function fillThumbs(root){root.querySelectorAll('.pc').forEach(a=>{const p=PROJ.find(x=>x.id===a.dataset.id),th=a.querySelector('.th');if(!p||th.querySelector('img,canvas'))return;
   const r=th.getBoundingClientRect();th.prepend(thumbNode(p,r.width||400,r.height||300))})}
@@ -622,6 +691,7 @@ function renderHome(){const s=SITE||{},hero=s.hero||{};
   $('featSec').hidden=!F.length;$('fgrid').innerHTML=F.map(cardHTML).join('');
   const tb=([id,n,k])=>`<button data-c="${id}" aria-pressed="${id===cat}">${n} <i>${k}</i></button>`,cn=c=>[c.id,c.name,V.filter(p=>p.cat===c.id).length];
   $('tabs').innerHTML=[['all','Tất cả',V.length],...CATS.filter(c=>c.primary).map(cn)].map(tb).join('')+'<span class="tabsep">Dịch vụ bổ trợ</span>'+CATS.filter(c=>!c.primary).map(cn).map(tb).join('');
+  const tw=CATS.filter(c=>c.primary).flatMap(c=>c.subs);$('tk').innerHTML=[...tw,...tw].map(w=>`<span>${esc(w)}</span><i>✦</i>`).join('');
   const pb=s.problem||{};$('probSec').hidden=!pb.title;$('h-prob').textContent=pb.title||'';$('probText').textContent=pb.text||'';
   $('points').innerHTML=(pb.points||[]).map(x=>`<div><b>${esc(x.title)}</b><span>${esc(x.text)}</span></div>`).join('');
   const uc=s.useCases||[];$('dich-vu').hidden=!uc.length;
@@ -675,7 +745,7 @@ function renderDetail(id){const V=visible(),p=V.find(x=>x.id===id)||(CAN_EDIT?PR
 let CAN_EDIT=false,ARTF=null,heroActive=true;
 function route(){const h=decodeURIComponent(location.hash.slice(1));
   const det=h.startsWith('du-an-'),cms=h==='quan-tri',home=!det&&!cms;
-  $('vHome').hidden=!home;$('stats').hidden=!home||!(SITE.stats||[]).length;
+  $('vHome').hidden=!home;$('ticker').hidden=!home;$('stats').hidden=!home||!(SITE.stats||[]).length;
   $('vDetail').hidden=!det;$('vCms').hidden=!cms;$('lien-he').hidden=cms;$('top').classList.toggle('compact',!home);heroActive=home;
   if(home)document.title='Hlab.studio';
   if(det){renderDetail(h.slice(6));scrollTo(0,0)}
@@ -912,6 +982,12 @@ function loop(t){requestAnimationFrame(loop);if(!vis||document.hidden||!heroActi
   if(auto){pt+=dt;const hold=pass===2?8.4:2.6;if(pt>hold){pt=0;setPass((pass+1)%3);if(pass===2)T=0}}
   if(pass===2)drawHero()}
 if(reduce){setPass(1)}else{setPass(0);requestAnimationFrame(loop)}
+
+/* ================= custom cursor on project cards ================= */
+if(matchMedia('(pointer: fine)').matches&&!reduce){document.body.classList.add('cc');const cur=document.createElement('div');cur.className='cur';cur.textContent='Xem';cur.setAttribute('aria-hidden','true');document.body.appendChild(cur);
+  let tx=0,ty=0,cx=0,cy=0,raf=0;const step=()=>{cx+=(tx-cx)*.25;cy+=(ty-cy)*.25;cur.style.transform=`translate(${cx}px,${cy}px)`;raf=Math.abs(tx-cx)+Math.abs(ty-cy)>.5?requestAnimationFrame(step):0};
+  addEventListener('pointermove',e=>{tx=e.clientX;ty=e.clientY;const on=!!e.target.closest('.pc');cur.classList.toggle('on',on);if(!raf)raf=requestAnimationFrame(step)},{passive:true});
+  document.addEventListener('pointerleave',()=>cur.classList.remove('on'))}
 
 /* ================= misc ================= */
 document.querySelectorAll('[data-copy]').forEach(b=>b.addEventListener('click',()=>{const el=$(b.dataset.copy);const ok=()=>{b.textContent='Đã sao chép';setTimeout(()=>b.textContent='Sao chép',1600)};
