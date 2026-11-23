@@ -1,569 +1,799 @@
-<title>Hồ sơ website KHUNG</title>
+<title>Hlab.studio</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anybody:wdth,wght@50..150,400..800&family=Be+Vietnam+Pro:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700&family=Inter:wght@400;500;600&display=swap">
 <style>
-/* Layout: working document — sticky contents rail on the left, one reading column; wireframes break out wider. Same tokens as the site prototype. */
+/* Layout: light page holding rounded dark "stage" blocks; work comes right after the hero. Yellow marks actions and the stats band only. Single committed light look. */
 :root{
-  --cyc:#E3E5E1; --paper:#EEF0EC; --sheet:#F7F8F6; --ink:#131514; --ink-2:#4B524D; --line:#C3C8C1;
-  --key:#00B140; --key-text:#007A2C; --on-key:#06140B; --wf:#7B847E;
-  --display:"Anybody","Archivo","Arial Narrow",system-ui,sans-serif;
-  --body:"Be Vietnam Pro","Segoe UI",system-ui,-apple-system,sans-serif;
+  --page:#F3F3EF; --card:#FFFFFF; --ink:#16151B; --ink-2:#5D5B66; --line:#E0DFD9; --soft:#EAE9E3;
+  --dark:#17161C; --dark-2:#23222B; --on-dark:#F2F1ED; --on-dark-2:#A6A4B0;
+  --y:#FFE23A; --y-ink:#16151B; --bad:#B42318; --ok:#1F7A3F;
+  --display:"Inter Tight","Inter",system-ui,-apple-system,sans-serif;
+  --body:"Inter","Segoe UI",system-ui,-apple-system,sans-serif;
+  --dw:400; --tt:uppercase; --hls:-.005em;
+  color-scheme:light;
 }
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --cyc:#171A18; --paper:#1F2321; --sheet:#242926; --ink:#E5E9E3; --ink-2:#9BA49D; --line:#363D38; --key:#22C55E; --key-text:#4ADE80; --on-key:#04120A; --wf:#7F8983; color-scheme:dark}}
-:root[data-theme="dark"]{--cyc:#171A18; --paper:#1F2321; --sheet:#242926; --ink:#E5E9E3; --ink-2:#9BA49D; --line:#363D38; --key:#22C55E; --key-text:#4ADE80; --on-key:#04120A; --wf:#7F8983; color-scheme:dark}
 *{box-sizing:border-box}
-body{background:var(--cyc);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.65;
+body{background:var(--page);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;
   padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
-a{color:inherit;text-decoration-color:var(--key);text-underline-offset:3px}
-:focus-visible{outline:2px solid var(--key);outline-offset:3px}
-h1,h2,h3,h4{text-wrap:balance;margin:0;line-height:1.2}
-h1,h2{font-family:var(--display)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--page)}
+.shell{max-width:1280px;margin-inline:auto}
+a{color:inherit}
+h1,h2,h3,h4{font-family:var(--display);margin:0;text-wrap:balance;font-weight:400;line-height:1.18}
 p,ul,ol{margin:0}
-.layout{max-width:1240px;margin-inline:auto;display:grid;grid-template-columns:220px minmax(0,1fr);gap:56px;padding-block:40px 80px}
-@media (max-width:960px){.layout{grid-template-columns:1fr;gap:24px}}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--y);outline-offset:3px}
+.btn-y{display:inline-flex;align-items:center;gap:10px;background:var(--y);color:var(--y-ink);border:0;border-radius:999px;padding:12px 22px;font:600 .92rem var(--body);text-decoration:none;cursor:pointer}
+.btn-y:hover{filter:brightness(1.05)}
+.btn-y svg,.pill-w svg{width:14px;height:14px}
+.btn-o{display:inline-flex;align-items:center;gap:8px;background:transparent;border:1.5px solid currentColor;border-radius:999px;padding:10px 18px;font:600 .88rem var(--body);text-decoration:none;cursor:pointer}
+.sec-t{font-size:clamp(1.9rem,3.6vw,2.8rem);line-height:1.12}
+.sec-d{color:var(--ink-2);font-size:.95rem;max-width:52ch}
 
-/* rail */
-.rail{position:sticky;top:calc(env(safe-area-inset-top,0px) + 24px);align-self:start;font-size:.9rem}
-.rail .brand{font-family:var(--display);font-weight:800;font-variation-settings:"wdth" 150;font-size:1.2rem;display:flex;align-items:center;gap:8px}
-.rail .brand i{width:16px;height:12px;border:2px solid currentColor;position:relative}
-.rail .brand i::after{content:"";position:absolute;inset:2px;background:var(--key)}
-.rail ol{list-style:none;padding:0;margin-top:20px;display:grid;gap:2px;counter-reset:r}
-.rail li a{display:flex;gap:10px;text-decoration:none;color:var(--ink-2);padding:5px 0}
-.rail li a::before{counter-increment:r;content:counter(r);font-variant-numeric:tabular-nums;color:var(--wf);width:1.2em}
-.rail li a:hover,.rail li a.on{color:var(--ink)}
-.rail .proto{display:block;margin-top:22px;background:var(--key);color:var(--on-key);text-decoration:none;font-weight:600;padding:11px 14px;border-radius:2px}
-@media (max-width:960px){.rail{position:static}.rail ol{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}}
+/* HERO */
+.hero{position:relative;background:var(--dark);color:var(--on-dark);border-radius:28px;margin-top:16px;padding:18px clamp(16px,3vw,36px) clamp(28px,4.5vw,52px);overflow:hidden;
+  background-image:radial-gradient(55% 70% at 85% 0%,rgba(255,226,58,.10),transparent 70%),radial-gradient(40% 60% at 0% 100%,rgba(120,110,255,.10),transparent 70%)}
+.hero.compact{padding-bottom:18px}
+.hero.compact .hero-g{display:none}
+.nav{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:16px}
+.logo{display:flex;align-items:center;gap:10px;font:600 1.15rem var(--display);text-decoration:none;letter-spacing:.01em}
+.logo i{width:30px;height:30px;border-radius:8px;background:var(--y);display:grid;place-items:center}
+.logo i::after{content:"";width:12px;height:9px;border:2px solid var(--y-ink);border-radius:2px}
+.logo em{font-style:normal;color:var(--on-dark-2);font-weight:400}
+.pillnav{display:flex;gap:2px;background:#fff;border-radius:999px;padding:5px}
+.pillnav a{color:var(--ink);text-decoration:none;font-size:.82rem;font-weight:500;padding:7px 14px;border-radius:999px}
+.pillnav a:hover{background:#EFEEE9}
+.nav-r{display:flex;justify-content:flex-end;gap:10px;align-items:center}
+.pill-w{display:inline-flex;align-items:center;gap:8px;background:var(--y);color:var(--y-ink);text-decoration:none;font-size:.82rem;font-weight:600;padding:9px 16px;border-radius:999px}
+.menu{width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:transparent;cursor:pointer;display:none;place-items:center}
+.menu span{display:block;width:16px;height:1.5px;background:var(--on-dark);box-shadow:0 5px 0 var(--on-dark),0 -5px 0 var(--on-dark)}
+.mnav{display:none}
+@media (max-width:880px){
+  .nav{grid-template-columns:1fr auto}.pillnav,.nav-r .pill-w{display:none}.menu{display:grid}
+  .hero.open .mnav{display:grid;gap:4px;margin-top:14px;background:#fff;border-radius:18px;padding:8px}
+  .mnav a{color:var(--ink);text-decoration:none;padding:10px 14px;border-radius:12px;font-weight:500}
+}
+.hero-g{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(24px,4vw,56px);align-items:center;margin-top:clamp(36px,6vw,72px)}
+@media (max-width:880px){.hero-g{grid-template-columns:1fr}}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:.8rem;padding:6px 12px 6px 8px;border-radius:999px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14)}
+.badge b{width:18px;height:18px;border-radius:50%;background:#2BD46A;display:grid;place-items:center}
+.badge b::after{content:"";width:6px;height:6px;border-radius:50%;background:#0B2E18}
+.hero h1{font-size:clamp(2rem,4vw,3.4rem);text-transform:var(--tt);letter-spacing:var(--hls);font-weight:var(--dw);line-height:1.16;margin-top:22px}
+.hero .lede{margin-top:18px;max-width:48ch;color:var(--on-dark-2);font-size:.98rem}
+.hero .acts{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:30px}
+.hero .acts .btn-o{color:var(--on-dark);border-color:rgba(255,255,255,.35)}
+.stage{position:relative;min-width:0}
+.vp{border-radius:22px;overflow:hidden;background:#0E0D12;position:relative}
+.vp canvas,.vp video{display:block;width:100%;aspect-ratio:5/4;max-width:100%;object-fit:cover}
+.vctl{position:absolute;left:12px;right:12px;bottom:12px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between}
+.passes{display:flex;gap:4px;background:rgba(14,13,18,.72);backdrop-filter:blur(8px);padding:4px;border-radius:999px}
+.passes button{border:0;background:transparent;color:#BDBBC6;font-size:.76rem;font-weight:500;padding:6px 11px;border-radius:999px;cursor:pointer}
+.passes button[aria-pressed="true"]{background:#fff;color:var(--ink)}
+.tc{background:rgba(14,13,18,.72);backdrop-filter:blur(8px);border-radius:999px;padding:6px 12px;font-size:.74rem;color:#BDBBC6;font-variant-numeric:tabular-nums}
+.tc b{color:#fff;font-weight:500}
+@media (max-width:560px){.vctl{position:static;padding:10px;background:#0E0D12}.passes,.tc{background:#1C1B22}}
 
-/* doc */
-.doc{min-width:0}
-.cover{padding-bottom:40px;border-bottom:1.5px solid var(--ink)}
-.cover h1{font-size:clamp(2.2rem,5vw,3.8rem);font-weight:760;font-variation-settings:"wdth" 118}
-.cover p{margin-top:16px;max-width:62ch;color:var(--ink-2);font-size:1.075rem}
-.cover dl{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin:28px 0 0}
-.cover dt{font-size:.8rem;color:var(--ink-2)}
-.cover dd{margin:0;font-weight:500}
-@media (max-width:640px){.cover dl{grid-template-columns:1fr 1fr}}
-section.part{padding-block:56px 8px;scroll-margin-top:16px}
-section.part>h2{font-size:clamp(1.7rem,3.4vw,2.4rem);font-weight:720;font-variation-settings:"wdth" 112;display:flex;gap:16px;align-items:baseline}
-section.part>h2 small{font:600 1rem var(--body);color:var(--key-text);font-variant-numeric:tabular-nums}
-.intro{margin-top:12px;color:var(--ink-2);max-width:66ch}
-h3.sub{font-size:1.2rem;font-weight:600;margin-top:40px}
-.prose{max-width:68ch}
-.prose p+p{margin-top:10px}
+/* FEATURED */
+.featured{padding-block:64px 24px}
+.fhead{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:16px}
+.fgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;margin-top:28px}
+.fgrid .pc:first-child{grid-column:1/-1}
+.fgrid .pc:first-child .th{aspect-ratio:21/9}
+@media (max-width:760px){.fgrid{grid-template-columns:1fr}.fgrid .pc:first-child .th{aspect-ratio:16/10}}
 
-/* audience table */
-.tbl{overflow-x:auto;margin-top:24px;border-top:1.5px solid var(--ink)}
-table{border-collapse:collapse;width:100%;min-width:720px;font-size:.93rem}
-th,td{text-align:left;vertical-align:top;padding:12px 14px 12px 0;border-bottom:1px solid var(--line)}
-th{font-weight:600;font-size:.82rem;color:var(--ink-2)}
-td b{font-weight:600}
-.kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:24px}
-.kpis div{background:var(--sheet);border:1px solid var(--line);padding:16px}
-.kpis b{display:block;font-family:var(--display);font-size:1.5rem;font-weight:700;font-variant-numeric:tabular-nums}
-.kpis span{color:var(--ink-2);font-size:.9rem}
-@media (max-width:640px){.kpis{grid-template-columns:1fr}}
+/* PROJECT CARD */
+.pc{display:block;text-decoration:none;color:inherit;min-width:0}
+.pc .th{position:relative;border-radius:14px;overflow:hidden;background:var(--soft);aspect-ratio:4/3}
+.pc .th img,.pc .th canvas{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease}
+.pc:hover .th img,.pc:hover .th canvas{transform:scale(1.035)}
+.pc .ba{position:absolute;right:10px;top:10px;z-index:1;background:rgba(255,255,255,.92);color:var(--ink);font-size:.7rem;font-weight:600;padding:4px 9px;border-radius:999px;opacity:0;transition:opacity .2s}
+.pc:hover .ba,.pc:focus-visible .ba{opacity:1}
+.pc .mt{display:flex;justify-content:space-between;gap:14px;align-items:baseline;margin-top:12px}
+.pc h3{font:500 1.02rem/1.35 var(--display)}
+.pc .tg{font-size:.72rem;color:var(--ink-2);white-space:nowrap}
+.pc .sub{font-size:.8rem;color:var(--ink-2);margin-top:2px}
 
-/* sitemap tree */
-.tree{margin-top:24px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
-.tree .root{grid-column:1/-1;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;background:var(--ink);color:var(--cyc);padding:14px 18px;border-radius:2px}
-.tree .root code{color:var(--cyc);opacity:.7}
-.node{background:var(--sheet);border:1px solid var(--line);padding:14px;min-width:0}
-.node h4{font-size:1rem;font-weight:600}
-.node code,.tree code{font-size:.8rem;color:var(--ink-2);font-family:var(--body);font-variant-numeric:tabular-nums}
-.node ul{list-style:none;padding:0;margin-top:10px;display:grid;gap:6px;font-size:.88rem;border-top:1px dashed var(--line);padding-top:10px}
-.node ul li span{display:block;color:var(--ink-2);font-size:.8rem}
-.node.global{grid-column:1/-1;background:transparent;border-style:dashed}
-.node.global ul{grid-template-columns:repeat(auto-fill,minmax(220px,1fr));border-top:0;padding-top:0}
-@media (max-width:860px){.tree{grid-template-columns:1fr 1fr}}
-@media (max-width:520px){.tree{grid-template-columns:1fr}}
+/* ALL WORK */
+.work{padding-block:48px 40px}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px}
+.tabs button{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:9px 16px;font-size:.88rem;font-weight:500;cursor:pointer;display:inline-flex;gap:8px;align-items:center}
+.tabs button i{font-style:normal;font-size:.75rem;color:var(--ink-2);font-variant-numeric:tabular-nums}
+.tabs button[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.tabs button[aria-pressed="true"] i{color:#B9B7C2}
+.catintro{margin-top:16px;display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;min-height:36px}
+.catintro p{color:var(--ink-2);font-size:.9rem;max-width:56ch}
+.subs{display:flex;flex-wrap:wrap;gap:6px}
+.subs button{border:0;background:transparent;border-radius:999px;padding:5px 12px;font-size:.82rem;color:var(--ink-2);cursor:pointer}
+.subs button[aria-pressed="true"]{background:#E7E6E0;color:var(--ink);font-weight:500}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px 24px;margin-top:24px}
+@media (max-width:960px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.grid{grid-template-columns:1fr}}
+.empty{color:var(--ink-2);grid-column:1/-1}
 
-/* journeys */
-.journey{margin-top:22px;border:1px solid var(--line);background:var(--sheet);padding:18px}
-.journey h4{font-size:1rem;font-weight:600}
-.journey p.who{color:var(--ink-2);font-size:.9rem;margin-top:2px}
-.journey ol{list-style:none;padding:0;margin-top:14px;display:flex;flex-wrap:wrap;gap:8px;align-items:stretch;counter-reset:j}
-.journey li{counter-increment:j;flex:1 1 150px;min-width:0;border-top:3px solid var(--key);padding-top:8px;font-size:.88rem}
-.journey li::before{content:"Bước " counter(j);display:block;font-size:.75rem;color:var(--ink-2)}
-.journey li b{display:block;font-weight:600}
+/* CLIENTS */
+.clients{background:var(--dark);color:var(--on-dark);border-radius:28px;padding:clamp(40px,6vw,64px) clamp(16px,3vw,40px);margin-block:40px}
+.clients .sec-t{text-align:center}
+.wm{display:flex;flex-wrap:wrap;justify-content:center;gap:12px 40px;margin-top:26px;color:var(--on-dark-2);font:500 1.05rem var(--display)}
+.tgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:36px}
+.tq{background:var(--dark-2);border-radius:18px;padding:22px;display:flex;flex-direction:column;gap:20px}
+.tq p{font-size:.98rem;flex:1}
+.tq .by{display:flex;gap:10px;align-items:center;font-size:.85rem}
+.tq .by i{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-weight:600;color:var(--y-ink);background:var(--y);flex:none;font-size:.8rem}
+.tq .by span{display:block;color:var(--on-dark-2);font-size:.76rem}
+@media (max-width:860px){.tgrid{grid-template-columns:1fr}}
 
-/* wireframes */
-.wf-wrap{margin-top:24px;display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:28px;align-items:start}
-.wf-wrap.narrow{grid-template-columns:300px minmax(0,1fr)}
-@media (max-width:900px){.wf-wrap,.wf-wrap.narrow{grid-template-columns:1fr}}
-.wf{border:1.5px solid var(--ink);background:var(--sheet);padding:12px;display:grid;gap:10px;min-width:0;font-size:.7rem;color:var(--wf)}
-.wf.phone{max-width:300px;border-radius:18px;padding:14px 12px 22px}
-.r{display:grid;gap:10px}
-.c2{grid-template-columns:minmax(0,5fr) minmax(0,7fr)}.c3{grid-template-columns:repeat(3,minmax(0,1fr))}.c4{grid-template-columns:repeat(4,minmax(0,1fr))}.c84{grid-template-columns:minmax(0,2fr) minmax(0,1fr)}.c6{grid-template-columns:repeat(6,minmax(0,1fr))}.c12{grid-template-columns:repeat(2,minmax(0,1fr))}
-.wf{overflow:hidden}.wf .r>*{min-width:0}
-.bx{border:1px dashed var(--wf);padding:8px;display:grid;gap:6px;align-content:start;position:relative;min-width:0}
-.bx.solid{border-style:solid}
-.img{position:relative;border:1px solid var(--wf);background:
-  linear-gradient(to top right,transparent calc(50% - .6px),var(--wf) 50%,transparent calc(50% + .6px)),
-  linear-gradient(to top left,transparent calc(50% - .6px),var(--wf) 50%,transparent calc(50% + .6px));min-height:60px}
-.img.v169{aspect-ratio:16/9;min-height:0;max-width:100%}
-.img.v239{aspect-ratio:2.39/1;min-height:0;max-width:100%}
-.img.v916{aspect-ratio:9/16;min-height:0;max-width:100%}
-.img em{position:absolute;left:6px;top:4px;font-style:normal;background:var(--sheet);padding:0 4px}
-.ln{height:5px;background:var(--line);border-radius:2px}
-.ln.s{width:60%}.ln.xs{width:35%}
-.hd{height:12px;background:var(--wf);border-radius:2px;width:80%}
-.hd.big{height:20px}
-.bt{height:16px;width:72px;border:1px solid var(--ink);border-radius:2px}
-.bt.k{background:var(--key);border-color:var(--key)}
-.chip{height:12px;width:40px;border:1px solid var(--wf);border-radius:99px;display:inline-block}
-.lbl{font-size:.68rem;color:var(--ink-2)}
-.flex{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
-.m{position:absolute;right:-8px;top:-8px;width:20px;height:20px;border-radius:50%;background:var(--ink);color:var(--cyc);font:600 .7rem/20px var(--body);text-align:center;font-style:normal;z-index:1}
-.notes{list-style:none;padding:0;display:grid;gap:12px;font-size:.92rem;counter-reset:n}
-.notes li{display:grid;grid-template-columns:22px 1fr;gap:10px}
-.notes li::before{counter-increment:n;content:counter(n);width:20px;height:20px;border-radius:50%;background:var(--ink);color:var(--cyc);font:600 .7rem/20px var(--body);text-align:center;margin-top:2px}
-.notes b{font-weight:600}
-.wf-title{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:44px;align-items:baseline}
-.wf-title h3{font-size:1.2rem;font-weight:600}
-.wf-title span{color:var(--ink-2);font-size:.85rem}
+/* STATS */
+.stats{background:var(--y);color:var(--y-ink);margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px)))}
+.stats .shell{display:grid;grid-template-columns:repeat(var(--n,4),minmax(0,1fr));padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.stats .s{text-align:center;padding:30px 12px;border-left:1px solid rgba(22,21,27,.16)}
+.stats .s:first-child{border-left:0}
+.stats b{display:block;font:300 clamp(2.2rem,4vw,3.2rem)/1.1 var(--display);font-variant-numeric:tabular-nums}
+.stats span{font-size:.82rem;font-weight:500}
+@media (max-width:700px){.stats .shell{grid-template-columns:1fr 1fr}.stats .s:nth-child(odd){border-left:0}.stats .s:nth-child(n+3){border-top:1px solid rgba(22,21,27,.16)}}
 
-/* ui system */
-.swatches{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin-top:20px}
-.sw{border:1px solid var(--line);background:var(--sheet)}
-.sw div{height:64px}
-.sw p{padding:8px 10px;font-size:.82rem}
-.sw p b{display:block;font-weight:600}
-.sw p span{color:var(--ink-2);font-variant-numeric:tabular-nums}
-.type{margin-top:20px;border-top:1.5px solid var(--ink)}
-.type>div{display:grid;grid-template-columns:150px minmax(0,1fr);gap:16px;padding:14px 0;border-bottom:1px solid var(--line);align-items:baseline}
-.type .spec{font-size:.8rem;color:var(--ink-2);font-variant-numeric:tabular-nums}
-@media (max-width:640px){.type>div{grid-template-columns:1fr;gap:4px}}
-.comps{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:20px}
-.comp{background:var(--sheet);border:1px solid var(--line);padding:18px;display:grid;gap:14px;align-content:start;min-width:0}
-.comp h4{font-size:.95rem;font-weight:600}
-.comp .row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
-.comp p{font-size:.88rem;color:var(--ink-2)}
-@media (max-width:760px){.comps{grid-template-columns:1fr}}
-.b{display:inline-flex;align-items:center;font:600 .9rem var(--body);padding:11px 18px;border-radius:2px;border:0;cursor:pointer;text-decoration:none}
-.b.key{background:var(--key);color:var(--on-key)}
-.b.ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--ink)}
-.b.link{padding:0 0 2px;border-bottom:1.5px solid var(--key);border-radius:0;background:none;color:var(--ink)}
-.fc{display:inline-block;border:1.5px solid var(--line);padding:6px 12px;border-radius:99px;font-size:.85rem}
-.fc.on{background:var(--ink);color:var(--cyc);border-color:var(--ink)}
-.field{display:grid;gap:5px;font-size:.85rem;font-weight:500}
-.field span.in{border:1.5px solid var(--ink-2);padding:9px 11px;font-weight:400;color:var(--ink-2);border-radius:2px;background:var(--cyc)}
-.field.focus span.in{border-color:var(--key);box-shadow:0 0 0 3px color-mix(in srgb,var(--key) 25%,transparent);color:var(--ink)}
-.field.error span.in{border-color:#D93636}
-.field small{font-weight:400;color:#C02828}
-:root[data-theme="dark"] .field small{color:#FF8A8A}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .field small{color:#FF8A8A}}
-.pcard{display:grid;gap:8px}
-.pcard .fr{aspect-ratio:16/9;background:linear-gradient(160deg,#DCE3EA,#8A98A8 45%,#1E2632);position:relative;border-radius:2px;max-width:100%}
-.pcard .fr span{position:absolute;left:8px;bottom:8px;background:rgba(0,0,0,.55);color:#fff;font-size:.72rem;padding:2px 6px;border-radius:2px;font-variant-numeric:tabular-nums}
-.pcard b{font-weight:600}
-.pcard .tags{display:flex;gap:6px;flex-wrap:wrap}
-.pcard .tags span{font-size:.72rem;color:var(--ink-2);border:1px solid var(--line);padding:1px 8px;border-radius:99px}
-.rules{margin-top:20px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 28px}
-.rules div{border-top:1px solid var(--line);padding-top:12px}
-.rules h4{font-size:.98rem;font-weight:600}
-.rules p{font-size:.9rem;color:var(--ink-2);margin-top:4px}
-@media (max-width:760px){.rules{grid-template-columns:1fr}}
+/* STUDIO + PROCESS */
+.studio{padding-block:72px 24px;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:48px}
+.studio .intro{font:300 clamp(1.25rem,2.2vw,1.6rem)/1.45 var(--display);margin-top:18px}
+.team{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;align-content:start}
+.mem{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;display:flex;gap:12px;align-items:center;min-width:0}
+.mem i{width:44px;height:44px;border-radius:12px;background:var(--dark);color:var(--y);display:grid;place-items:center;font:600 .9rem var(--display);font-style:normal;flex:none}
+.mem b{display:block;font-weight:600;font-size:.95rem}
+.mem span{font-size:.82rem;color:var(--ink-2)}
+.tools{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;list-style:none;padding:0}
+.tools li{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:6px 13px;font-size:.85rem}
+@media (max-width:860px){.studio{grid-template-columns:1fr}}
+@media (max-width:480px){.team{grid-template-columns:1fr}}
+.process{padding-block:56px 72px}
+.steps{list-style:none;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:28px;counter-reset:s}
+.steps li{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px;display:grid;gap:6px;align-content:start;counter-increment:s}
+.steps li::before{content:counter(s,decimal-leading-zero);font:500 1.6rem var(--display);font-variant-numeric:tabular-nums}
+.steps h3{font:600 1.02rem var(--body)}
+.steps p{font-size:.9rem;color:var(--ink-2)}
+.steps small{font-size:.78rem;font-weight:600;background:var(--soft);border-radius:999px;padding:2px 10px;justify-self:start}
+@media (max-width:860px){.steps{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.steps{grid-template-columns:1fr}}
 
-/* content */
-.page-copy{margin-top:28px;background:var(--sheet);border:1px solid var(--line)}
-.page-copy>header{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:14px 18px;border-bottom:1px solid var(--line);align-items:baseline}
-.page-copy>header h3{font-size:1.15rem;font-weight:600}
-.page-copy>header code{font-family:var(--body);font-size:.82rem;color:var(--ink-2)}
-.page-copy .body{padding:6px 18px 18px;display:grid;gap:0}
-.blk{display:grid;grid-template-columns:140px minmax(0,1fr);gap:16px;padding:12px 0;border-bottom:1px dashed var(--line)}
-.blk:last-child{border-bottom:0}
-.blk>span{font-size:.8rem;color:var(--ink-2);padding-top:3px}
-.blk .t{max-width:66ch}
-.blk .t p+p,.blk .t ul{margin-top:6px}
-.blk .t ul{padding-left:18px}
-.blk .t .h{font-family:var(--display);font-weight:700;font-variation-settings:"wdth" 112;font-size:1.25rem;line-height:1.25}
-@media (max-width:640px){.blk{grid-template-columns:1fr;gap:4px}}
-.seo{margin-top:20px}
-.seo td:first-child{white-space:nowrap;font-weight:600}
-.flag{display:inline-block;font-size:.75rem;background:color-mix(in srgb,var(--key) 18%,transparent);color:var(--key-text);padding:1px 8px;border-radius:99px;margin-left:6px;font-weight:600;vertical-align:middle}
-.next{margin-top:24px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
-.next>div{background:var(--sheet);border:1px solid var(--line);padding:18px}
-.next h4{font-size:1rem;font-weight:600}
-.next ul{margin-top:8px;padding-left:18px;font-size:.92rem;display:grid;gap:4px}
-@media (max-width:760px){.next{grid-template-columns:1fr}}
+/* CTA + FOOTER */
+.cta{background:var(--y);border-radius:28px;padding:clamp(36px,5vw,60px) clamp(20px,4vw,48px);display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2fr);gap:28px;align-items:end;margin-top:24px}
+.cta h2{font-size:clamp(1.9rem,3.8vw,3rem);line-height:1.12}
+.ct{display:grid;gap:10px;font-size:.92rem}
+.ct div{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;background:rgba(255,255,255,.55);border-radius:14px;padding:12px 14px}
+.ct b{font-weight:600;user-select:all}
+.ct button{border:0;background:var(--ink);color:#fff;border-radius:999px;padding:7px 14px;font-size:.8rem;font-weight:600;cursor:pointer}
+@media (max-width:760px){.cta{grid-template-columns:1fr}}
+footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;padding-block:28px 40px;font-size:.82rem;color:var(--ink-2)}
+footer a{color:var(--ink);font-weight:600}
+
+/* COMPARE */
+.cmp{position:relative;border-radius:18px;overflow:hidden;background:#0E0D12;user-select:none;touch-action:pan-y}
+.cmp .ly{display:block;width:100%;max-width:100%}
+.cmp .ly.top{position:absolute;inset:0;height:100%;object-fit:cover}
+.cmp .hd{position:absolute;top:0;bottom:0;width:2px;background:#fff;pointer-events:none}
+.cmp .hd::after{content:"";position:absolute;top:50%;left:50%;width:36px;height:36px;transform:translate(-50%,-50%);border-radius:50%;background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.35)}
+.cmp input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;margin:0}
+.cmp .lb{position:absolute;bottom:12px;font-size:.74rem;font-weight:600;background:rgba(14,13,18,.75);color:#fff;padding:4px 10px;border-radius:999px;pointer-events:none}
+
+/* DETAIL */
+.detail{padding-block:32px 40px}
+.back{display:inline-flex;gap:8px;align-items:center;font-size:.88rem;font-weight:500;text-decoration:none;color:var(--ink-2)}
+.back:hover{color:var(--ink)}
+.dh{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2fr);gap:32px;align-items:end;margin-top:18px}
+.dh .cat{font-size:.85rem;color:var(--ink-2)}
+.dh h1{font-size:clamp(2rem,4.4vw,3.4rem);line-height:1.1;margin-top:6px}
+.meta{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin:28px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding-block:16px}
+.meta dt{font-size:.75rem;color:var(--ink-2)}
+.meta dd{margin:0;font-size:.92rem;font-weight:500}
+@media (max-width:860px){.dh{grid-template-columns:1fr}.meta{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.hint{font-size:.8rem;color:var(--ink-2);margin-top:10px}
+.story{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px;margin-top:44px}
+.story h2{font:600 .95rem var(--body)}
+.story p,.story li{font-size:.95rem;color:#3C3A43;margin-top:8px}
+.story ul{padding-left:18px}
+@media (max-width:760px){.story{grid-template-columns:1fr}}
+.gal{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:40px}
+.gal img{width:100%;border-radius:14px;display:block;max-width:100%}
+@media (max-width:560px){.gal{grid-template-columns:1fr}}
+.dcta{margin-top:44px;background:var(--dark);color:var(--on-dark);border-radius:22px;padding:28px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px}
+.dcta h2{font-size:1.5rem}
+.nextp{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;margin-top:44px}
+.nextp>span{grid-column:1/-1;font-size:.85rem;color:var(--ink-2)}
+@media (max-width:560px){.nextp{grid-template-columns:1fr}}
+.notfound{padding-block:80px;text-align:center;display:grid;gap:16px;justify-items:center}
+
+/* CMS */
+.cms{padding-block:24px 60px}
+.cbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:6;background:var(--page);display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;padding-block:14px;border-bottom:1px solid var(--line)}
+.cbar h1{font-size:1.4rem;font-weight:500}
+.cbar .st{font-size:.82rem;color:var(--ink-2)}
+.cbar .st.dirty{color:#8A5A00;font-weight:600}
+.cbar .st.bad{color:var(--bad);font-weight:600}
+.cbar .st.ok{color:var(--ok);font-weight:600}
+.cbar .acts{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.cbar button:disabled{opacity:.5;cursor:not-allowed}
+.ctabs{display:flex;gap:6px;margin-top:16px;flex-wrap:wrap}
+.ctabs button{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:8px 16px;font-size:.88rem;font-weight:500;cursor:pointer}
+.ctabs button[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.cgrid{display:grid;grid-template-columns:340px minmax(0,1fr);gap:20px;margin-top:18px;align-items:start}
+@media (max-width:900px){.cgrid{grid-template-columns:1fr}}
+.plist{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:12px;display:grid;gap:10px;position:sticky;top:90px;max-height:calc(100vh - 110px);overflow:auto}
+@media (max-width:900px){.plist{position:static;max-height:none}}
+.plist .tools2{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px}
+.plist input,.plist select{border:1.5px solid var(--line);border-radius:10px;padding:8px 10px;font-size:.88rem;background:#fff;min-width:0}
+.pitems{list-style:none;padding:0;display:grid;gap:4px}
+.pit{display:grid;grid-template-columns:52px minmax(0,1fr) auto;gap:10px;align-items:center;padding:6px;border-radius:12px;cursor:pointer;border:1.5px solid transparent;background:none;text-align:left;width:100%}
+.pit:hover{background:#F6F6F2}
+.pit[aria-current="true"]{border-color:var(--ink);background:#FAFAF7}
+.pit .tn{width:52px;height:40px;border-radius:8px;overflow:hidden;background:var(--soft);position:relative;display:block}
+.pit .tn img,.pit .tn canvas{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.pit b{display:block;font-size:.86rem;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pit span{font-size:.74rem;color:var(--ink-2)}
+.pit .bd{display:flex;gap:4px;flex-wrap:wrap;justify-content:flex-end}
+.chipx{font-size:.66rem;font-weight:600;border-radius:999px;padding:1px 7px;background:var(--soft);color:var(--ink-2);white-space:nowrap}
+.chipx.f{background:var(--y);color:var(--y-ink)}
+.chipx.h{background:#FDE7E7;color:var(--bad)}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;display:grid;gap:18px;min-width:0}
+.panel h2{font:600 1.1rem var(--body)}
+.panel h3{font:600 .95rem var(--body);margin-top:6px}
+.fg{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.fg .full{grid-column:1/-1}
+@media (max-width:640px){.fg{grid-template-columns:1fr}}
+.fl{display:grid;gap:5px;font-size:.82rem;font-weight:500;min-width:0}
+.fl small{font-weight:400;color:var(--ink-2);font-size:.76rem}
+.fl input,.fl select,.fl textarea{border:1.5px solid var(--line);border-radius:10px;padding:9px 11px;font-size:.92rem;font-weight:400;background:#fff;width:100%;min-width:0}
+.fl textarea{min-height:90px;resize:vertical;line-height:1.5}
+.fl input:focus,.fl select:focus,.fl textarea:focus{border-color:var(--ink);outline:none}
+.err{color:var(--bad);font-weight:400;font-size:.8rem}
+.checks{display:flex;flex-wrap:wrap;gap:18px}
+.checks label{display:flex;gap:8px;align-items:center;font-size:.88rem;cursor:pointer}
+.checks input{width:18px;height:18px;accent-color:var(--ink)}
+.imgs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+@media (max-width:640px){.imgs{grid-template-columns:1fr}}
+.drop{border:1.5px dashed #BDBCB5;border-radius:14px;padding:10px;display:grid;gap:8px;min-width:0;background:#FBFBF9}
+.drop.over{border-color:var(--ink);background:#F2F1EC}
+.drop .pv{aspect-ratio:16/10;border-radius:10px;overflow:hidden;background:var(--soft);position:relative;display:grid;place-items:center;color:var(--ink-2);font-size:.8rem;text-align:center;padding:8px}
+.drop .pv img,.drop .pv canvas,.drop .pv video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.drop .row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.drop b{font-size:.82rem;font-weight:600}
+.drop small{font-size:.74rem;color:var(--ink-2)}
+.sbtn{border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 12px;font-size:.8rem;font-weight:500;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center}
+.sbtn.dk{background:var(--ink);color:#fff;border-color:var(--ink)}
+.sbtn.dg{color:var(--bad);border-color:#F2C4C0}
+.galx{display:flex;flex-wrap:wrap;gap:8px}
+.galx div{position:relative;width:96px;height:64px;border-radius:8px;overflow:hidden;background:var(--soft)}
+.galx img{width:100%;height:100%;object-fit:cover}
+.galx button{position:absolute;right:3px;top:3px;width:22px;height:22px;border-radius:50%;border:0;background:rgba(0,0,0,.65);color:#fff;cursor:pointer;font-size:.8rem;line-height:1}
+.prow{display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;align-items:center;border-top:1px solid var(--line);padding-top:16px}
+.confirm{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:.85rem;color:var(--bad)}
+.fonts{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.fopt{display:grid;gap:3px;text-align:left;border:1.5px solid var(--line);background:#fff;border-radius:14px;padding:12px 14px;cursor:pointer;min-width:0}
+.fopt[aria-pressed="true"]{border-color:var(--ink);background:#FAFAF7;box-shadow:inset 0 0 0 1px var(--ink)}
+.fopt .smp{font-size:1.4rem;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fopt .nm{font-size:.8rem;font-weight:600}
+.fopt .nt{font-size:.75rem;color:var(--ink-2)}
+.note{font-size:.84rem;background:#FFF8D6;border-radius:12px;padding:12px 14px;color:#4A3D00}
+.gate{padding-block:60px;text-align:center;display:grid;gap:14px;justify-items:center}
+.gate p{max-width:52ch;color:var(--ink-2)}
+@media (prefers-reduced-motion:reduce){.pc .th img,.pc .th canvas{transition:none}}
 </style>
 
-<div class="layout">
-<aside class="rail" aria-label="Mục lục">
-  <div class="brand"><i></i>KHUNG</div>
-  <ol>
-    <li><a href="#dinh-huong">Định hướng</a></li>
-    <li><a href="#sitemap">Cấu trúc website</a></li>
-    <li><a href="#hanh-trinh">Hành trình người dùng</a></li>
-    <li><a href="#wireframe">Wireframe</a></li>
-    <li><a href="#ui">Hệ thống UI</a></li>
-    <li><a href="#ux">Nguyên tắc UX</a></li>
-    <li><a href="#noi-dung">Nội dung</a></li>
-    <li><a href="#tiep-theo">Bước tiếp theo</a></li>
-  </ol>
-  <a class="proto" href="site.html">Mở bản dựng trang chủ</a>
-</aside>
-
-<main class="doc">
-  <header class="cover">
-    <h1>Hồ sơ website KHUNG Studio</h1>
-    <p>Cấu trúc, wireframe, hệ thống giao diện và nội dung cho website của một studio sáng tạo làm thiết kế 2D, motion graphics, VFX compositing và 3D CGI. Tên KHUNG, địa chỉ, số liệu và dự án là giả định; thay bằng thông tin thật trước khi lên sóng.</p>
-    <dl>
-      <div><dt>Loại website</dt><dd>Portfolio và thu brief</dd></div>
-      <div><dt>Số trang mẫu</dt><dd>9 mẫu, khoảng 25 URL</dd></div>
-      <div><dt>Ngôn ngữ</dt><dd>Tiếng Việt, tiếng Anh</dd></div>
-      <div><dt>Hành động chính</dt><dd>Gửi brief dự án</dd></div>
-    </dl>
-  </header>
-
-  <!-- 1 -->
-  <section class="part" id="dinh-huong">
-    <h2><small>1</small>Định hướng</h2>
-    <p class="intro">Khách hàng của studio hậu kỳ mua bằng mắt. Họ cần thấy chất lượng hình ảnh trong vài giây, rồi cần bằng chứng rằng studio làm được đúng loại việc họ có. Website vì vậy xoay quanh hai thứ: showreel và trang breakdown dự án.</p>
-    <div class="tbl"><table>
-      <thead><tr><th>Đối tượng</th><th>Họ cần biết</th><th>Bằng chứng thuyết phục</th><th>Trang quan trọng nhất</th></tr></thead>
-      <tbody>
-        <tr><td><b>Brand manager, marketing</b><br>Khách hàng trực tiếp</td><td>Studio có làm được ngành của mình không, mất bao lâu, khoảng bao nhiêu tiền</td><td>Dự án cùng ngành, quy trình rõ ràng, khung giá tham khảo</td><td>Dịch vụ, Dự án, Gửi brief</td></tr>
-        <tr><td><b>Agency quảng cáo, production house</b><br>Thuê ngoài hậu kỳ</td><td>Năng lực kỹ thuật, pipeline, công suất, chất lượng file bàn giao</td><td>Breakdown từng lớp render, danh sách phần mềm, số node render</td><td>Chi tiết dự án, Studio</td></tr>
-        <tr><td><b>Đạo diễn, producer phim và MV</b></td><td>Studio có hiểu ngôn ngữ điện ảnh, xử lý được cảnh quay thật không</td><td>Trước và sau comp, keying, set extension</td><td>Chi tiết dự án, VFX compositing</td></tr>
-        <tr><td><b>Ứng viên</b><br>Artist, kỹ thuật viên</td><td>Studio làm dự án gì, dùng công cụ gì, môi trường ra sao</td><td>Credits ghi tên artist, nhật ký breakdown, vị trí đang tuyển</td><td>Studio, Tuyển dụng</td></tr>
-      </tbody>
-    </table></div>
-    <h3 class="sub">Chỉ số đo hiệu quả</h3>
-    <div class="kpis">
-      <div><b>Brief đạt chuẩn</b><span>Số brief có đủ loại dự án, ngân sách và deadline mỗi tháng. Đây là chỉ số chính.</span></div>
-      <div><b>Xem hết showreel</b><span>Tỷ lệ người xem quá 50% thời lượng showreel trên trang chủ.</span></div>
-      <div><b>Đọc case study</b><span>Tỷ lệ người vào chi tiết dự án rồi cuộn tới phần breakdown.</span></div>
+<div class="shell">
+<header class="hero" id="top">
+  <div class="nav">
+    <a class="logo" href="#trang-chu" aria-label="Hlab.studio, trang chủ"><i></i><span>Hlab<em>.studio</em></span></a>
+    <nav class="pillnav" aria-label="Điều hướng chính">
+      <a href="#du-an">Dự án</a><a href="#khach-hang">Khách hàng</a><a href="#studio">Studio</a><a href="#quy-trinh">Quy trình</a>
+    </nav>
+    <div class="nav-r">
+      <a class="pill-w" href="#lien-he">Liên hệ <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4.5 11.5l7-7M5.5 4.5h6v6"/></svg></a>
+      <button class="menu" id="menuBtn" aria-label="Mở menu" aria-expanded="false"><span></span></button>
     </div>
-  </section>
-
-  <!-- 2 -->
-  <section class="part" id="sitemap">
-    <h2><small>2</small>Cấu trúc website</h2>
-    <p class="intro">Menu chính có năm mục cộng một nút hành động. Bốn mảng dịch vụ có trang riêng để làm SEO theo từ khoá và để mỗi trang dẫn thẳng tới dự án cùng mảng.</p>
-    <div class="tree">
-      <div class="root"><b>Trang chủ</b><code>/</code></div>
-      <div class="node"><h4>Dự án</h4><code>/du-an</code>
-        <ul><li>Danh sách, lọc theo mảng, ngành, định dạng</li><li>Chi tiết dự án<span>/du-an/[ten-du-an]</span></li></ul></div>
-      <div class="node"><h4>Dịch vụ</h4><code>/dich-vu</code>
-        <ul><li>Thiết kế 2D<span>/dich-vu/thiet-ke-2d</span></li><li>Motion graphics<span>/dich-vu/motion-graphics</span></li><li>VFX compositing<span>/dich-vu/vfx-compositing</span></li><li>3D CGI<span>/dich-vu/3d-cgi</span></li></ul></div>
-      <div class="node"><h4>Quy trình</h4><code>/quy-trinh</code>
-        <ul><li>Sáu bước sản xuất</li><li>Khung thời gian theo loại dự án</li><li>Câu hỏi thường gặp về báo giá</li></ul></div>
-      <div class="node"><h4>Studio</h4><code>/studio</code>
-        <ul><li>Giới thiệu, đội ngũ</li><li>Pipeline và hạ tầng</li><li>Tuyển dụng<span>/tuyen-dung, /tuyen-dung/[vi-tri]</span></li><li>Nhật ký breakdown<span>/nhat-ky, /nhat-ky/[bai-viet]</span></li></ul></div>
-      <div class="node"><h4>Liên hệ</h4><code>/lien-he</code>
-        <ul><li>Form gửi brief 3 bước</li><li>Email, điện thoại, địa chỉ</li><li>Trang cảm ơn<span>/lien-he/da-gui</span></li></ul></div>
-      <div class="node"><h4>Trang phụ</h4><code>footer</code>
-        <ul><li>Chính sách bảo mật</li><li>Trang 404 có showreel ngắn</li><li>Bản tiếng Anh<span>/en/...</span></li></ul></div>
-      <div class="node global"><h4>Thành phần dùng chung mọi trang</h4>
-        <ul><li><b>Header</b>: logo, 5 mục menu, nút Gửi brief dự án, đổi ngôn ngữ</li><li><b>Nút Gửi brief cố định</b> ở cạnh dưới trên điện thoại</li><li><b>Trình phát showreel</b> mở toàn màn hình, có phụ đề</li><li><b>Footer</b>: liên hệ, mạng xã hội, tuyển dụng, chính sách</li></ul></div>
-    </div>
-  </section>
-
-  <!-- 3 -->
-  <section class="part" id="hanh-trinh">
-    <h2><small>3</small>Hành trình người dùng</h2>
-    <p class="intro">Ba luồng chính. Mỗi bước có một lối đi tiếp rõ ràng; không trang nào là ngõ cụt.</p>
-    <div class="journey"><h4>Brand manager tìm studio làm TVC có CGI</h4><p class="who">Đến từ Google hoặc quảng cáo, đang so sánh 3–5 studio</p>
-      <ol><li><b>Trang chủ</b>Xem hero render pass và showreel</li><li><b>3D CGI</b>Đọc hạng mục, khung giá, thời gian</li><li><b>Dự án cùng ngành</b>Lọc theo ngành đồ uống</li><li><b>Chi tiết dự án</b>Xem breakdown và kết quả</li><li><b>Gửi brief</b>Form 3 bước, nhận phản hồi trong 1 ngày</li></ol></div>
-    <div class="journey"><h4>Producer của agency cần đối tác hậu kỳ</h4><p class="who">Đến từ link Vimeo hoặc Behance gửi qua email</p>
-      <ol><li><b>Chi tiết dự án</b>Vào thẳng trang dự án được chia sẻ</li><li><b>Breakdown</b>Chuyển các lớp wireframe, clay, comp</li><li><b>Studio</b>Kiểm tra pipeline, công suất render</li><li><b>Liên hệ trực tiếp</b>Email producer, không cần qua form</li></ol></div>
-    <div class="journey"><h4>Artist 3D tìm việc</h4><p class="who">Đến từ mạng xã hội hoặc nhóm tuyển dụng</p>
-      <ol><li><b>Dự án</b>Xem credits ghi tên người làm</li><li><b>Studio</b>Đội ngũ, môi trường, phần mềm</li><li><b>Tuyển dụng</b>Chọn vị trí</li><li><b>Nộp hồ sơ</b>Gửi link reel và CV</li></ol></div>
-  </section>
-
-  <!-- 4 -->
-  <section class="part" id="wireframe">
-    <h2><small>4</small>Wireframe</h2>
-    <p class="intro">Wireframe mức thấp cho sáu mẫu trang chính. Số tròn trên khung khớp với ghi chú bên cạnh. Bản giao diện hoàn chỉnh của trang chủ nằm trong <a href="site.html">bản dựng</a>.</p>
-
-    <div class="wf-title"><h3>Trang chủ, máy tính</h3><span>1440 px, lưới 12 cột</span></div>
-    <div class="wf-wrap">
-      <div class="wf" aria-label="Wireframe trang chủ trên máy tính">
-        <div class="r" style="grid-template-columns:1fr auto auto;align-items:center"><span class="hd" style="width:60px"></span><span class="flex"><span class="ln" style="width:30px"></span><span class="ln" style="width:30px"></span><span class="ln" style="width:30px"></span><span class="ln" style="width:30px"></span><span class="ln" style="width:30px"></span></span><span class="bt k"></span></div>
-        <div class="r c2" style="align-items:end">
-          <div class="bx" style="border:0;padding:0"><span class="hd big"></span><span class="hd big" style="width:70%"></span><span class="hd big" style="width:50%"></span><span class="ln"></span><span class="ln s"></span><span class="flex"><span class="bt k"></span><span class="bt"></span></span></div>
-          <div class="bx solid"><i class="m">1</i><div class="img v169"><em>Khung xem 3D</em></div><span class="flex"><span class="chip"></span><span class="chip"></span><span class="chip"></span><span class="chip"></span><span class="lbl" style="margin-left:auto">TC 00:00:01:24</span></span></div>
-        </div>
-        <div class="bx"><i class="m">2</i><span class="lbl">Dịch vụ: 4 hàng dạng lớp</span>
-          <div class="r c4"><span class="ln"></span><span class="ln"></span><span class="ln s"></span><span class="ln xs"></span></div><div class="r c4"><span class="ln"></span><span class="ln"></span><span class="ln s"></span><span class="ln xs"></span></div><div class="r c4"><span class="ln"></span><span class="ln"></span><span class="ln s"></span><span class="ln xs"></span></div><div class="r c4"><span class="ln"></span><span class="ln"></span><span class="ln s"></span><span class="ln xs"></span></div></div>
-        <div class="bx"><i class="m">3</i><span class="lbl">Dự án chọn lọc</span><span class="flex"><span class="chip"></span><span class="chip"></span><span class="chip"></span><span class="chip"></span></span>
-          <div class="r c84"><div class="img v239"></div><div class="img v169"></div></div><div class="r c3"><div class="img v169"></div><div class="img v169"></div><div class="img v169"></div></div></div>
-        <div class="bx"><i class="m">4</i><span class="lbl">Quy trình 6 bước</span><div class="r c3"><span class="ln"></span><span class="ln"></span><span class="ln"></span></div><div class="r c3"><span class="ln"></span><span class="ln"></span><span class="ln"></span></div></div>
-        <div class="r c12"><div class="bx"><span class="lbl">Studio: số liệu</span><span class="ln"></span><span class="ln s"></span></div><div class="bx"><span class="lbl">Pipeline phần mềm</span><span class="flex"><span class="chip"></span><span class="chip"></span><span class="chip"></span><span class="chip"></span><span class="chip"></span></span></div></div>
-        <div class="bx solid" style="background:color-mix(in srgb,var(--key) 22%,transparent)"><i class="m">5</i><div class="r c12"><div style="display:grid;gap:6px"><span class="hd"></span><span class="ln s"></span></div><div style="display:grid;gap:6px"><span class="r c12"><span class="bx" style="min-height:16px"></span><span class="bx" style="min-height:16px"></span></span><span class="bx" style="min-height:30px"></span><span class="bt" style="background:var(--ink)"></span></div></div></div>
-        <div class="r c4"><span class="ln"></span><span class="ln s"></span><span class="ln s"></span><span class="ln s"></span></div>
+  </div>
+  <nav class="mnav" aria-label="Menu điện thoại"><a href="#du-an">Dự án</a><a href="#khach-hang">Khách hàng</a><a href="#studio">Studio</a><a href="#quy-trinh">Quy trình</a><a href="#lien-he">Liên hệ</a></nav>
+  <div class="hero-g">
+    <div>
+      <span class="badge" id="hBadge"><b></b><span></span></span>
+      <h1 id="hTitle">Hình ảnh cho thương hiệu</h1>
+      <p class="lede" id="hLede"></p>
+      <div class="acts">
+        <a class="btn-y" href="#du-an">Xem dự án <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8 3v10M3.5 8.5L8 13l4.5-4.5"/></svg></a>
+        <a class="btn-o" id="reelLink" href="#trang-chu" target="_blank" rel="noopener" hidden>Xem showreel đầy đủ</a>
       </div>
-      <ol class="notes">
-        <li><span><b>Khung xem render pass.</b> Thay cho video nền tự chạy. Người xem chuyển Wireframe, Clay, Lighting, Comp để thấy quy trình 3D/VFX ngay ở màn hình đầu. Bản thật dùng 4 đoạn video ngắn từ một dự án thật.</span></li>
-        <li><span><b>Dịch vụ dạng lớp.</b> Mỗi hàng là một mảng: tên, mô tả, file bàn giao, phần mềm, liên kết sang trang dịch vụ.</span></li>
-        <li><span><b>Lưới dự án có lọc.</b> Ô rộng 2.39:1 cho phim và TVC, ô 16:9 cho phần còn lại. Rê chuột phát đoạn xem trước 4 giây không tiếng.</span></li>
-        <li><span><b>Quy trình.</b> Đánh số vì đây là trình tự thật, kèm thời gian từng bước.</span></li>
-        <li><span><b>Khối gửi brief màu phông xanh.</b> Form ngắn 4 trường; form đầy đủ ở trang Liên hệ.</span></li>
-      </ol>
     </div>
-
-    <div class="wf-title"><h3>Trang chủ, điện thoại</h3><span>390 px</span></div>
-    <div class="wf-wrap narrow">
-      <div class="wf phone" aria-label="Wireframe trang chủ trên điện thoại">
-        <div class="r" style="grid-template-columns:1fr auto;align-items:center"><span class="hd" style="width:50px"></span><span class="bt" style="width:40px"></span></div>
-        <span class="hd big"></span><span class="hd big" style="width:60%"></span><span class="ln"></span><span class="ln s"></span>
-        <div class="bx solid"><i class="m">1</i><div class="img v169"></div><span class="flex"><span class="chip"></span><span class="chip"></span><span class="chip"></span><span class="chip"></span></span></div>
-        <div class="bx"><span class="lbl">Dịch vụ</span><span class="ln"></span><span class="ln s"></span><span class="ln"></span><span class="ln s"></span></div>
-        <div class="bx"><i class="m">2</i><span class="lbl">Dự án</span><span class="flex"><span class="chip"></span><span class="chip"></span><span class="chip"></span></span><div class="img v169"></div><span class="ln s"></span><div class="img v169"></div><span class="ln s"></span></div>
-        <div class="bx"><span class="lbl">Quy trình</span><span class="ln"></span><span class="ln"></span><span class="ln"></span></div>
-        <div class="bx solid" style="background:var(--key);border-color:var(--key)"><i class="m">3</i><span class="lbl" style="color:var(--on-key)">Nút Gửi brief cố định</span></div>
-      </div>
-      <ol class="notes">
-        <li><span><b>Khung xem đặt dưới tiêu đề.</b> Không tự chuyển pass nếu người dùng bật giảm chuyển động; chạm để chuyển.</span></li>
-        <li><span><b>Dự án một cột.</b> Không có hover nên hiển thị ảnh tĩnh đẹp nhất; chạm để mở trang dự án. Bộ lọc cuộn ngang.</span></li>
-        <li><span><b>Nút Gửi brief cố định.</b> Hiện sau khi cuộn qua hero, ẩn khi bàn phím mở hoặc khi đã ở khối liên hệ.</span></li>
-      </ol>
-    </div>
-
-    <div class="wf-title"><h3>Trang dịch vụ</h3><span>Mẫu dùng chung cho 4 mảng</span></div>
-    <div class="wf-wrap">
-      <div class="wf" aria-label="Wireframe trang dịch vụ">
-        <div class="r" style="grid-template-columns:1fr auto auto;align-items:center"><span class="hd" style="width:60px"></span><span class="ln" style="width:120px"></span><span class="bt k"></span></div>
-        <div class="r c2"><div style="display:grid;gap:6px;align-content:end"><span class="lbl">Dịch vụ / 3D CGI</span><span class="hd big"></span><span class="ln"></span><span class="ln s"></span></div><div class="img v169"><em>Video vòng lặp</em></div></div>
-        <div class="bx"><i class="m">1</i><span class="lbl">Hạng mục làm được</span><div class="r c3"><div class="bx"><span class="ln"></span><span class="ln s"></span></div><div class="bx"><span class="ln"></span><span class="ln s"></span></div><div class="bx"><span class="ln"></span><span class="ln s"></span></div></div></div>
-        <div class="bx solid"><i class="m">2</i><span class="lbl">Trước và sau: kéo thanh trượt</span><div class="img v239"></div></div>
-        <div class="bx"><i class="m">3</i><span class="lbl">Dự án của mảng này</span><div class="r c3"><div class="img v169"></div><div class="img v169"></div><div class="img v169"></div></div></div>
-        <div class="r c12"><div class="bx"><i class="m">4</i><span class="lbl">Thời gian và khung giá</span><span class="ln"></span><span class="ln"></span><span class="ln s"></span></div><div class="bx"><span class="lbl">Câu hỏi thường gặp</span><span class="ln"></span><span class="ln"></span><span class="ln"></span></div></div>
-        <div class="bx solid" style="background:color-mix(in srgb,var(--key) 22%,transparent)"><span class="hd" style="width:50%"></span><span class="bt" style="background:var(--ink)"></span></div>
-      </div>
-      <ol class="notes">
-        <li><span><b>Hạng mục.</b> 3–6 thẻ, mỗi thẻ là một sản phẩm cụ thể khách có thể đặt, kèm định dạng bàn giao.</span></li>
-        <li><span><b>Trước và sau.</b> Một thanh kéo so sánh plate gốc với khung đã comp. Đây là bằng chứng mạnh nhất cho VFX và 3D.</span></li>
-        <li><span><b>Dự án lọc sẵn.</b> Chỉ dự án có mảng này, mới nhất trước.</span></li>
-        <li><span><b>Khung giá tham khảo.</b> Ghi "từ ... triệu" theo hạng mục. Khách B2B lọc studio theo ngân sách; có giá giúp brief gửi về đúng tầm.</span></li>
-      </ol>
-    </div>
-
-    <div class="wf-title"><h3>Danh sách dự án</h3><span>/du-an</span></div>
-    <div class="wf-wrap">
-      <div class="wf" aria-label="Wireframe danh sách dự án">
-        <div class="r" style="grid-template-columns:1fr auto auto;align-items:center"><span class="hd" style="width:60px"></span><span class="ln" style="width:120px"></span><span class="bt k"></span></div>
-        <span class="hd big" style="width:30%"></span>
-        <div class="bx"><i class="m">1</i><div class="r" style="grid-template-columns:repeat(3,auto) 1fr;gap:14px;align-items:center"><span class="flex"><span class="lbl">Mảng</span><span class="chip"></span><span class="chip"></span><span class="chip"></span></span><span class="flex"><span class="lbl">Ngành</span><span class="chip"></span><span class="chip"></span></span><span class="flex"><span class="lbl">Định dạng</span><span class="chip"></span><span class="chip"></span></span><span class="lbl" style="justify-self:end">24 dự án</span></div></div>
-        <div class="r c3"><div class="bx" style="border:0;padding:0"><i class="m">2</i><div class="img v169"></div><span class="ln s"></span><span class="flex"><span class="chip"></span><span class="chip"></span></span></div><div class="bx" style="border:0;padding:0"><div class="img v169"></div><span class="ln s"></span></div><div class="bx" style="border:0;padding:0"><div class="img v169"></div><span class="ln s"></span></div></div>
-        <div class="r c3"><div class="bx" style="border:0;padding:0"><div class="img v169"></div><span class="ln s"></span></div><div class="bx" style="border:0;padding:0"><div class="img v169"></div><span class="ln s"></span></div><div class="bx" style="border:0;padding:0"><div class="img v169"></div><span class="ln s"></span></div></div>
-        <div class="bx" style="justify-items:center"><i class="m">3</i><span class="bt"></span></div>
-      </div>
-      <ol class="notes">
-        <li><span><b>Ba nhóm lọc.</b> Chọn nhiều giá trị, hiện số dự án khớp, ghi bộ lọc vào URL để chia sẻ được.</span></li>
-        <li><span><b>Thẻ dự án.</b> Khung hình đặc trưng, tên dự án, định dạng, thời lượng, các mảng đã làm. Không ghi tên khách nếu chưa được phép.</span></li>
-        <li><span><b>Xem thêm.</b> Tải thêm 9 dự án mỗi lần, giữ vị trí cuộn khi quay lại từ trang chi tiết.</span></li>
-      </ol>
-    </div>
-
-    <div class="wf-title"><h3>Chi tiết dự án</h3><span>/du-an/[ten-du-an]</span></div>
-    <div class="wf-wrap">
-      <div class="wf" aria-label="Wireframe chi tiết dự án">
-        <div class="r" style="grid-template-columns:1fr auto auto;align-items:center"><span class="hd" style="width:60px"></span><span class="ln" style="width:120px"></span><span class="bt k"></span></div>
-        <div class="bx solid"><i class="m">1</i><div class="img v239"><em>Phim hoàn chỉnh</em></div></div>
-        <span class="hd big" style="width:55%"></span>
-        <div class="bx"><i class="m">2</i><div class="r c6"><span class="ln"></span><span class="ln"></span><span class="ln"></span><span class="ln"></span><span class="ln"></span><span class="ln"></span></div></div>
-        <div class="r c3"><div style="display:grid;gap:6px"><span class="lbl">Brief</span><span class="ln"></span><span class="ln"></span><span class="ln s"></span></div><div style="display:grid;gap:6px"><span class="lbl">Thử thách</span><span class="ln"></span><span class="ln"></span><span class="ln s"></span></div><div style="display:grid;gap:6px"><span class="lbl">Cách làm</span><span class="ln"></span><span class="ln"></span><span class="ln s"></span></div></div>
-        <div class="bx solid"><i class="m">3</i><span class="flex"><span class="chip"></span><span class="chip"></span><span class="chip"></span><span class="chip"></span><span class="chip"></span></span><div class="img v239"><em>Breakdown theo lớp</em></div></div>
-        <div class="bx"><i class="m">4</i><span class="lbl">Styleframe</span><div class="r c3"><div class="img v169"></div><div class="img v169"></div><div class="img v169"></div></div></div>
-        <div class="r c12"><div class="bx"><i class="m">5</i><span class="lbl">Credits</span><span class="ln"></span><span class="ln s"></span><span class="ln"></span></div><div class="bx"><span class="lbl">Dự án tiếp theo</span><div class="img v169"></div></div></div>
-      </div>
-      <ol class="notes">
-        <li><span><b>Phim hoàn chỉnh trên cùng.</b> Ảnh poster tải trước, video chỉ tải khi bấm phát. Có phụ đề.</span></li>
-        <li><span><b>Hàng thông tin.</b> Khách hàng, agency, vai trò của studio, định dạng, thời lượng, năm.</span></li>
-        <li><span><b>Breakdown.</b> Cùng điều khiển với khung xem ở trang chủ: plate gốc, tracking, CG, comp, chỉnh màu. Phần producer của agency đọc kỹ nhất.</span></li>
-        <li><span><b>Styleframe.</b> Bấm để phóng to, vuốt để chuyển trên điện thoại.</span></li>
-        <li><span><b>Credits ghi tên artist.</b> Tốt cho tuyển dụng và cho uy tín đội ngũ.</span></li>
-      </ol>
-    </div>
-
-    <div class="wf-title"><h3>Liên hệ và gửi brief</h3><span>/lien-he</span></div>
-    <div class="wf-wrap">
-      <div class="wf" aria-label="Wireframe trang liên hệ">
-        <div class="r" style="grid-template-columns:1fr auto auto;align-items:center"><span class="hd" style="width:60px"></span><span class="ln" style="width:120px"></span><span class="bt k"></span></div>
-        <div class="r c2">
-          <div style="display:grid;gap:8px;align-content:start"><span class="hd big"></span><span class="ln"></span><span class="ln s"></span><div class="bx"><i class="m">1</i><span class="lbl">Producer phụ trách</span><span class="ln s"></span><span class="ln xs"></span></div><div class="bx"><span class="lbl">Địa chỉ studio</span><span class="ln"></span><span class="ln s"></span></div></div>
-          <div class="bx solid"><i class="m">2</i><span class="flex"><span class="lbl">Bước 1 Dịch vụ</span><span class="lbl">Bước 2 Dự án</span><span class="lbl">Bước 3 Liên hệ</span></span><div class="ln" style="background:var(--key);width:33%"></div>
-            <div class="r c12"><span class="bx" style="min-height:34px"></span><span class="bx" style="min-height:34px"></span><span class="bx" style="min-height:34px"></span><span class="bx" style="min-height:34px"></span></div>
-            <span class="bx" style="min-height:40px"><span class="lbl">Tải brief, moodboard (PDF, tối đa 20 MB)</span></span><span class="flex" style="justify-content:space-between"><span class="bt"></span><span class="bt k"></span></span></div>
+    <div class="stage">
+      <div class="vp" id="vp">
+        <canvas id="hero" role="img" aria-label="Mô hình 3D hiển thị theo lớp render đang chọn"></canvas>
+        <div class="vctl" id="vctl">
+          <div class="passes" role="group" aria-label="Chọn lớp render">
+            <button data-p="0" aria-pressed="false">Wireframe</button><button data-p="1" aria-pressed="false">Clay</button><button data-p="2" aria-pressed="false">Lighting</button><button data-p="3" aria-pressed="true">Comp</button>
+          </div>
+          <span class="tc">TC <b id="tc">00:00:00:00</b></span>
         </div>
       </div>
-      <ol class="notes">
-        <li><span><b>Một người thật.</b> Ảnh, tên, email và số điện thoại của producer giúp agency bỏ qua form.</span></li>
-        <li><span><b>Form ba bước.</b> Bước 1 chọn mảng (nhiều lựa chọn), bước 2 thời lượng, deadline, ngân sách, bước 3 tên, công ty, email. Lưu nháp khi chuyển bước; báo lỗi ngay dưới trường.</span></li>
-      </ol>
     </div>
+  </div>
+</header>
+
+<main id="vHome">
+  <section class="featured" aria-labelledby="h-feat" id="featSec">
+    <div class="fhead"><h2 class="sec-t" id="h-feat">Dự án nổi bật</h2><p class="sec-d">Bấm vào dự án để xem trang chi tiết và kéo thanh so sánh trước và sau.</p></div>
+    <div class="fgrid" id="fgrid"></div>
   </section>
-
-  <!-- 5 -->
-  <section class="part" id="ui">
-    <h2><small>5</small>Hệ thống UI</h2>
-    <p class="intro">Ý tưởng hình ảnh lấy từ phim trường: nền xám như phông cyclorama, màu nhấn là xanh phông keying và chỉ dùng cho hành động. Hình ảnh dự án luôn là thứ có màu nhiều nhất trên trang. Có cả chế độ sáng và tối.</p>
-
-    <h3 class="sub">Màu</h3>
-    <div class="swatches">
-      <div class="sw"><div style="background:#E3E5E1"></div><p><b>Cyclorama</b><span>#E3E5E1 / tối #171A18</span><br>Nền trang</p></div>
-      <div class="sw"><div style="background:#EEF0EC"></div><p><b>Paper</b><span>#EEF0EC / tối #1F2321</span><br>Bề mặt nổi, thẻ</p></div>
-      <div class="sw"><div style="background:#131514"></div><p><b>Ink</b><span>#131514 / tối #E5E9E3</span><br>Chữ chính, viền nhấn</p></div>
-      <div class="sw"><div style="background:#4B524D"></div><p><b>Ink 2</b><span>#4B524D / tối #9BA49D</span><br>Chữ phụ, nhãn</p></div>
-      <div class="sw"><div style="background:#C3C8C1"></div><p><b>Line</b><span>#C3C8C1 / tối #333A35</span><br>Đường kẻ, viền thẻ</p></div>
-      <div class="sw"><div style="background:#00B140"></div><p><b>Chroma key</b><span>#00B140 / tối #22C55E</span><br>Nút chính, khối brief</p></div>
-      <div class="sw"><div style="background:#101312"></div><p><b>Viewport</b><span>#101312</span><br>Khung video, cả hai chế độ</p></div>
-    </div>
-    <p class="intro" style="font-size:.9rem">Bốn màu nhận diện từng mảng: 2D vàng #F2B705, Motion đỏ #E5484D, VFX xanh phông #00B140, 3D xanh dương #3E63DD. Chỉ dùng làm vạch nhỏ cạnh tên mảng, không dùng làm nền.</p>
-
-    <h3 class="sub">Chữ</h3>
-    <div class="type">
-      <div><span class="spec">Display XL<br>Anybody 780, độ rộng 118<br>40–72 px</span><span style="font-family:var(--display);font-weight:780;font-variation-settings:'wdth' 118;font-size:clamp(2rem,4.5vw,3.4rem);line-height:1.14">Từ khung dây đến khung hình cuối.</span></div>
-      <div><span class="spec">Display L<br>Anybody 720, độ rộng 112<br>28–40 px</span><span style="font-family:var(--display);font-weight:720;font-variation-settings:'wdth' 112;font-size:clamp(1.6rem,3vw,2.4rem);line-height:1.15">Bốn mảng, một pipeline</span></div>
-      <div><span class="spec">Tiêu đề thẻ<br>Be Vietnam Pro 600<br>17–20 px</span><span style="font-weight:600;font-size:1.15rem">TVC nước tăng lực: Thành phố không ngủ</span></div>
-      <div><span class="spec">Thân bài<br>Be Vietnam Pro 400<br>16–17 px, giãn dòng 1.6</span><span>KHUNG là studio hậu kỳ tại TP.HCM. Chúng tôi làm thiết kế 2D, motion graphics, VFX compositing và 3D CGI cho TVC, phim ngắn và nội dung mạng xã hội.</span></div>
-      <div><span class="spec">Nhãn và số liệu<br>Be Vietnam Pro 500<br>13 px, số đều cột</span><span style="font-size:.8125rem;font-weight:500;font-variant-numeric:tabular-nums">TC 00:00:12:08  2.39:1  25 fps</span></div>
-    </div>
-    <p class="intro" style="font-size:.9rem">Anybody là font có trục độ rộng: kéo rộng cho tiêu đề tạo cảm giác khung hình điện ảnh, và có thể chuyển động độ rộng trong logo animation. Be Vietnam Pro được thiết kế cho tiếng Việt nên dấu đặt chuẩn ở mọi cỡ. Giãn dòng tiêu đề tối thiểu 1.14 để dấu không chạm dòng trên.</p>
-
-    <h3 class="sub">Thành phần</h3>
-    <div class="comps">
-      <div class="comp"><h4>Nút</h4><div class="row"><span class="b key">Gửi brief dự án</span><span class="b ghost">Xem showreel 2026</span><span class="b link">Xem mảng 3D</span></div><p>Nút xanh chỉ dùng cho hành động gửi brief, tối đa một nút xanh trên mỗi màn hình. Bo góc 2 px như góc khung phim.</p></div>
-      <div class="comp"><h4>Bộ lọc</h4><div class="row"><span class="fc on">Tất cả</span><span class="fc">2D</span><span class="fc">Motion</span><span class="fc">VFX</span><span class="fc">3D CGI</span></div><p>Dạng viên thuốc để phân biệt với nút. Trạng thái chọn đổi nền đặc, không chỉ đổi màu chữ.</p></div>
-      <div class="comp"><h4>Thẻ dự án</h4><div class="pcard"><div class="fr"><span>16:9  00:15</span></div><b>Ra mắt xe điện: Packshot CGI</b><div class="tags"><span>Key visual + 15s</span><span>3D CGI</span></div></div><p>Khung hình ghi tỉ lệ và thời lượng, thông tin người trong nghề tìm đầu tiên.</p></div>
-      <div class="comp"><h4>Trường nhập</h4><div class="field"><span>Email công việc</span><span class="in">ten@congty.vn</span></div><div class="field focus"><span>Tên của bạn</span><span class="in">Minh Anh</span></div><div class="field error"><span>Deadline</span><span class="in">15/02</span><small>Ngày giao phải sau hôm nay ít nhất 7 ngày. Chọn ngày khác hoặc ghi chú dự án gấp.</small></div></div>
-    </div>
+  <section class="work" id="du-an" aria-labelledby="h-work">
+    <h2 class="sec-t" id="h-work">Tất cả dự án</h2>
+    <div class="tabs" role="group" aria-label="Lọc theo hạng mục" id="tabs"></div>
+    <div class="catintro"><p id="catDesc"></p><div class="subs" role="group" aria-label="Lọc theo mục con" id="subs"></div></div>
+    <div class="grid" id="grid"><p class="empty">Đang tải dự án…</p></div>
   </section>
-
-  <!-- 6 -->
-  <section class="part" id="ux">
-    <h2><small>6</small>Nguyên tắc UX</h2>
-    <div class="rules">
-      <div><h4>Video không làm chậm trang</h4><p>Mỗi video có ảnh poster. Hero tải trong 2,5 giây trên 4G. Đoạn xem trước dưới 4 MB, phát khi rê chuột hoặc khi lọt vào màn hình, không tiếng.</p></div>
-      <div><h4>Một hành động chính</h4><p>Nút Gửi brief dự án có mặt ở header, cuối mỗi trang và cố định trên điện thoại. Mọi nút khác dùng kiểu viền hoặc liên kết.</p></div>
-      <div><h4>Bằng chứng trước, lời giới thiệu sau</h4><p>Mỗi trang dịch vụ đưa hình trước và sau lên trước đoạn mô tả. Mỗi khẳng định về năng lực dẫn tới một dự án cụ thể.</p></div>
-      <div><h4>Nói như người trong nghề</h4><p>Dùng thuật ngữ khách B2B quen: TVC, styleframe, animatic, keying, render pass. Giải thích ngắn khi dùng lần đầu trên trang dịch vụ.</p></div>
-      <div><h4>Tôn trọng giảm chuyển động</h4><p>Khi hệ điều hành bật giảm chuyển động: không tự chuyển pass, không parallax, video chỉ phát khi bấm. Mọi nội dung vẫn đọc được ở trạng thái tĩnh.</p></div>
-      <div><h4>Dễ tiếp cận</h4><p>Độ tương phản chữ từ 4,5:1. Viền focus xanh rõ ràng. Video có phụ đề tiếng Việt và tiếng Anh. Điều khiển bằng bàn phím được toàn bộ.</p></div>
-      <div><h4>Form không làm mất công</h4><p>Bước 1 chỉ cần bấm chọn. Lưu nháp giữa các bước. Báo lỗi ngay dưới trường, nói rõ cách sửa. Sau khi gửi: hiện tên producer và thời gian phản hồi.</p></div>
-      <div><h4>Chia sẻ được</h4><p>Bộ lọc dự án và pass breakdown ghi vào URL, để producer gửi đúng khung hình cho đồng nghiệp. Ảnh chia sẻ mạng xã hội riêng cho mỗi dự án.</p></div>
-    </div>
-  </section>
-
-  <!-- 7 -->
-  <section class="part" id="noi-dung">
-    <h2><small>7</small>Nội dung</h2>
-    <p class="intro">Giọng văn: thẳng, cụ thể, như producer nói chuyện với khách. Câu ngắn, động từ rõ, có số liệu thật. Tránh tính từ sáo rỗng như "đỉnh cao", "đột phá", "hàng đầu". Các con số có nhãn <span class="flag">thay số thật</span> là giả định.</p>
-
-    <article class="page-copy"><header><h3>Trang chủ</h3><code>/</code></header><div class="body">
-      <div class="blk"><span>Tiêu đề hero</span><div class="t"><p class="h">Từ khung dây đến khung hình cuối.</p></div></div>
-      <div class="blk"><span>Mô tả hero</span><div class="t"><p>KHUNG là studio hậu kỳ tại TP.HCM. Chúng tôi làm thiết kế 2D, motion graphics, VFX compositing và 3D CGI cho TVC, phim ngắn và nội dung mạng xã hội.</p></div></div>
-      <div class="blk"><span>Nút</span><div class="t"><p>Gửi brief dự án / Xem showreel 2026</p></div></div>
-      <div class="blk"><span>Chú thích pass</span><div class="t"><ul><li>Wireframe: lưới đa giác của mô hình, bước đầu tiên của dựng hình 3D.</li><li>Clay: khối xám không chất liệu để duyệt hình dáng và bố cục khung hình.</li><li>Lighting: thêm ánh sáng chính, đèn viền và chất liệu.</li><li>Comp: ghép nền, bóng đổ, độ nhiễu phim và khung 2.39:1, ra khung hình cuối.</li></ul></div></div>
-      <div class="blk"><span>Khối dịch vụ</span><div class="t"><p><b>Bốn mảng, một pipeline.</b> Mỗi dự án đi qua cùng một đường ống sản xuất. Bạn làm việc với một đầu mối, từ styleframe đầu tiên đến file master giao đài.</p></div></div>
-      <div class="blk"><span>Khối dự án</span><div class="t"><p><b>Dự án chọn lọc.</b> Mỗi dự án có trang breakdown riêng: brief, cách làm, các lớp trước và sau khi comp, và đội ngũ tham gia.</p></div></div>
-      <div class="blk"><span>Khối studio</span><div class="t"><p>Chúng tôi là nhóm nghệ sĩ và kỹ thuật viên làm việc chung trên một render farm. Họa sĩ 2D ngồi cạnh artist Houdini, nên ý tưởng đi thẳng vào sản xuất mà không thất lạc.</p><p>18 thành viên toàn thời gian, thành lập 2016, 140+ dự án đã giao, 64 node render GPU <span class="flag">thay số thật</span></p></div></div>
-      <div class="blk"><span>Khối brief</span><div class="t"><p><b>Có kịch bản, moodboard hay chỉ một ý tưởng?</b> Gửi cho chúng tôi những gì bạn đang có. Producer sẽ phản hồi trong một ngày làm việc kèm câu hỏi và khung báo giá.</p></div></div>
-    </div></article>
-
-    <article class="page-copy"><header><h3>Dịch vụ: Thiết kế 2D</h3><code>/dich-vu/thiet-ke-2d</code></header><div class="body">
-      <div class="blk"><span>Tiêu đề</span><div class="t"><p class="h">Chốt phong cách trước khi bấm render.</p></div></div>
-      <div class="blk"><span>Mô tả</span><div class="t"><p>Mọi dự án chuyển động bắt đầu bằng một khung hình tĩnh. Chúng tôi vẽ styleframe, key visual và minh hoạ để bạn duyệt màu, bố cục và chất cảm trước khi tốn ngày công animation.</p></div></div>
-      <div class="blk"><span>Hạng mục</span><div class="t"><ul><li><b>Styleframe</b>: 3–6 khung đại diện cho phim, 2 hướng phong cách.</li><li><b>Key visual chiến dịch</b>: bộ ảnh chính và bản chuyển đổi cho OOH, social, POSM.</li><li><b>Minh hoạ và nhân vật</b>: thiết kế nhân vật, bảng biểu cảm, turnaround cho animation.</li><li><b>Nhận diện chuyển động</b>: quy tắc chuyển động cho logo, chữ, chuyển cảnh.</li></ul></div></div>
-      <div class="blk"><span>Thời gian, giá</span><div class="t"><p>Styleframe 4–6 ngày, từ 25 triệu đồng cho 2 hướng. Key visual từ 40 triệu đồng. <span class="flag">thay giá thật</span></p></div></div>
-      <div class="blk"><span>Hỏi đáp</span><div class="t"><p><b>Styleframe có được dùng làm ảnh quảng cáo không?</b> Có. Chúng tôi vẽ ở độ phân giải in ấn nếu bạn báo trước trong brief.</p><p><b>Tôi đã có KV từ agency khác?</b> Chúng tôi chuyển KV sang chuyển động và giữ nguyên guideline.</p></div></div>
-    </div></article>
-
-    <article class="page-copy"><header><h3>Dịch vụ: Motion graphics</h3><code>/dich-vu/motion-graphics</code></header><div class="body">
-      <div class="blk"><span>Tiêu đề</span><div class="t"><p class="h">Thông điệp rõ trong 6 giây đầu.</p></div></div>
-      <div class="blk"><span>Mô tả</span><div class="t"><p>Người xem lướt qua quảng cáo sau vài giây. Chúng tôi dựng nhịp hình theo nhạc và voice-over để thông điệp chính xuất hiện trước khi họ kịp lướt.</p></div></div>
-      <div class="blk"><span>Hạng mục</span><div class="t"><ul><li><b>Explainer</b> 60–90 giây cho sản phẩm công nghệ, tài chính, y tế.</li><li><b>Logo animation và ident</b> 3–10 giây, kèm âm thanh.</li><li><b>Nội dung dọc 9:16</b> cho TikTok, Reels, Shorts, giao theo bộ.</li><li><b>Title sequence</b> cho phim, chương trình, sự kiện.</li></ul></div></div>
-      <div class="blk"><span>Thời gian, giá</span><div class="t"><p>Explainer 60 giây: 3–4 tuần, từ 80 triệu đồng. Bộ 6 video dọc 15 giây: 2 tuần, từ 60 triệu đồng. <span class="flag">thay giá thật</span></p></div></div>
-      <div class="blk"><span>Hỏi đáp</span><div class="t"><p><b>Có cần kịch bản sẵn không?</b> Không bắt buộc. Chúng tôi viết kịch bản và lời thoại nếu bạn có thông điệp chính.</p><p><b>Bàn giao những gì?</b> File master, các tỉ lệ khung đã thống nhất và file nguồn After Effects khi được yêu cầu.</p></div></div>
-    </div></article>
-
-    <article class="page-copy"><header><h3>Dịch vụ: VFX compositing</h3><code>/dich-vu/vfx-compositing</code></header><div class="body">
-      <div class="blk"><span>Tiêu đề</span><div class="t"><p class="h">Người xem chỉ thấy khung hình cuối.</p></div></div>
-      <div class="blk"><span>Mô tả</span><div class="t"><p>Chúng tôi ghép cảnh quay thật với đồ hoạ máy tính sao cho không ai nhận ra đường ghép. Từ xoá dây cáp đến dựng cả thành phố phía sau diễn viên.</p></div></div>
-      <div class="blk"><span>Hạng mục</span><div class="t"><ul><li><b>Keying phông xanh</b>, giữ chi tiết tóc, khói, vật trong suốt.</li><li><b>Tracking và matchmove</b> 2D, 3D để gắn CG vào cảnh quay máy chuyển động.</li><li><b>Clean-up, rotoscope</b>: xoá dây, logo, người qua đường, vật thể thừa.</li><li><b>Set extension</b>: mở rộng bối cảnh, thay bầu trời, thêm đám đông.</li><li><b>Chỉnh màu</b> trên DaVinci Resolve, giao master theo chuẩn đài.</li></ul></div></div>
-      <div class="blk"><span>Có mặt tại hiện trường</span><div class="t"><p>VFX supervisor của chúng tôi có thể ra set để đặt điểm tracking, chụp HDRI và đo ánh sáng. Làm đúng từ lúc quay rẻ hơn sửa ở hậu kỳ.</p></div></div>
-      <div class="blk"><span>Thời gian, giá</span><div class="t"><p>Tính theo shot và độ khó. Shot keying cơ bản từ 3 triệu đồng; set extension từ 15 triệu đồng mỗi shot. <span class="flag">thay giá thật</span></p></div></div>
-    </div></article>
-
-    <article class="page-copy"><header><h3>Dịch vụ: 3D CGI</h3><code>/dich-vu/3d-cgi</code></header><div class="body">
-      <div class="blk"><span>Tiêu đề</span><div class="t"><p class="h">Sản phẩm của bạn, trước khi nó được sản xuất.</p></div></div>
-      <div class="blk"><span>Mô tả</span><div class="t"><p>Dựng sản phẩm từ file CAD hoặc ảnh chụp, đặt vào bất kỳ bối cảnh nào và quay ở góc máy không thể quay thật. Phù hợp ra mắt sản phẩm mới, bất động sản chưa xây, chất lỏng và hiệu ứng khó kiểm soát ngoài đời.</p></div></div>
-      <div class="blk"><span>Hạng mục</span><div class="t"><ul><li><b>Packshot sản phẩm</b>: chai, lon, mỹ phẩm, thiết bị điện tử, xe.</li><li><b>Mô phỏng</b>: chất lỏng, hạt, khói, vải trên Houdini.</li><li><b>Phim kiến trúc</b>: căn hộ mẫu, tiện ích, toàn cảnh dự án.</li><li><b>Nhân vật 3D</b>: dựng hình, rigging, animation.</li></ul></div></div>
-      <div class="blk"><span>Thời gian, giá</span><div class="t"><p>Packshot 15 giây: 3–4 tuần, từ 150 triệu đồng. Phim kiến trúc 90 giây: 6–8 tuần, từ 350 triệu đồng. <span class="flag">thay giá thật</span></p></div></div>
-      <div class="blk"><span>Hỏi đáp</span><div class="t"><p><b>Cần chuẩn bị gì?</b> File CAD hoặc sản phẩm mẫu, ảnh tham khảo chất liệu, logo dạng vector.</p><p><b>Có giao file render pass riêng không?</b> Có. Chúng tôi giao EXR đa lớp để agency tự chỉnh màu nếu cần.</p></div></div>
-    </div></article>
-
-    <article class="page-copy"><header><h3>Chi tiết dự án mẫu</h3><code>/du-an/thanh-pho-khong-ngu</code></header><div class="body">
-      <div class="blk"><span>Tiêu đề</span><div class="t"><p class="h">Thành phố không ngủ</p><p>TVC 30 giây cho một nhãn nước tăng lực <span class="flag">dự án giả định</span></p></div></div>
-      <div class="blk"><span>Thông tin</span><div class="t"><p>Khách hàng: Nhãn nước tăng lực. Agency: Agency sáng tạo. Vai trò: 3D CGI, VFX compositing, chỉnh màu. Định dạng: 30s, 15s, 6s; 16:9 và 9:16. Năm: 2026.</p></div></div>
-      <div class="blk"><span>Brief</span><div class="t"><p>Ra mắt bao bì mới cho mùa thi. Lon sản phẩm phải là nhân vật chính trong một thành phố về đêm, nơi năng lượng chạy dọc các toà nhà như dòng điện.</p></div></div>
-      <div class="blk"><span>Thử thách</span><div class="t"><p>Bao bì mới chưa được sản xuất khi quay. Cảnh diễn viên quay trên phông xanh trong một ngày, thành phố phải dựng hoàn toàn bằng CG và khớp ánh sáng với cảnh quay thật.</p></div></div>
-      <div class="blk"><span>Cách làm</span><div class="t"><p>Dựng lon từ file thiết kế bao bì, mô phỏng giọt nước ngưng tụ trên Houdini. VFX supervisor ra set chụp HDRI và đặt điểm tracking. Thành phố được dựng theo module để thay góc máy nhanh khi khách đổi animatic.</p></div></div>
-      <div class="blk"><span>Breakdown</span><div class="t"><p>Plate gốc phông xanh, Tracking, Thành phố CG, Lon sản phẩm, Comp, Chỉnh màu.</p></div></div>
-      <div class="blk"><span>Credits</span><div class="t"><p>Đạo diễn hình ảnh CG, VFX supervisor, artist Houdini, compositor, colorist, producer. Ghi tên thật từng người khi có.</p></div></div>
-    </div></article>
-
-    <article class="page-copy"><header><h3>Quy trình</h3><code>/quy-trinh</code></header><div class="body">
-      <div class="blk"><span>Tiêu đề</span><div class="t"><p class="h">Bạn luôn biết dự án đang ở bước nào.</p></div></div>
-      <div class="blk"><span>Các bước</span><div class="t"><ul>
-        <li><b>Nhận brief</b> (1–2 ngày): đọc kịch bản, moodboard, ngân sách, deadline. Gửi báo giá theo hạng mục.</li>
-        <li><b>Concept và styleframe</b> (4–6 ngày): 2–3 hướng hình ảnh tĩnh để chốt phong cách.</li>
-        <li><b>Animatic</b> (3–5 ngày): dựng thô đúng thời lượng, khớp nhạc và voice-over.</li>
-        <li><b>Sản xuất</b> (10–20 ngày): dựng 3D, animation, mô phỏng, quay phông xanh nếu cần. Bản xem giữa kỳ.</li>
-        <li><b>Comp và chỉnh màu</b> (4–7 ngày): ghép lớp, keying, chỉnh màu, âm thanh. Hai vòng sửa.</li>
-        <li><b>Bàn giao</b> (1–2 ngày): master theo chuẩn đài và nền tảng, bản cắt ngắn, file nguồn.</li></ul></div></div>
-      <div class="blk"><span>Vòng sửa</span><div class="t"><p>Mỗi bước có hai vòng sửa trong báo giá. Thay đổi sau khi đã chốt animatic được báo giá riêng trước khi làm.</p></div></div>
-    </div></article>
-
-    <article class="page-copy"><header><h3>Studio và tuyển dụng</h3><code>/studio, /tuyen-dung</code></header><div class="body">
-      <div class="blk"><span>Tiêu đề studio</span><div class="t"><p class="h">Một phòng, một render farm, bốn mảng nghề.</p></div></div>
-      <div class="blk"><span>Giới thiệu</span><div class="t"><p>KHUNG bắt đầu năm 2016 với ba người làm motion graphics trong một căn phòng thuê. Hôm nay studio có 18 người: họa sĩ 2D, animator, artist 3D, compositor, colorist và producer. Chúng tôi giữ quy mô vừa đủ để mỗi dự án có người làm từ đầu đến cuối. <span class="flag">thay câu chuyện thật</span></p></div></div>
-      <div class="blk"><span>Hạ tầng</span><div class="t"><p>64 node render GPU, lưu trữ 200 TB, phòng chỉnh màu hiệu chuẩn chuẩn Rec.709. Quản lý dự án trên ShotGrid để khách xem bản nháp và để lại ghi chú theo từng khung hình. <span class="flag">thay số thật</span></p></div></div>
-      <div class="blk"><span>Tuyển dụng</span><div class="t"><p class="h" style="font-size:1.1rem">Làm việc thật, có tên trong credits.</p><p>Mỗi dự án ghi tên người làm. Bạn được thử Houdini, Nuke, Blender trên phần cứng đủ mạnh và học từ người đi trước qua buổi review hàng tuần.</p><ul><li>Compositor (Nuke), 2+ năm kinh nghiệm</li><li>Artist FX Houdini, 2+ năm kinh nghiệm</li><li>Motion designer (After Effects), 1+ năm kinh nghiệm</li></ul><p>Nộp hồ sơ: gửi link reel và CV, ghi vị trí ở tiêu đề email.</p></div></div>
-    </div></article>
-
-    <article class="page-copy"><header><h3>Liên hệ và gửi brief</h3><code>/lien-he</code></header><div class="body">
-      <div class="blk"><span>Tiêu đề</span><div class="t"><p class="h">Kể cho chúng tôi về dự án.</p><p>Càng nhiều chi tiết, báo giá càng sát. Chưa có đủ thông tin cũng không sao, producer sẽ hỏi thêm.</p></div></div>
-      <div class="blk"><span>Bước 1</span><div class="t"><p><b>Bạn cần làm gì?</b> Thiết kế 2D / Motion graphics / VFX compositing / 3D CGI / Chưa chắc, cần tư vấn</p></div></div>
-      <div class="blk"><span>Bước 2</span><div class="t"><p><b>Về dự án.</b> Loại dự án, thời lượng, ngày cần bàn giao, ngân sách dự kiến, mô tả ngắn, tải brief hoặc moodboard.</p></div></div>
-      <div class="blk"><span>Bước 3</span><div class="t"><p><b>Liên hệ với bạn.</b> Họ tên, công ty, email công việc, số điện thoại (không bắt buộc).</p></div></div>
-      <div class="blk"><span>Nút</span><div class="t"><p>Tiếp tục / Quay lại / Gửi brief</p></div></div>
-      <div class="blk"><span>Thông báo lỗi</span><div class="t"><ul><li>Chọn ít nhất một mảng để chúng tôi chuyển brief cho đúng người.</li><li>Email chưa đúng định dạng, ví dụ ten@congty.vn.</li><li>File lớn hơn 20 MB. Gửi link Google Drive hoặc WeTransfer trong phần mô tả.</li></ul></div></div>
-      <div class="blk"><span>Sau khi gửi</span><div class="t"><p><b>Đã nhận brief.</b> Producer Nguyễn Minh sẽ trả lời qua email của bạn trước 17:00 ngày làm việc tiếp theo. <span class="flag">thay tên thật</span></p></div></div>
-    </div></article>
-
-    <h3 class="sub">Tiêu đề và mô tả SEO</h3>
-    <div class="tbl seo"><table>
-      <thead><tr><th>Trang</th><th>Thẻ title</th><th>Meta description</th></tr></thead>
-      <tbody>
-        <tr><td>Trang chủ</td><td>KHUNG Studio: Motion graphics, VFX và 3D CGI tại TP.HCM</td><td>Studio hậu kỳ làm thiết kế 2D, motion graphics, VFX compositing và 3D CGI cho TVC, phim và nội dung số. Gửi brief, nhận phản hồi trong một ngày.</td></tr>
-        <tr><td>Thiết kế 2D</td><td>Styleframe và key visual cho TVC | KHUNG Studio</td><td>Styleframe, key visual, minh hoạ và nhận diện chuyển động. Chốt phong cách trước khi sản xuất.</td></tr>
-        <tr><td>Motion graphics</td><td>Làm video motion graphics, explainer | KHUNG Studio</td><td>Explainer, logo animation, video dọc 9:16 và title sequence, dựng nhịp theo nhạc và thông điệp.</td></tr>
-        <tr><td>VFX compositing</td><td>Dịch vụ VFX compositing, keying phông xanh | KHUNG Studio</td><td>Keying, tracking, clean-up, set extension và chỉnh màu cho TVC, MV và phim.</td></tr>
-        <tr><td>3D CGI</td><td>Dựng 3D CGI sản phẩm và phim kiến trúc | KHUNG Studio</td><td>Packshot sản phẩm, mô phỏng chất lỏng, phim kiến trúc và nhân vật 3D, render ảnh thật.</td></tr>
-        <tr><td>Dự án</td><td>Dự án TVC, VFX và 3D đã thực hiện | KHUNG Studio</td><td>Xem dự án theo mảng, ngành và định dạng, kèm breakdown từng lớp render.</td></tr>
-        <tr><td>Liên hệ</td><td>Gửi brief dự án | KHUNG Studio</td><td>Gửi kịch bản, moodboard hoặc ý tưởng. Producer phản hồi trong một ngày làm việc kèm khung báo giá.</td></tr>
-      </tbody>
-    </table></div>
-  </section>
-
-  <!-- 8 -->
-  <section class="part" id="tiep-theo">
-    <h2><small>8</small>Bước tiếp theo</h2>
-    <div class="next">
-      <div><h4>Thông tin cần từ bạn</h4><ul><li>Tên studio, logo, màu thương hiệu nếu đã có</li><li>Showreel mới nhất và 6–12 dự án được phép công bố</li><li>Cảnh quay trước và sau cho 2–3 dự án VFX, 3D</li><li>Số liệu thật: số người, năm thành lập, số dự án, hạ tầng</li><li>Khung giá tham khảo cho từng mảng, hoặc quyết định ẩn giá</li><li>Tên, ảnh, liên hệ của producer phụ trách brief</li></ul></div>
-      <div><h4>Đề xuất kỹ thuật</h4><ul><li>Next.js, xuất trang tĩnh cho tốc độ và SEO</li><li>CMS headless (Sanity hoặc Payload) để tự thêm dự án, bài viết, vị trí tuyển dụng</li><li>Video qua Vimeo Pro hoặc Mux: tự chọn chất lượng theo mạng</li><li>Form brief gửi về email và Google Sheets hoặc CRM</li><li>Hosting Vercel, Google Analytics 4 đo ba chỉ số ở mục 1</li></ul></div>
-    </div>
+  <section class="clients" id="khach-hang" aria-labelledby="h-cl">
+    <h2 class="sec-t" id="h-cl">Khách hàng đã làm cùng chúng tôi</h2>
+    <div class="wm" id="wm"></div>
+    <div class="tgrid" id="tgrid"></div>
   </section>
 </main>
 </div>
+
+<section class="stats" id="stats" aria-label="Số liệu studio"><div class="shell" id="statsIn"></div></section>
+
+<div class="shell">
+<div id="vHome2">
+  <section class="studio" id="studio" aria-labelledby="h-st">
+    <div><h2 class="sec-t" id="h-st">Studio</h2><p class="intro" id="stIntro"></p><ul class="tools" id="tools"></ul></div>
+    <div class="team" id="team"></div>
+  </section>
+  <section class="process" id="quy-trinh" aria-labelledby="h-qt">
+    <h2 class="sec-t" id="h-qt">Quy trình làm việc</h2>
+    <p class="sec-d" style="margin-top:10px">Thời gian tham khảo cho một TVC 30 giây có CGI. Dự án 2D thường nhanh hơn một nửa.</p>
+    <ol class="steps" id="steps"></ol>
+  </section>
+</div>
+<main id="vDetail" hidden></main>
+<main id="vCms" hidden></main>
+
+<section class="cta" id="lien-he" aria-labelledby="h-cta">
+  <h2 id="h-cta">Bạn có dự án cần làm? Gửi brief, chúng tôi trả lời trong một ngày làm việc.</h2>
+  <div class="ct">
+    <div><span>Email</span><b id="em"></b><button data-copy="em">Sao chép</button></div>
+    <div><span>Điện thoại</span><b id="ph"></b><button data-copy="ph">Sao chép</button></div>
+  </div>
+</section>
+<footer><span id="foot">© 2026 Hlab.studio</span><a href="#quan-tri" id="adminLink" hidden>Quản trị nội dung</a></footer>
+</div>
+
 <script>
-(()=>{const links=[...document.querySelectorAll('.rail li a')],secs=links.map(a=>document.querySelector(a.getAttribute('href')));
-const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.toggle('on',l.getAttribute('href')==='#'+e.target.id))}})},{rootMargin:'-20% 0px -70% 0px'});
-secs.forEach(s=>s&&io.observe(s));})();
+(()=>{
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const slugify=s=>String(s||'').replace(/đ/g,'d').replace(/Đ/g,'D').normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+const safeUrl=u=>/^https?:\/\//i.test(u||'')?u:'';
+let DF='"Inter Tight",sans-serif';
+
+/* ================= categories & fonts (fixed lists) ================= */
+const CATS=[
+ {id:'2d',name:'Thiết kế 2D',subs:['Key visual','Styleframe','Minh hoạ','Nhận diện'],raw:'Phác thảo',fin:'Hoàn thiện',desc:'Key visual, styleframe, minh hoạ và nhận diện thương hiệu.'},
+ {id:'motion',name:'Motion graphics',subs:['Explainer','Logo animation','Social 9:16','Title sequence'],raw:'Storyboard',fin:'Khung hình cuối',desc:'Explainer, logo animation, video dọc và title sequence.'},
+ {id:'vfx',name:'VFX compositing',subs:['Keying','Set extension','Clean-up','Chỉnh màu'],raw:'Plate gốc',fin:'Bản comp',desc:'Keying phông xanh, mở rộng bối cảnh, xoá vật thể và chỉnh màu.'},
+ {id:'3d',name:'3D CGI',subs:['Packshot','Kiến trúc','Mô phỏng','Game'],raw:'Clay',fin:'Render',desc:'Packshot sản phẩm, phim kiến trúc, mô phỏng và trailer game.'}];
+const catOf=id=>CATS.find(c=>c.id===id)||CATS[0];
+const FONTS={
+ inter:{n:'Gọn, trung tính',d:'Inter Tight',b:'Inter',dw:400,tt:'uppercase',ls:'-.005em',w:'300;400;500;600;700'},
+ bigsh:{n:'Áp phích điện ảnh',d:'Big Shoulders Display',b:'Be Vietnam Pro',dw:700,tt:'uppercase',ls:'.01em',w:'400;500;600;700;800'},
+ brico:{n:'Studio đương đại',d:'Bricolage Grotesque',b:'Be Vietnam Pro',dw:600,tt:'none',ls:'-.025em',w:'400;500;600;700'},
+ unb:{n:'Hình học bản rộng',d:'Unbounded',b:'Manrope',dw:500,tt:'uppercase',ls:'-.01em',w:'300;400;500;600;700'},
+ fraun:{n:'Biên tập cao cấp',d:'Fraunces',b:'Hanken Grotesk',dw:400,tt:'none',ls:'-.015em',w:'300;400;500;600;700'},
+ space:{n:'Kỹ thuật VFX',d:'Space Grotesk',b:'Plus Jakarta Sans',dw:500,tt:'uppercase',ls:'-.01em',w:'300;400;500;600;700'},
+ mona:{n:'Hubot và Mona',d:'Hubot Sans',b:'Mona Sans',dw:700,tt:'uppercase',ls:'0',w:'400;500;600;700;800'},
+ dela:{n:'Đậm, gây chú ý',d:'Dela Gothic One',b:'Be Vietnam Pro',dw:400,tt:'none',ls:'0',w:''},
+ corm:{n:'Cổ điển thanh lịch',d:'Cormorant Garamond',b:'Mona Sans',dw:500,tt:'none',ls:'0',w:'300;400;500;600;700'}};
+const fontLinks=new Set();
+function linkFont(fam,w){const k=fam+'|'+w;if(fontLinks.has(k))return Promise.resolve();fontLinks.add(k);
+  return new Promise(r=>{const l=document.createElement('link');l.rel='stylesheet';l.href='https://fonts.googleapis.com/css2?family='+encodeURIComponent(fam).replace(/%20/g,'+')+(w?':wght@'+w:'')+'&display=swap';l.onload=l.onerror=()=>r();document.head.appendChild(l)})}
+async function applyFont(key){const o=FONTS[key]||FONTS.inter;
+  if(key!=='inter'){await Promise.all([linkFont(o.d,o.w),linkFont(o.b,'400;500;600')]);await Promise.all([document.fonts.load(`${o.dw} 40px "${o.d}"`,'Hình ảnh'),document.fonts.load(`400 16px "${o.b}"`,'Hình ảnh')]).catch(()=>{})}
+  const r=document.documentElement.style;r.setProperty('--display',`"${o.d}","Inter Tight",system-ui,sans-serif`);r.setProperty('--body',`"${o.b}","Inter",system-ui,sans-serif`);
+  r.setProperty('--dw',o.dw);r.setProperty('--tt',o.tt);r.setProperty('--hls',o.ls);DF=`"${o.d}",sans-serif`}
+
+/* ================= procedural sample art ================= */
+const rng=s=>()=>{s=(s*1664525+1013904223)%4294967296;return s/4294967296};
+const hex=h=>{h=h.replace('#','');return[parseInt(h.slice(0,2),16),parseInt(h.slice(2,4),16),parseInt(h.slice(4,6),16)]};
+function prep(cv,w,h){const d=Math.min(2,devicePixelRatio||1);cv.width=Math.max(1,Math.round(w*d));cv.height=Math.max(1,Math.round(h*d));const c=cv.getContext('2d');c.setTransform(d,0,0,d,0,0);return c}
+const sub=(a,b)=>[a[0]-b[0],a[1]-b[1],a[2]-b[2]],cross=(a,b)=>[a[1]*b[2]-a[2]*b[1],a[2]*b[0]-a[0]*b[2],a[0]*b[1]-a[1]*b[0]],
+ norm=a=>{const l=Math.hypot(a[0],a[1],a[2])||1;return[a[0]/l,a[1]/l,a[2]/l]},dot=(a,b)=>a[0]*b[0]+a[1]*b[1]+a[2]*b[2];
+function knot(sc=.34,U=140,V=12,R=.42){const curve=t=>{const r=Math.cos(3*t)+2;return[r*Math.cos(2*t),r*Math.sin(2*t),-Math.sin(3*t)]};
+  const pts=[],Ts=[],Ns=[],v=[],f=[];for(let i=0;i<U;i++){const t=i/U*Math.PI*2;pts.push(curve(t));Ts.push(norm(sub(curve(t+.001),curve(t-.001))))}
+  const N0=norm(cross(Ts[0],[0,0,1]));Ns.push(N0);for(let i=1;i<=U;i++){const T=Ts[i%U],pv=Ns[i-1],d=dot(pv,T);Ns.push(norm([pv[0]-T[0]*d,pv[1]-T[1]*d,pv[2]-T[2]*d]))}
+  const B=cross(Ts[0],N0),tw=Math.atan2(dot(Ns[U],B),dot(Ns[U],N0));
+  for(let i=0;i<U;i++){const T=Ts[i],N=Ns[i],Bi=cross(T,N),p=pts[i];for(let j=0;j<V;j++){const a=j/V*Math.PI*2-tw*i/U,c=Math.cos(a)*R,s=Math.sin(a)*R;v.push([(p[0]+N[0]*c+Bi[0]*s)*sc,(p[1]+N[1]*c+Bi[1]*s)*sc,(p[2]+N[2]*c+Bi[2]*s)*sc])}}
+  for(let i=0;i<U;i++)for(let j=0;j<V;j++){const i2=(i+1)%U,j2=(j+1)%V;f.push([i*V+j,i2*V+j,i2*V+j2,i*V+j2])}return{v,f}}
+function sphere(cx,cy,cz,r,U=22,V=14){const v=[],f=[];for(let j=0;j<=V;j++){const ph=j/V*Math.PI;for(let i=0;i<U;i++){const th=i/U*Math.PI*2;v.push([cx+r*Math.sin(ph)*Math.cos(th),cy-r*Math.cos(ph),cz+r*Math.sin(ph)*Math.sin(th)])}}
+  for(let j=0;j<V;j++)for(let i=0;i<U;i++){const i2=(i+1)%U;f.push([j*U+i,j*U+i2,(j+1)*U+i2,(j+1)*U+i])}return{v,f}}
+function cyl(cx,cy,cz,r,h,U=36,rows=6){const v=[],f=[];for(let j=0;j<=rows;j++)for(let i=0;i<U;i++){const th=i/U*Math.PI*2;v.push([cx+r*Math.cos(th),cy-h/2+h*j/rows,cz+r*Math.sin(th)])}
+  for(let j=0;j<rows;j++)for(let i=0;i<U;i++){const i2=(i+1)%U;f.push([j*U+i,j*U+i2,(j+1)*U+i2,(j+1)*U+i])}
+  const top=[],bot=[];for(let i=0;i<U;i++){top.push(rows*U+i);bot.push(i)}f.push(top);f.push(bot.reverse());return{v,f}}
+function box(x,y,z,w,h,d){const v=[[x,y,z],[x+w,y,z],[x+w,y,z+d],[x,y,z+d],[x,y-h,z],[x+w,y-h,z],[x+w,y-h,z+d],[x,y-h,z+d]];return{v,f:[[0,1,2,3],[4,5,6,7],[0,1,5,4],[1,2,6,5],[2,3,7,6],[3,0,4,7]]}}
+const L=norm([-.6,-.7,-.8]),RIM=norm([.8,.3,.9]);
+function render3d(c,w,h,objs,o){
+  const ry=o.ry||0,rx=o.rx==null?.45:o.rx,rz=o.rz||0,cy_=Math.cos(ry),sy=Math.sin(ry),cx_=Math.cos(rx),sx=Math.sin(rx),cz=Math.cos(rz),sz=Math.sin(rz);
+  const s=Math.min(w,h)*(o.scale||.36),X=w/2,Y=h*(o.oy||.5),dist=3.4,F=[];
+  for(const ob of objs){const P=ob.v.map(p=>{const x=p[0]*cz-p[1]*sz,y=p[0]*sz+p[1]*cz,z=p[2];const x2=x*cy_+z*sy,z2=-x*sy+z*cy_;return[x2,y*cx_-z2*sx,y*sx+z2*cx_]});
+    const S=P.map(p=>{const k=dist/(dist+p[2]);return[X+p[0]*s*k,Y+p[1]*s*k]});
+    ob.f.forEach((f,fi)=>{const a=P[f[0]],b=P[f[1]],cc=P[f[2]],n=norm(cross(sub(b,a),sub(cc,a)));let z=0;f.forEach(i=>z+=P[i][2]);z/=f.length;
+      F.push({q:f.map(i=>S[i]),n,z,col:typeof ob.col==='function'?ob.col(fi,f.map(i=>ob.v[i])):ob.col,gl:ob.gl||0})})}
+  F.sort((a,b)=>b.z-a.z);c.lineJoin='round';
+  for(const o2 of F){const q=o2.q;c.beginPath();c.moveTo(q[0][0],q[0][1]);for(let k=1;k<q.length;k++)c.lineTo(q[k][0],q[k][1]);c.closePath();
+    if(o.mode==='wire'){c.strokeStyle=`rgba(255,226,58,${.25+.5*(1-(o2.z+1)/2)})`;c.lineWidth=.7;c.stroke();continue}
+    const sg=o2.n[2]>0?1:-1,n=[o2.n[0]*sg,o2.n[1]*sg,o2.n[2]*sg],lam=Math.max(0,dot(n,[-L[0],-L[1],-L[2]]));let r,g,b;
+    if(o.mode==='clay'){const v=52+168*lam;r=v;g=v;b=v+3}
+    else{const H=norm([-L[0],-L[1],-L[2]-1]),sp=Math.pow(Math.max(0,dot(n,H)),26)*(.6+o2.gl),rim=Math.pow(Math.max(0,dot(n,[-RIM[0],-RIM[1],-RIM[2]])),3),k=o2.col,rm=o.rim||[90,120,160];
+      r=k[0]*(.22+.9*lam)+255*sp+rm[0]*rim;g=k[1]*(.22+.9*lam)+255*sp+rm[1]*rim;b=k[2]*(.22+.9*lam)+255*sp+rm[2]*rim}
+    c.fillStyle=`rgb(${Math.min(255,r|0)},${Math.min(255,g|0)},${Math.min(255,b|0)})`;c.strokeStyle=c.fillStyle;c.lineWidth=.6;c.fill();c.stroke()}}
+const GRAIN=(()=>{const g=document.createElement('canvas');g.width=g.height=128;const x=g.getContext('2d'),d=x.createImageData(128,128);for(let k=0;k<d.data.length;k+=4){const v=Math.random()*255;d.data[k]=d.data[k+1]=d.data[k+2]=v;d.data[k+3]=20}x.putImageData(d,0,0);return g})();
+function post(c,w,h,vig=.5){const v=c.createRadialGradient(w/2,h/2,Math.min(w,h)*.3,w/2,h/2,Math.max(w,h)*.75);v.addColorStop(0,'rgba(0,0,0,0)');v.addColorStop(1,`rgba(0,0,0,${vig})`);c.fillStyle=v;c.fillRect(0,0,w,h);c.fillStyle=c.createPattern(GRAIN,'repeat');c.fillRect(0,0,w,h)}
+const shapeCtx=(c,raw)=>(path,color,alpha=1)=>{c.save();c.globalAlpha=raw?1:alpha;if(raw){c.strokeStyle='#5E5D59';c.lineWidth=1.3;c.stroke(path)}else{c.fillStyle=color;c.fill(path)}c.restore()};
+function thirds(c,w,h){c.save();c.strokeStyle='rgba(94,93,89,.35)';c.setLineDash([4,5]);[1/3,2/3].forEach(k=>{c.beginPath();c.moveTo(w*k,0);c.lineTo(w*k,h);c.moveTo(0,h*k);c.lineTo(w,h*k);c.stroke()});c.restore()}
+function artKV(c,w,h,p,raw){const pal=p.pal,r=rng(p.seed),paint=shapeCtx(c,raw);
+  if(raw){c.fillStyle='#ECEAE4';c.fillRect(0,0,w,h);thirds(c,w,h)}else{const g=c.createLinearGradient(0,0,0,h);g.addColorStop(0,pal[1]);g.addColorStop(1,pal[0]);c.fillStyle=g;c.fillRect(0,0,w,h)}
+  const m=Math.min(w,h),sun=new Path2D();sun.arc(w*.66,h*.4,m*.24,0,Math.PI*2);paint(sun,pal[2]);
+  if(!raw){c.save();c.strokeStyle=pal[2];c.globalAlpha=.35;c.lineWidth=1.5;for(let k=1;k<4;k++){c.beginPath();c.arc(w*.66,h*.4,m*(.24+k*.05),0,7);c.stroke()}c.restore()}
+  [[.6,pal[3],.07,1.3],[.7,pal[4],.05,2.1],[.82,pal[4],.04,3.2]].forEach(([base,col,amp,fr])=>{const hp=new Path2D();hp.moveTo(0,h);const ph=r()*6;for(let x=0;x<=w;x+=w/40)hp.lineTo(x,h*base+Math.sin(x/w*Math.PI*fr+ph)*h*amp+Math.sin(x/w*Math.PI*fr*2.7+ph)*h*amp*.4);hp.lineTo(w,h);hp.closePath();paint(hp,col)});
+  const t=new Path2D();t.rect(w*.07,h*.1,w*.34,h*.06);t.rect(w*.07,h*.19,w*.24,h*.06);paint(t,pal[5]);const t2=new Path2D();t2.rect(w*.07,h*.29,w*.2,h*.018);paint(t2,pal[5],.7);
+  for(let i=0;i<14;i++){const b=new Path2D();b.arc(r()*w,r()*h*.5,1+r()*2.2,0,7);paint(b,pal[5],.6)}if(!raw)post(c,w,h,.25)}
+function artPattern(c,w,h,p,raw){const pal=p.pal,r=rng(p.seed),paint=shapeCtx(c,raw);c.fillStyle=raw?'#ECEAE4':pal[4];c.fillRect(0,0,w,h);
+  const cols=6,rows=Math.max(3,Math.round(6*h/w)),cw=w/cols,ch=h/rows;
+  for(let i=0;i<cols;i++)for(let j=0;j<rows;j++){const x=i*cw,y=j*ch,bg=new Path2D();bg.rect(x,y,cw+.5,ch+.5);paint(bg,pal[(i+j*2)%4]);
+    const k=Math.floor(r()*5),s=new Path2D(),m=Math.min(cw,ch);
+    if(k===0)s.arc(x+cw/2,y+ch/2,m*.38,0,7);else if(k===1){s.moveTo(x,y+ch);s.arc(x,y+ch,m*.95,-Math.PI/2,0);s.closePath()}
+    else if(k===2){s.moveTo(x,y+ch);s.lineTo(x+cw/2,y);s.lineTo(x+cw,y+ch);s.closePath()}else if(k===3){s.moveTo(x+cw/2,y+ch/2);s.arc(x+cw/2,y+ch/2,m*.45,Math.PI,0);s.closePath()}else s.rect(x+cw*.25,y+ch*.25,cw*.5,ch*.5);
+    paint(s,pal[(i*3+j+1+k)%5])}}
+function artBrand(c,w,h,p,raw){const pal=p.pal,paint=shapeCtx(c,raw),m=Math.min(w,h);c.fillStyle=raw?'#ECEAE4':pal[2];c.fillRect(0,0,w,h);
+  c.save();c.translate(w*.38,h*.5);c.rotate(-.14);const card=new Path2D();card.roundRect(-w*.26,-h*.2,w*.42,h*.42,6);
+  if(!raw){c.save();c.shadowColor='rgba(0,0,0,.25)';c.shadowBlur=24;c.shadowOffsetY=10;c.fillStyle=pal[0];c.fill(card);c.restore()}else paint(card);
+  const mk=new Path2D();mk.arc(-w*.05,-h*.02,m*.08,0,7);paint(mk,pal[1]);const sq=new Path2D();sq.rect(-w*.05,-h*.02,m*.08,m*.08);paint(sq,pal[4]);const tx=new Path2D();tx.rect(-w*.2,h*.12,w*.16,h*.025);paint(tx,pal[2]);c.restore();
+  c.save();c.translate(w*.74,h*.56);const cup=new Path2D();cup.moveTo(-w*.09,-h*.26);cup.lineTo(w*.09,-h*.26);cup.lineTo(w*.07,h*.24);cup.lineTo(-w*.07,h*.24);cup.closePath();
+  if(!raw){c.save();c.shadowColor='rgba(0,0,0,.25)';c.shadowBlur=20;c.shadowOffsetY=8;c.fillStyle='#FFFFFF';c.fill(cup);c.restore()}else paint(cup);
+  const band=new Path2D();band.rect(-w*.085,-h*.07,w*.17,h*.14);paint(band,pal[1]);const lid=new Path2D();lid.roundRect(-w*.1,-h*.3,w*.2,h*.05,3);paint(lid,pal[3]);c.restore();if(!raw)post(c,w,h,.2)}
+function artKinetic(c,w,h,p,raw){const pal=p.pal,r=rng(p.seed);
+  if(raw){c.fillStyle='#F4F3EF';c.fillRect(0,0,w,h);const n=3,g=10,pw=(w-g*(n+1))/n,ph=Math.min(pw*h/w*1.1,h-40);
+    for(let i=0;i<n;i++){const x=g+i*(pw+g),y=(h-ph)/2;c.strokeStyle='#5E5D59';c.lineWidth=1.2;c.strokeRect(x,y,pw,ph);
+      c.save();c.beginPath();c.rect(x,y,pw,ph);c.clip();c.font=`700 ${ph*.5}px ${DF}`;c.textBaseline='middle';c.lineWidth=1;c.strokeText(p.word,x+pw*.12+(i-1)*pw*.2,y+ph*.55);
+      const s=new Path2D();s.arc(x+pw*(.2+.3*i),y+ph*.22,ph*.08,0,7);c.stroke(s);c.restore();c.fillStyle='#5E5D59';c.font='600 10px Inter,sans-serif';c.fillText('Cảnh '+(i+1),x,y+ph+14)}return}
+  c.fillStyle=pal[0];c.fillRect(0,0,w,h);
+  for(let i=0;i<7;i++){c.strokeStyle=pal[1+(i%3)];c.globalAlpha=.55;c.lineWidth=1+r()*3;const y=r()*h,x=r()*w*.6;c.beginPath();c.moveTo(x,y);c.lineTo(x+w*(.15+r()*.3),y);c.stroke()}
+  c.globalAlpha=1;const fs=Math.min(h*.62,w*1.3/p.word.length);c.font=`700 ${fs}px ${DF}`;c.textBaseline='middle';const tw=c.measureText(p.word).width,x0=(w-tw)/2+w*.04,y0=h*.5;
+  for(let k=5;k>=1;k--){c.globalAlpha=.11*(6-k);c.fillStyle=pal[1];c.fillText(p.word,x0-k*fs*.09,y0)}c.globalAlpha=1;c.fillStyle=pal[3];c.fillText(p.word,x0,y0);
+  c.fillStyle=pal[2];c.beginPath();c.arc(x0+tw+fs*.18,y0-fs*.3,fs*.12,0,7);c.fill();c.fillStyle=pal[4];c.fillRect(x0-fs*.1,y0+fs*.42,tw*.55,fs*.06);
+  const ty=h-18;c.fillStyle='rgba(255,255,255,.18)';c.fillRect(14,ty,w-28,2);c.fillStyle=pal[2];c.fillRect(14,ty,(w-28)*.62,2);
+  [.12,.3,.46,.62,.8].forEach(k=>{c.save();c.translate(14+(w-28)*k,ty+1);c.rotate(Math.PI/4);c.fillStyle=k<=.62?pal[2]:'rgba(255,255,255,.5)';c.fillRect(-3,-3,6,6);c.restore()})}
+function figure(c,x,y,s,fill,rim){c.save();c.translate(x,y);const f=new Path2D();f.arc(0,-s*.86,s*.11,0,7);f.moveTo(-s*.17,-s*.7);f.lineTo(s*.17,-s*.7);f.lineTo(s*.21,-s*.28);f.lineTo(s*.12,-s*.28);f.lineTo(s*.1,0);f.lineTo(s*.02,0);f.lineTo(0,-s*.25);f.lineTo(-s*.02,0);f.lineTo(-s*.1,0);f.lineTo(-s*.12,-s*.28);f.lineTo(-s*.21,-s*.28);f.closePath();
+  c.fillStyle=fill;c.fill(f);if(rim){c.strokeStyle=rim;c.lineWidth=1.5;c.globalAlpha=.85;c.stroke(f)}c.restore()}
+function artVFX(c,w,h,p,raw){const r=rng(p.seed),v=p.v;
+  if(raw&&(v==='neon'||v==='pass')){const g=c.createLinearGradient(0,0,0,h);g.addColorStop(0,'#1FB552');g.addColorStop(1,'#138A3C');c.fillStyle=g;c.fillRect(0,0,w,h);
+    c.fillStyle='#6E726F';c.fillRect(0,h*.82,w,h*.18);c.strokeStyle='rgba(255,255,255,.85)';c.lineWidth=1.5;
+    for(let i=1;i<6;i++)for(let j=1;j<4;j++){const x=w*i/6,y=h*j/4*.8;c.beginPath();c.moveTo(x-5,y);c.lineTo(x+5,y);c.moveTo(x,y-5);c.lineTo(x,y+5);c.stroke()}
+    if(v==='neon')figure(c,w*.5,h*.86,h*.6,'#3E3F44');else{c.fillStyle='#2A2C30';c.beginPath();c.roundRect(w*.44,h*.72,w*.17,h*.08,6);c.fill()}return}
+  if(v==='neon'){const g=c.createLinearGradient(0,0,0,h);g.addColorStop(0,'#120A2A');g.addColorStop(.7,'#3B0E4F');g.addColorStop(1,'#14081E');c.fillStyle=g;c.fillRect(0,0,w,h);
+    for(let layer=0;layer<2;layer++){let x=0;while(x<w){const bw=w*(.05+r()*.08),bh=h*(.3+r()*.45)*(layer?1:.8);c.fillStyle=layer?'#0D0716':'#26113D';c.fillRect(x,h*.85-bh,bw,bh);
+      if(layer)for(let yy=h*.85-bh+6;yy<h*.83;yy+=7)for(let xx=x+3;xx<x+bw-3;xx+=6)if(r()<.3){c.fillStyle=r()<.5?'#FF3EA5':'#3EE7FF';c.globalAlpha=.8;c.fillRect(xx,yy,2.5,3);c.globalAlpha=1}x+=bw+2}}
+    c.fillStyle='#0A0610';c.fillRect(0,h*.85,w,h*.15);const gl=c.createRadialGradient(w*.5,h*.86,4,w*.5,h*.86,w*.3);gl.addColorStop(0,'rgba(255,62,165,.45)');gl.addColorStop(1,'rgba(255,62,165,0)');c.fillStyle=gl;c.fillRect(0,0,w,h);
+    figure(c,w*.5,h*.86,h*.6,'#0B0710','#3EE7FF');post(c,w,h,.55)}
+  else if(v==='pass'){const g=c.createLinearGradient(0,0,0,h);g.addColorStop(0,'#3B3F73');g.addColorStop(.45,'#E8795A');g.addColorStop(.62,'#F7C48A');c.fillStyle=g;c.fillRect(0,0,w,h);
+    const sun=c.createRadialGradient(w*.7,h*.5,2,w*.7,h*.5,h*.3);sun.addColorStop(0,'rgba(255,240,200,1)');sun.addColorStop(1,'rgba(255,200,140,0)');c.fillStyle=sun;c.fillRect(0,0,w,h);
+    [['#7A4B5E',.5,.12],['#4A3250',.62,.1],['#2A1E33',.74,.08]].forEach(([col,b,a],k)=>{c.fillStyle=col;c.beginPath();c.moveTo(0,h);const ph=r()*5;for(let x=0;x<=w;x+=w/30)c.lineTo(x,h*b-Math.abs(Math.sin(x/w*Math.PI*(2+k)+ph))*h*a*1.6);c.lineTo(w,h);c.fill()});
+    c.strokeStyle='#E9B07A';c.lineWidth=h*.035;c.beginPath();c.moveTo(-10,h*.95);c.bezierCurveTo(w*.3,h*.72,w*.55,h*.98,w*1.05,h*.78);c.stroke();
+    c.fillStyle='#16101C';c.beginPath();c.roundRect(w*.46,h*.74,w*.13,h*.05,5);c.fill();post(c,w,h,.4)}
+  else if(v==='cleanup'){const g=c.createLinearGradient(0,0,0,h);g.addColorStop(0,'#1E3A3A');g.addColorStop(1,'#0C1A1A');c.fillStyle=g;c.fillRect(0,0,w,h);
+    for(let i=0;i<9;i++){c.fillStyle=`rgba(5,16,14,${.5+r()*.5})`;c.fillRect(r()*w,0,w*(.02+r()*.04),h)}
+    const fog=c.createLinearGradient(0,h*.5,0,h);fog.addColorStop(0,'rgba(170,200,190,0)');fog.addColorStop(1,'rgba(170,200,190,.35)');c.fillStyle=fog;c.fillRect(0,0,w,h);
+    c.fillStyle='#09110F';c.fillRect(0,h*.86,w,h*.14);figure(c,w*.52,h*.62,h*.42,'#08100E','#9FD8C8');
+    if(raw){c.strokeStyle='#111';c.lineWidth=1.4;c.beginPath();c.moveTo(w*.5,0);c.lineTo(w*.51,h*.2);c.moveTo(w*.54,0);c.lineTo(w*.53,h*.2);c.stroke();
+      c.strokeStyle='#3A3A3A';c.lineWidth=3;c.beginPath();c.moveTo(w*.16,h*.9);c.lineTo(w*.18,h*.3);c.moveTo(w*.12,h*.9);c.lineTo(w*.18,h*.7);c.lineTo(w*.24,h*.9);c.stroke();c.fillStyle='#DDD';c.fillRect(w*.14,h*.24,w*.08,h*.07)}
+    post(c,w,h,.45)}
+  else{const g=c.createLinearGradient(0,0,w,h);g.addColorStop(0,'#C98A55');g.addColorStop(1,'#5A2E1C');c.fillStyle=g;c.fillRect(0,0,w,h);
+    const fl=c.createLinearGradient(0,h*.7,0,h);fl.addColorStop(0,'#7A4428');fl.addColorStop(1,'#3A1D10');c.fillStyle=fl;c.fillRect(0,h*.78,w,h*.22);
+    const k=c.createRadialGradient(w*.35,h*.3,4,w*.35,h*.3,w*.6);k.addColorStop(0,'rgba(255,220,170,.55)');k.addColorStop(1,'rgba(255,220,170,0)');c.fillStyle=k;c.fillRect(0,0,w,h);
+    figure(c,w*.5,h*.86,h*.66,'#2B1A14','#FFD7A0');c.fillStyle='#B8452A';c.beginPath();c.moveTo(w*.5-h*.15,h*.4);c.lineTo(w*.5+h*.15,h*.4);c.lineTo(w*.5+h*.2,h*.68);c.lineTo(w*.5-h*.2,h*.68);c.fill();
+    post(c,w,h,.45);if(raw){const im=c.getImageData(0,0,c.canvas.width,c.canvas.height),d=im.data;for(let i=0;i<d.length;i+=4){const l=.3*d[i]+.59*d[i+1]+.11*d[i+2];for(let q=0;q<3;q++){const v2=d[i+q]*.35+l*.65;d[i+q]=128+(v2-128)*.55+18}}c.putImageData(im,0,0)}}}
+function art3D(c,w,h,p,raw){const pal=(p.pal||['#888888','#888888','#888888']).map(hex),m=p.m;
+  if(raw){c.fillStyle='#34373A';c.fillRect(0,0,w,h)}else{const g=c.createRadialGradient(w*.5,h*.35,10,w*.5,h*.5,Math.max(w,h)*.8);
+    const bgc={can:['#3A1016','#120608'],arch:['#F2B98A','#3B4A6B'],blob:['#FFE4EC','#E7A3B5'],knot:['#2A1650','#07040F']}[m]||['#333333','#111111'];g.addColorStop(0,bgc[0]);g.addColorStop(1,bgc[1]);c.fillStyle=g;c.fillRect(0,0,w,h)}
+  let objs=[],o={mode:raw?'clay':'final',scale:.36};
+  if(m==='can'){objs=[{...cyl(0,0,0,.42,1.25,40,10),gl:.9,col:(fi,vs)=>{if(fi>=400)return[200,200,205];const y=vs[0][1];return(y<-.5||y>.5)?[190,190,198]:(Math.abs(y)<.12?pal[2]:pal[0])}}];o={...o,rx:.18,ry:.5,scale:.48,rim:[255,120,120]}}
+  if(m==='arch'){const bs=[[-1.1,1.5,.5],[-.35,2.1,.55],[.45,1.7,.5]].map(([x,hh,d])=>({...box(x,.7,-.3,.5,hh,d),col:fi=>fi===1?[200,190,175]:pal[0]}));objs=[{v:[[-2,.7,-1.5],[2,.7,-1.5],[2,.7,1.5],[-2,.7,1.5]],f:[[0,1,2,3]],col:[90,110,120]},...bs];o={...o,rx:.32,ry:-.55,scale:.42,oy:.48,rim:[255,170,110]}}
+  if(m==='blob'){const r0=rng(p.seed);objs=[{...cyl(0,.45,0,.55,.5,36,4),col:[245,245,250],gl:.4}];for(let i=0;i<7;i++){const a=i/7*Math.PI*2;objs.push({...sphere(Math.cos(a)*.35*r0(),-.05-r0()*.6,Math.sin(a)*.3,.16+r0()*.14,18,12),col:i%3===0?pal[1]:[250,240,244],gl:.7})}o={...o,rx:.35,ry:.3,scale:.42,oy:.55,rim:[255,200,210]}}
+  if(m==='knot'){objs=[{...knot(.3),col:pal[0],gl:.7}];o={...o,rx:.5,ry:.2,rz:.4,scale:.4,rim:[34,211,238]}}
+  if(!raw){c.fillStyle='rgba(0,0,0,.35)';c.beginPath();c.ellipse(w*.5,h*.86,w*.22,h*.04,0,0,7);c.fill()}
+  render3d(c,w,h,objs,o);if(!raw)post(c,w,h,.4)}
+const ARTS={kv:artKV,pattern:artPattern,brand:artBrand,kinetic:artKinetic,vfx:artVFX,'3d':art3D};
+function drawArt(cv,art,w,h,raw){const c=prep(cv,w,h);(ARTS[art.kind]||artKV)(c,w,h,{seed:7,pal:['#444444','#666666','#888888','#AAAAAA','#CCCCCC','#EEEEEE'],word:'H',...art},raw)}
+
+/* ================= data ================= */
+let SITE={},PROJ=[];
+const LOCAL={};               // media path -> object URL for files added in this view (relative URLs still serve the loaded version)
+const media=p=>p?(LOCAL[p]||p):'';
+const visible=()=>PROJ.filter(p=>p.published!==false).sort((a,b)=>(a.order??0)-(b.order??0));
+async function load(){
+  try{const [a,b]=await Promise.all([fetch('data/site.json',{cache:'no-store'}),fetch('data/projects.json',{cache:'no-store'})]);
+    if(!a.ok||!b.ok)throw new Error('http');SITE=await a.json();PROJ=(await b.json()).projects||[];return true}
+  catch(e){SITE={};PROJ=[];return false}}
+
+/* ================= shared renderers ================= */
+function thumbNode(p,w,h){
+  if(p.cover){const im=new Image();im.src=media(p.cover);im.alt='';im.loading='lazy';im.decoding='async';return im}
+  const cv=document.createElement('canvas');if(p.art)drawArt(cv,p.art,w,h,false);return cv}
+function cardHTML(p){return`<a class="pc" href="#du-an-${esc(p.id)}" data-id="${esc(p.id)}"><div class="th"><span class="ba">Xem chi tiết</span></div>
+  <div class="mt"><h3>${esc(p.title)}</h3><span class="tg">${esc(catOf(p.cat).name)}</span></div><p class="sub">${esc([p.sub,p.industry,p.year].filter(Boolean).join(', '))}</p></a>`}
+function fillThumbs(root){root.querySelectorAll('.pc').forEach(a=>{const p=PROJ.find(x=>x.id===a.dataset.id),th=a.querySelector('.th');if(!p||th.querySelector('img,canvas'))return;
+  const r=th.getBoundingClientRect();th.prepend(thumbNode(p,r.width||400,r.height||300))})}
+function compare(host,p){const k=catOf(p.cat),w=host.getBoundingClientRect().width||900,h=w*9/16;
+  const hasBefore=!!p.before||(!p.cover&&!!p.art);host.innerHTML='';const box=document.createElement('div');box.className='cmp';host.appendChild(box);
+  let base;if(p.cover){base=new Image();base.src=media(p.cover);base.alt=p.title}else{base=document.createElement('canvas');base.setAttribute('role','img');base.setAttribute('aria-label',p.title);if(p.art)drawArt(base,p.art,w,h,false)}
+  base.className='ly';box.appendChild(base);if(!hasBefore)return false;
+  let top;if(p.before){top=new Image();top.src=media(p.before);top.alt=k.raw}else{top=document.createElement('canvas');drawArt(top,p.art,w,h,true)}
+  top.className='ly top';box.appendChild(top);
+  box.insertAdjacentHTML('beforeend',`<div class="hd"></div><span class="lb" style="left:12px">${esc(k.raw)}</span><span class="lb" style="right:12px">${esc(k.fin)}</span><input type="range" min="0" max="100" value="50" aria-label="Kéo để so sánh ${esc(k.raw)} và ${esc(k.fin)}">`);
+  const rg=box.querySelector('input'),hd=box.querySelector('.hd'),set=v=>{top.style.clipPath=`inset(0 ${100-v}% 0 0)`;hd.style.left=v+'%'};rg.addEventListener('input',()=>set(+rg.value));set(50);return true}
+const initials=n=>(n||'?').trim().split(/\s+/).map(w=>w[0]).join('').slice(0,2).toUpperCase();
+
+/* ================= home ================= */
+let cat='all',sb='all';
+function renderHome(){const s=SITE||{},hero=s.hero||{};
+  $('hBadge').querySelector('span').textContent=hero.badge||'';$('hBadge').hidden=!hero.badge;
+  $('hTitle').textContent=hero.title||'Hlab.studio';$('hLede').textContent=hero.lede||'';
+  const reel=s.showreel||{},ru=safeUrl(reel.url);$('reelLink').hidden=!ru;if(ru)$('reelLink').href=ru;
+  setReel(reel.video?media(reel.video):'',reel.poster?media(reel.poster):'');
+  const V=visible(),F=V.filter(p=>p.featured).slice(0,3);
+  $('featSec').hidden=!F.length;$('fgrid').innerHTML=F.map(cardHTML).join('');
+  $('tabs').innerHTML=[['all','Tất cả',V.length],...CATS.map(c=>[c.id,c.name,V.filter(p=>p.cat===c.id).length])].map(([id,n,k])=>`<button data-c="${id}" aria-pressed="${id===cat}">${n} <i>${k}</i></button>`).join('');
+  renderFilter();
+  const cl=s.clients||[],tt=s.testimonials||[];$('khach-hang').hidden=!cl.length&&!tt.length;
+  $('wm').innerHTML=cl.map(x=>`<span>${esc(x)}</span>`).join('');
+  $('tgrid').innerHTML=tt.map(t=>`<article class="tq"><p>“${esc(t.quote)}”</p><div class="by"><i>${esc(initials(t.name))}</i><div>${esc(t.name)}<span>${esc(t.role)}</span></div></div></article>`).join('');
+  const st=s.stats||[];$('statsIn').style.setProperty('--n',Math.min(4,st.length||1));
+  $('statsIn').innerHTML=st.map(x=>`<div class="s"><b>${esc(x.value)}</b><span>${esc(x.label)}</span></div>`).join('');
+  const so=s.studio||{};$('stIntro').textContent=so.intro||'';$('tools').innerHTML=(so.tools||[]).map(t=>`<li>${esc(t)}</li>`).join('');
+  $('team').innerHTML=(so.team||[]).map(m=>`<div class="mem"><i>${esc(initials(m.name))}</i><div><b>${esc(m.name)}</b><span>${esc(m.role)}</span></div></div>`).join('');
+  $('studio').hidden=!so.intro&&!(so.team||[]).length;
+  const pr=s.process||[];$('quy-trinh').hidden=!pr.length;$('steps').innerHTML=pr.map(x=>`<li><h3>${esc(x.title)}</h3><p>${esc(x.desc)}</p>${x.time?`<small>${esc(x.time)}</small>`:''}</li>`).join('');
+  const ct=s.contact||{};$('em').textContent=ct.email||'';$('ph').textContent=ct.phone||'';$('ph').parentElement.hidden=!ct.phone;$('em').parentElement.hidden=!ct.email;
+  $('foot').textContent=`© ${new Date().getFullYear()} Hlab.studio${ct.address?'. '+ct.address:''}`;
+  requestAnimationFrame(()=>fillThumbs($('fgrid')))}
+function renderFilter(){const V=visible();
+  $('catDesc').textContent=cat==='all'?'Chọn một hạng mục để xem từng mảng dịch vụ.':catOf(cat).desc;
+  $('subs').innerHTML=cat==='all'?'':['all',...catOf(cat).subs].map(x=>`<button data-s="${esc(x)}" aria-pressed="${x===sb}">${x==='all'?'Tất cả mục':esc(x)}</button>`).join('');
+  const list=V.filter(p=>(cat==='all'||p.cat===cat)&&(sb==='all'||p.sub===sb));
+  $('grid').innerHTML=list.length?list.map(cardHTML).join(''):'<p class="empty">Chưa có dự án ở mục này.</p>';requestAnimationFrame(()=>fillThumbs($('grid')))}
+$('tabs').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;cat=b.dataset.c;sb='all';$('tabs').querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b));renderFilter()});
+$('subs').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;sb=b.dataset.s;$('subs').querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b));renderFilter()});
+
+/* ================= detail ================= */
+function renderDetail(id){const V=visible(),p=V.find(x=>x.id===id)||(CAN_EDIT?PROJ.find(x=>x.id===id):null),el=$('vDetail');
+  document.title=p?`${p.title} | Hlab.studio`:'Hlab.studio';
+  if(!p){el.innerHTML=`<div class="notfound"><h1 class="sec-t">Không tìm thấy dự án</h1><p class="sec-d">Dự án này có thể đã được ẩn hoặc đổi đường dẫn.</p><a class="btn-y" href="#du-an">Xem tất cả dự án</a></div>`;return}
+  const k=catOf(p.cat),ix=V.indexOf(p),nx=V.length>1&&ix>=0?[...new Set([V[(ix+1)%V.length],V[(ix+2)%V.length]])].filter(x=>x!==p):[];
+  const meta=[['Ngành',p.industry],['Năm',p.year],['Định dạng',p.format],['Thời lượng',p.duration],['Vai trò của Hlab',p.role]].filter(x=>x[1]);
+  const story=[['Tóm tắt',p.summary],['Thử thách',p.challenge],['Cách làm',p.solution]].filter(x=>x[1]),vu=safeUrl(p.videoUrl);
+  el.innerHTML=`<article class="detail"><a class="back" href="#du-an">← Tất cả dự án</a>
+   <div class="dh"><div><span class="cat">${esc(k.name)}${p.sub?' / '+esc(p.sub):''}</span><h1>${esc(p.title)}</h1></div><div style="display:grid;gap:14px;justify-items:start">${p.published===false?'<span class="chipx h">Đang ẩn: chỉ người quản trị thấy</span>':''}${vu?`<a class="btn-y" href="${esc(vu)}" target="_blank" rel="noopener">Xem phim hoàn chỉnh</a>`:''}</div></div>
+   ${meta.length?`<dl class="meta">${meta.map(([a,b])=>`<div><dt>${a}</dt><dd>${esc(b)}</dd></div>`).join('')}</dl>`:'<div style="height:24px"></div>'}
+   <div id="dCmp"></div><p class="hint" id="dHint">Kéo thanh trắng trên hình để so sánh ${esc(k.raw.toLowerCase())} với ${esc(k.fin.toLowerCase())}.</p>
+   ${story.length||(p.results||[]).length?`<div class="story">${story.map(([a,b])=>`<div><h2>${a}</h2><p>${esc(b)}</p></div>`).join('')}${(p.results||[]).length?`<div><h2>Kết quả</h2><ul>${p.results.map(r=>`<li>${esc(r)}</li>`).join('')}</ul></div>`:''}</div>`:''}
+   ${(p.gallery||[]).length?`<div class="gal">${p.gallery.map(g=>`<img src="${esc(media(g))}" alt="Hình trong dự án ${esc(p.title)}" loading="lazy">`).join('')}</div>`:''}
+   ${p.credits?`<p class="hint" style="margin-top:28px"><b style="color:var(--ink)">Đội ngũ:</b> ${esc(p.credits)}</p>`:''}
+   <div class="dcta"><h2>Cần làm một dự án tương tự?</h2><a class="btn-y" href="#lien-he">Liên hệ Hlab.studio</a></div>
+   ${nx.length?`<div class="nextp"><span>Dự án khác</span>${nx.map(cardHTML).join('')}</div>`:''}</article>`;
+  requestAnimationFrame(()=>{if(!compare($('dCmp'),p))$('dHint').hidden=true;fillThumbs(el)})}
+
+/* ================= router ================= */
+let CAN_EDIT=false,ARTF=null,heroActive=true;
+function route(){const h=decodeURIComponent(location.hash.slice(1));
+  const det=h.startsWith('du-an-'),cms=h==='quan-tri',home=!det&&!cms;
+  $('vHome').hidden=$('vHome2').hidden=!home;$('stats').hidden=!home||!(SITE.stats||[]).length;
+  $('vDetail').hidden=!det;$('vCms').hidden=!cms;$('lien-he').hidden=cms;$('top').classList.toggle('compact',!home);heroActive=home;
+  if(home)document.title='Hlab.studio';
+  if(det){renderDetail(h.slice(6));scrollTo(0,0)}
+  else if(cms){document.title='Quản trị | Hlab.studio';renderCms();scrollTo(0,0)}
+  else if(h&&h!=='trang-chu'){const t=document.getElementById(h);if(t)requestAnimationFrame(()=>t.scrollIntoView({behavior:reduce?'auto':'smooth'}))}
+  else scrollTo(0,0);
+  $('top').classList.remove('open');$('menuBtn').setAttribute('aria-expanded',false)}
+let lastHash=location.hash.slice(1);
+addEventListener('hashchange',()=>{const nh=location.hash.slice(1);
+  if(lastHash==='quan-tri'&&nh!=='quan-tri'&&CMS.dirty&&!CMS.leaveOk){CMS.leaveOk=true;history.replaceState(null,'','#quan-tri');const s=$('cStatus');if(s){s.className='st bad';s.textContent='Có thay đổi chưa lưu. Bấm "Lưu và xuất bản", hoặc bấm lại liên kết vừa rồi để rời trang và bỏ thay đổi.'}return}
+  if(nh!=='quan-tri'&&lastHash==='quan-tri'&&CMS.dirty){CMS.draftSite=null;CMS.draftProj=null;CMS.pending={};CMS.del=new Set();CMS.dirty=false;applyFont(SITE.font||'inter')}
+  CMS.leaveOk=false;lastHash=nh;route()});
+
+/* ================= CMS ================= */
+const CMS={tab:'projects',sel:null,dirty:false,leaveOk:false,q:'',fc:'all',pending:{},del:new Set(),draftSite:null,draftProj:null,saving:false,confirmDel:false};
+const clone=o=>JSON.parse(JSON.stringify(o));
+function ensureDraft(){if(!CMS.draftSite){CMS.draftSite=clone(SITE||{});CMS.draftProj=clone(PROJ)}}
+function markDirty(){CMS.dirty=true;CMS.leaveOk=false;const s=$('cStatus');if(s){s.className='st dirty';s.textContent='Có thay đổi chưa lưu'}const b=$('cSave');if(b)b.disabled=false}
+function renderCms(){const el=$('vCms');
+  if(!CAN_EDIT){el.innerHTML=`<div class="gate"><h1 class="sec-t">Trang quản trị</h1><p>Chỉ người có quyền chỉnh sửa trang này mới vào được. Mở trang trên claude.ai bằng tài khoản chủ sở hữu hoặc biên tập viên, rồi vào lại.</p><a class="btn-y" href="#trang-chu">Về trang chủ</a></div>`;return}
+  ensureDraft();
+  el.innerHTML=`<div class="cms"><div class="cbar"><div><h1>Quản trị nội dung</h1><span class="st${CMS.dirty?' dirty':''}" id="cStatus" role="status">${CMS.dirty?'Có thay đổi chưa lưu':'Mọi thay đổi đã được lưu'}</span></div>
+    <div class="acts"><a class="sbtn" href="#trang-chu">Xem website</a><button class="btn-y" id="cSave" ${CMS.dirty?'':'disabled'}>Lưu và xuất bản</button></div></div>
+    <div class="ctabs" role="group" aria-label="Phần quản trị">${[['projects','Dự án'],['page','Nội dung trang'],['look','Giao diện']].map(([k,n])=>`<button data-t="${k}" aria-pressed="${CMS.tab===k}">${n}</button>`).join('')}</div>
+    <div id="cBody"></div></div>`;
+  el.querySelector('.ctabs').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;CMS.tab=b.dataset.t;renderCms()});
+  $('cSave').addEventListener('click',save);
+  ({projects:cmsProjects,page:cmsPage,look:cmsLook})[CMS.tab]()}
+const sorted=()=>CMS.draftProj.sort((a,b)=>(a.order??0)-(b.order??0));
+function cmsProjects(){const P=sorted();if(!CMS.sel||!P.find(x=>x.id===CMS.sel))CMS.sel=P[0]?.id||null;
+  $('cBody').innerHTML=`<div class="cgrid"><aside class="plist"><button class="btn-y" id="pAdd" style="justify-content:center">+ Thêm dự án</button>
+    <div class="tools2"><input id="pQ" placeholder="Tìm theo tên" value="${esc(CMS.q)}" aria-label="Tìm dự án"><select id="pF" aria-label="Lọc hạng mục"><option value="all">Tất cả</option>${CATS.map(c=>`<option value="${c.id}" ${CMS.fc===c.id?'selected':''}>${c.name}</option>`).join('')}</select></div>
+    <ul class="pitems" id="pItems"></ul><p class="hint" id="pCount"></p></aside><section class="panel" id="pEd" aria-label="Sửa dự án"></section></div>`;
+  $('pAdd').onclick=()=>{let id='du-an-moi',n=2;while(CMS.draftProj.some(x=>x.id===id))id='du-an-moi-'+n++;
+    const p={id,title:'Dự án mới',cat:'2d',sub:'Key visual',industry:'',year:new Date().getFullYear(),format:'',duration:'',role:'',summary:'',challenge:'',solution:'',results:[],credits:'',videoUrl:'',featured:false,published:false,order:0,cover:null,before:null,gallery:[],art:null};
+    CMS.draftProj.forEach(x=>x.order=(x.order??0)+1);CMS.draftProj.push(p);CMS.sel=id;CMS.q='';CMS.fc='all';CMS.confirmDel=false;markDirty();cmsProjects();setTimeout(()=>{const t=$('f_title');if(t){t.focus();t.select()}},0)};
+  $('pQ').oninput=e=>{CMS.q=e.target.value;listItems()};$('pF').onchange=e=>{CMS.fc=e.target.value;listItems()};
+  listItems();editor()}
+function listItems(){const q=slugify(CMS.q);const L=sorted().filter(p=>(CMS.fc==='all'||p.cat===CMS.fc)&&(!q||slugify(p.title).includes(q)));
+  $('pCount').textContent=`${CMS.draftProj.length} dự án, ${CMS.draftProj.filter(p=>p.published!==false).length} đang hiển thị. Đổi thứ tự bằng nút Lên, Xuống trong phần sửa.`;
+  $('pItems').innerHTML=L.length?L.map(p=>`<li><button class="pit" data-id="${esc(p.id)}" aria-current="${p.id===CMS.sel}"><span class="tn"></span><span style="min-width:0"><b>${esc(p.title||'(Chưa có tên)')}</b><span>${esc(catOf(p.cat).name)}${p.year?', '+esc(p.year):''}</span></span>
+    <span class="bd">${p.featured?'<span class="chipx f">Nổi bật</span>':''}${p.published===false?'<span class="chipx h">Ẩn</span>':''}${p.sample?'<span class="chipx">Mẫu</span>':''}</span></button></li>`).join(''):'<li class="hint">Không có dự án khớp.</li>';
+  $('pItems').querySelectorAll('.pit').forEach(b=>{const p=CMS.draftProj.find(x=>x.id===b.dataset.id);b.querySelector('.tn').appendChild(thumbNode(p,52,40));b.onclick=()=>{CMS.sel=p.id;CMS.confirmDel=false;listItems();editor()}})}
+function fld(label,key,val,{type='text',full=false,area=false,hint='',opts=null}={}){const id='f_'+key.replace(/\W/g,'_');
+  const input=opts?`<select id="${id}" data-k="${key}">${opts.map(o=>`<option value="${esc(o[0])}" ${String(o[0])===String(val)?'selected':''}>${esc(o[1])}</option>`).join('')}</select>`
+    :area?`<textarea id="${id}" data-k="${key}">${esc(val)}</textarea>`:`<input id="${id}" data-k="${key}" type="${type}" value="${esc(val)}">`;
+  return`<label class="fl${full?' full':''}" for="${id}"><span>${label}${hint?` <small>${hint}</small>`:''}</span>${input}</label>`}
+function dropHTML(key,title,hint,accept='image/*'){return`<div class="drop" data-drop="${key}"><b>${title}</b><div class="pv" id="pv_${key}">Chưa có ảnh</div><small>${hint}</small>
+  <div class="row"><label class="sbtn dk" style="cursor:pointer">Chọn tệp<input type="file" accept="${accept}" hidden data-up="${key}"></label><button class="sbtn dg" data-rm="${key}" type="button">Gỡ</button></div></div>`}
+function editor(){const p=CMS.draftProj.find(x=>x.id===CMS.sel),ed=$('pEd');if(!p){ed.innerHTML='<p class="hint">Chưa có dự án nào. Bấm "Thêm dự án" để bắt đầu.</p>';return}
+  const k=catOf(p.cat);
+  ed.innerHTML=`<div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;align-items:center"><h2>Sửa dự án</h2><div style="display:flex;gap:6px;flex-wrap:wrap"><button class="sbtn" id="mUp" type="button">Lên</button><button class="sbtn" id="mDn" type="button">Xuống</button><a class="sbtn" href="#du-an-${esc(p.id)}">Xem trước trang dự án</a></div></div>
+   ${p.sample?'<p class="note">Dự án mẫu, ảnh đang được vẽ bằng code. Tải ảnh thật lên và sửa thông tin, hoặc xoá dự án.</p>':''}
+   <div class="checks"><label><input type="checkbox" id="cPub" ${p.published!==false?'checked':''}> Hiển thị trên website</label><label><input type="checkbox" id="cFeat" ${p.featured?'checked':''}> Dự án nổi bật (tối đa 3)</label></div>
+   <div class="fg">
+    ${fld('Tên dự án','title',p.title,{full:true})}
+    ${fld('Hạng mục','cat',p.cat,{opts:CATS.map(c=>[c.id,c.name])})}${fld('Mục con','sub',p.sub,{opts:k.subs.map(s=>[s,s])})}
+    ${fld('Ngành','industry',p.industry)}${fld('Năm','year',p.year,{type:'number'})}
+    ${fld('Định dạng','format',p.format,{hint:'Ví dụ: TVC 30s, 16:9'})}${fld('Thời lượng','duration',p.duration,{hint:'Ví dụ: 00:30'})}
+    ${fld('Vai trò của Hlab','role',p.role,{full:true})}
+    ${fld('Tóm tắt','summary',p.summary,{full:true,area:true})}
+    ${fld('Thử thách','challenge',p.challenge,{area:true})}${fld('Cách làm','solution',p.solution,{area:true})}
+    ${fld('Kết quả','results',(p.results||[]).join('\n'),{area:true,hint:'Mỗi dòng một kết quả'})}${fld('Đội ngũ','credits',p.credits,{area:true})}
+    ${fld('Link phim hoàn chỉnh','videoUrl',p.videoUrl,{full:true,type:'url',hint:'Vimeo, YouTube hoặc Google Drive, bắt đầu bằng https://'})}
+    ${fld('Đường dẫn trang','id',p.id,{full:true,hint:'Chữ thường không dấu, số, gạch ngang. Đổi sẽ làm hỏng link cũ đã gửi đi.'})}
+   </div>
+   <h3>Hình ảnh</h3>
+   <div class="imgs">${dropHTML('cover','Ảnh hoàn thiện (ảnh bìa)',`Dùng cho thẻ dự án và lớp "${k.fin}". JPG, PNG hoặc WebP; ảnh lớn tự thu về 2400 px. Kéo thả ảnh vào đây cũng được.`)}${dropHTML('before',`Ảnh trước: ${k.raw}`,'Tuỳ chọn. Có ảnh này thì trang dự án hiện thanh so sánh trước và sau. Nên cùng khung hình với ảnh bìa.')}</div>
+   <div class="drop" data-drop="gallery"><b>Bộ sưu tập</b><div class="galx" id="galx"></div><small>Tuỳ chọn, tối đa 8 ảnh: styleframe, khung hình trích.</small><div class="row"><label class="sbtn dk" style="cursor:pointer">Thêm ảnh<input type="file" accept="image/*" multiple hidden data-up="gallery"></label></div></div>
+   <p class="err" id="imgErr" role="alert"></p>
+   <div class="prow"><span class="hint" style="margin:0">Thay đổi chỉ lên website sau khi bấm "Lưu và xuất bản".</span><div>${CMS.confirmDel?`<div class="confirm">Xoá hẳn "${esc(p.title)}" và ảnh của dự án? <button class="sbtn dg" id="delYes" type="button">Xoá dự án</button><button class="sbtn" id="delNo" type="button">Giữ lại</button></div>`:`<button class="sbtn dg" id="delAsk" type="button">Xoá dự án</button>`}</div></div>`;
+  const setPv=key=>{const pv=$('pv_'+key);pv.innerHTML='';const v=p[key];if(v){const im=new Image();im.src=media(v);im.alt='';pv.appendChild(im)}
+    else if(p.art&&!p.cover){const cv=document.createElement('canvas');pv.appendChild(cv);requestAnimationFrame(()=>{const r=pv.getBoundingClientRect();drawArt(cv,p.art,r.width,r.height,key==='before')})}else pv.textContent='Chưa có ảnh'};
+  const refresh=()=>{setPv('cover');setPv('before');gal();listItems()};
+  const gal=()=>{$('galx').innerHTML=(p.gallery||[]).map((g,i)=>`<div><img src="${esc(media(g))}" alt=""><button type="button" data-gi="${i}" aria-label="Gỡ ảnh ${i+1}">×</button></div>`).join('')||'<span class="hint" style="margin:0">Chưa có ảnh.</span>'};
+  setPv('cover');setPv('before');gal();
+  $('galx').onclick=e=>{const b=e.target.closest('[data-gi]');if(!b)return;const [rm]=p.gallery.splice(+b.dataset.gi,1);dropMedia(rm);gal();markDirty()};
+  ed.querySelectorAll('.fg [data-k]').forEach(inp=>inp.addEventListener(inp.tagName==='SELECT'?'change':'input',()=>{const key=inp.dataset.k;let v=inp.value;
+    if(key==='id'){const nv=slugify(v);if(!nv||CMS.draftProj.some(x=>x!==p&&x.id===nv)){inp.setCustomValidity('Đường dẫn trống hoặc trùng với dự án khác.');inp.reportValidity();return}inp.setCustomValidity('');p.id=nv;CMS.sel=nv;markDirty();listItems();return}
+    if(key==='results')v=v.split('\n').map(s=>s.trim()).filter(Boolean);if(key==='year')v=v?+v:'';
+    p[key]=v;p.sample=false;
+    if(key==='cat'){p.sub=catOf(v).subs[0];markDirty();editor();listItems();return}
+    markDirty();if(key==='title')listItems()}));
+  $('cPub').onchange=e=>{p.published=e.target.checked;markDirty();listItems()};
+  $('cFeat').onchange=e=>{if(e.target.checked&&CMS.draftProj.filter(x=>x.featured&&x!==p).length>=3){e.target.checked=false;$('imgErr').textContent='Đã có 3 dự án nổi bật. Bỏ chọn nổi bật ở một dự án khác trước.';return}p.featured=e.target.checked;markDirty();listItems()};
+  const mv=d=>{const Ls=sorted(),i=Ls.indexOf(p),j=i+d;if(j<0||j>=Ls.length)return;[Ls[i],Ls[j]]=[Ls[j],Ls[i]];Ls.forEach((x,n)=>x.order=n);markDirty();listItems()};
+  $('mUp').onclick=()=>mv(-1);$('mDn').onclick=()=>mv(1);
+  ed.querySelectorAll('[data-up]').forEach(inp=>inp.addEventListener('change',async()=>{await takeFiles(p,inp.dataset.up,[...inp.files]);inp.value='';refresh()}));
+  ed.querySelectorAll('[data-rm]').forEach(b=>b.onclick=()=>{const key=b.dataset.rm;dropMedia(p[key]);p[key]=null;if(key==='cover')p.art=null;markDirty();refresh()});
+  ed.querySelectorAll('[data-drop]').forEach(d=>{d.addEventListener('dragover',e=>{e.preventDefault();d.classList.add('over')});d.addEventListener('dragleave',()=>d.classList.remove('over'));
+    d.addEventListener('drop',async e=>{e.preventDefault();d.classList.remove('over');await takeFiles(p,d.dataset.drop,[...e.dataTransfer.files]);refresh()})});
+  const da=$('delAsk');if(da)da.onclick=()=>{CMS.confirmDel=true;editor()};
+  const dn=$('delNo');if(dn)dn.onclick=()=>{CMS.confirmDel=false;editor()};
+  const dy=$('delYes');if(dy)dy.onclick=()=>{[p.cover,p.before,...(p.gallery||[])].forEach(dropMedia);CMS.draftProj.splice(CMS.draftProj.indexOf(p),1);CMS.confirmDel=false;CMS.sel=null;markDirty();cmsProjects()}}
+function dropMedia(path){if(!path)return;if(CMS.pending[path])delete CMS.pending[path];else if(path.startsWith('media/'))CMS.del.add(path)}
+async function shrink(file){if(/svg|gif/.test(file.type))return{blob:file,ext:file.type.includes('svg')?'svg':'gif'};
+  const bmp=await createImageBitmap(file),s=Math.min(1,2400/Math.max(bmp.width,bmp.height)),cv=document.createElement('canvas');cv.width=Math.round(bmp.width*s);cv.height=Math.round(bmp.height*s);
+  cv.getContext('2d').drawImage(bmp,0,0,cv.width,cv.height);const blob=await new Promise(r=>cv.toBlob(r,'image/jpeg',.86));return{blob,ext:'jpg'}}
+async function takeFiles(p,key,files){const err=$('imgErr');err.textContent='';
+  const imgs=files.filter(f=>/^image\//.test(f.type));if(!imgs.length){err.textContent='Chỉ nhận tệp ảnh: JPG, PNG, WebP, GIF hoặc SVG.';return}
+  for(const f of (key==='gallery'?imgs:imgs.slice(0,1))){if(key==='gallery'&&(p.gallery||[]).length>=8){err.textContent='Bộ sưu tập tối đa 8 ảnh. Gỡ bớt ảnh cũ để thêm ảnh mới.';break}
+    let r;try{r=await shrink(f)}catch(e){err.textContent=`Không đọc được ảnh "${f.name}". Lưu lại ảnh dạng JPG rồi tải lên.`;continue}
+    if(r.blob.size>14.5*1024*1024){err.textContent=`Ảnh "${f.name}" vẫn lớn hơn 15 MB sau khi nén. Chọn ảnh nhỏ hơn.`;continue}
+    const path=`media/${p.id}-${key}-${Date.now().toString(36)}.${r.ext}`;CMS.pending[path]=r.blob;LOCAL[path]=URL.createObjectURL(r.blob);
+    if(key==='gallery'){p.gallery=p.gallery||[];p.gallery.push(path)}else{dropMedia(p[key]);p[key]=path;if(key==='cover')p.art=null}
+    p.sample=false;markDirty()}}
+
+const lines=(arr,fn)=>(arr||[]).map(fn).join('\n');
+function cmsPage(){const s=CMS.draftSite;s.hero=s.hero||{};s.showreel=s.showreel||{};s.studio=s.studio||{};s.contact=s.contact||{};
+  $('cBody').innerHTML=`<div class="panel" style="margin-top:18px">
+   <h2>Phần đầu trang</h2><div class="fg">
+    ${fld('Dòng trạng thái','hero.badge',s.hero.badge,{hint:'Để trống để ẩn'})}${fld('Link showreel đầy đủ','showreel.url',s.showreel.url,{type:'url',hint:'Vimeo hoặc YouTube'})}
+    ${fld('Tiêu đề lớn','hero.title',s.hero.title,{full:true})}${fld('Đoạn giới thiệu','hero.lede',s.hero.lede,{full:true,area:true})}</div>
+   <div class="imgs">${dropHTML('reel','Video showreel ngắn','MP4 hoặc WebM dưới 15 MB, 15–30 giây, không tiếng. Tự chạy lặp ở đầu trang thay cho khối 3D.','video/mp4,video/webm')}${dropHTML('poster','Ảnh poster cho video','Hiện trong lúc video đang tải.')}</div>
+   <p class="err" id="imgErr" role="alert"></p>
+   <h2>Số liệu</h2>${fld('Mỗi dòng: con số | nhãn','stats',lines(s.stats,x=>`${x.value} | ${x.label}`),{full:true,area:true,hint:'Ví dụ: 140+ | Dự án đã giao. Tối đa 4 dòng; để trống để ẩn dải số liệu.'})}
+   <h2>Khách hàng</h2><div class="fg">${fld('Tên khách hàng','clients',(s.clients||[]).join('\n'),{area:true,hint:'Mỗi dòng một tên'})}
+    ${fld('Nhận xét','testimonials',lines(s.testimonials,x=>`${x.quote} | ${x.name} | ${x.role}`),{area:true,hint:'Mỗi dòng: lời nhận xét | tên | chức vụ'})}</div>
+   <h2>Studio</h2><div class="fg">${fld('Giới thiệu','studio.intro',s.studio.intro,{full:true,area:true})}
+    ${fld('Đội ngũ','team',lines(s.studio.team,x=>`${x.name} | ${x.role}`),{area:true,hint:'Mỗi dòng: tên | vai trò'})}${fld('Phần mềm','tools',(s.studio.tools||[]).join(', '),{area:true,hint:'Cách nhau bằng dấu phẩy'})}</div>
+   <h2>Quy trình</h2>${fld('Mỗi dòng: tên bước | thời gian | mô tả','process',lines(s.process,x=>`${x.title} | ${x.time} | ${x.desc}`),{full:true,area:true})}
+   <h2>Liên hệ</h2><div class="fg">${fld('Email','contact.email',s.contact.email,{type:'email'})}${fld('Điện thoại','contact.phone',s.contact.phone)}${fld('Địa chỉ','contact.address',s.contact.address,{full:true})}</div></div>`;
+  const split=v=>v.split('\n').map(l=>l.split('|').map(x=>x.trim())).filter(a=>a[0]);
+  $('cBody').querySelectorAll('.fl [data-k]').forEach(inp=>inp.addEventListener('input',()=>{const k=inp.dataset.k,v=inp.value;
+    if(k==='stats')s.stats=split(v).slice(0,4).map(a=>({value:a[0],label:a[1]||''}));
+    else if(k==='clients')s.clients=v.split('\n').map(x=>x.trim()).filter(Boolean);
+    else if(k==='testimonials')s.testimonials=split(v).map(a=>({quote:a[0],name:a[1]||'',role:a[2]||''}));
+    else if(k==='team')s.studio.team=split(v).map(a=>({name:a[0],role:a[1]||''}));
+    else if(k==='tools')s.studio.tools=v.split(',').map(x=>x.trim()).filter(Boolean);
+    else if(k==='process')s.process=split(v).map(a=>({title:a[0],time:a[1]||'',desc:a.slice(2).join(' | ')}));
+    else{const [a,b]=k.split('.');s[a]=s[a]||{};s[a][b]=v}markDirty()}));
+  const pv=()=>{const r=$('pv_reel'),po=$('pv_poster');r.innerHTML='';po.innerHTML='';
+    if(s.showreel.video){const v=document.createElement('video');v.src=media(s.showreel.video);v.muted=true;v.loop=true;v.playsInline=true;v.autoplay=!reduce;r.appendChild(v)}else r.textContent='Chưa có video: đầu trang đang dùng khối 3D';
+    if(s.showreel.poster){const im=new Image();im.src=media(s.showreel.poster);im.alt='';po.appendChild(im)}else po.textContent='Chưa có ảnh'};pv();
+  $('cBody').querySelectorAll('[data-up]').forEach(inp=>inp.addEventListener('change',async()=>{const f=inp.files[0];inp.value='';if(!f)return;const key=inp.dataset.up,err=$('imgErr');err.textContent='';
+    if(key==='reel'){if(!/^video\/(mp4|webm)$/.test(f.type)){err.textContent='Video phải là MP4 hoặc WebM.';return}
+      if(f.size>15*1024*1024){err.textContent=`Video nặng ${(f.size/1048576).toFixed(1)} MB, vượt giới hạn 15 MB. Xuất lại ngắn hơn hoặc giảm bitrate.`;return}
+      const path=`media/showreel-${Date.now().toString(36)}.${f.type.split('/')[1]}`;CMS.pending[path]=f;LOCAL[path]=URL.createObjectURL(f);dropMedia(s.showreel.video);s.showreel.video=path}
+    else{let r;try{r=await shrink(f)}catch(e){err.textContent='Không đọc được ảnh này. Lưu lại dạng JPG rồi tải lên.';return}const path=`media/poster-${Date.now().toString(36)}.${r.ext}`;CMS.pending[path]=r.blob;LOCAL[path]=URL.createObjectURL(r.blob);dropMedia(s.showreel.poster);s.showreel.poster=path}
+    markDirty();pv()}));
+  $('cBody').querySelectorAll('[data-rm]').forEach(b=>b.onclick=()=>{const key=b.dataset.rm==='reel'?'video':'poster';dropMedia(s.showreel[key]);s.showreel[key]=null;markDirty();pv()})}
+
+let fontPreview=false;
+function cmsLook(){const s=CMS.draftSite,cur=s.font||'inter';
+  if(!fontPreview){fontPreview=true;const l=document.createElement('link');l.rel='stylesheet';l.href='https://fonts.googleapis.com/css2?'+[...new Set(Object.values(FONTS).map(o=>o.d))].map(f=>'family='+encodeURIComponent(f).replace(/%20/g,'+')).join('&')+'&text='+encodeURIComponent('Hình ảnh cho thương hiệuHÌNHẢCTƯỆU')+'&display=swap';document.head.appendChild(l)}
+  $('cBody').innerHTML=`<div class="panel" style="margin-top:18px"><h2>Font chữ</h2><p class="hint" style="margin:0">Font tải từ Google Fonts; mọi cặp đều có đủ dấu tiếng Việt. Bấm để xem thử ngay trên trang này, rồi bấm "Lưu và xuất bản" để áp dụng cho khách.</p>
+   <div class="fonts">${Object.entries(FONTS).map(([k,o])=>`<button class="fopt" data-f="${k}" aria-pressed="${k===cur}"><span class="smp" style="font-family:'${o.d}',system-ui;text-transform:${o.tt}">Hình ảnh cho thương hiệu</span><span class="nm">${o.n}</span><span class="nt">${o.d} + ${o.b}</span></button>`).join('')}</div></div>`;
+  $('cBody').querySelector('.fonts').onclick=async e=>{const b=e.target.closest('.fopt');if(!b)return;s.font=b.dataset.f;$('cBody').querySelectorAll('.fopt').forEach(x=>x.setAttribute('aria-pressed',x===b));markDirty();await applyFont(s.font)}}
+
+async function save(){if(CMS.saving)return;const st=$('cStatus'),btn=$('cSave');
+  if(!ARTF){st.className='st bad';st.textContent='Không lưu được ở chế độ xem này. Mở trang trên claude.ai bằng tài khoản có quyền chỉnh sửa.';return}
+  CMS.saving=true;btn.disabled=true;st.className='st';st.textContent='Đang lưu…';
+  const files={'data/projects.json':{content:JSON.stringify({version:1,projects:CMS.draftProj},null,1),contentType:'application/json'},'data/site.json':{content:JSON.stringify(CMS.draftSite,null,1),contentType:'application/json'}};
+  for(const [p,b] of Object.entries(CMS.pending))files[p]=b;for(const p of CMS.del)files[p]=null;
+  try{sessionStorage.setItem('hlab-draft',JSON.stringify({site:CMS.draftSite,proj:CMS.draftProj}))}catch(e){}
+  try{await ARTF.publish(files);SITE=clone(CMS.draftSite);PROJ=clone(CMS.draftProj);CMS.pending={};CMS.del=new Set();CMS.dirty=false;
+    try{sessionStorage.removeItem('hlab-draft')}catch(e){}st.className='st ok';st.textContent='Đã lưu và xuất bản. Khách mở website sẽ thấy bản mới.';renderHome()}
+  catch(e){const c=e&&e.code;btn.disabled=false;st.className='st bad';
+    st.textContent=c==='conflict'?'Có người vừa lưu một phiên bản khác nên trang sẽ tải lại. Phần chữ bạn sửa được giữ để khôi phục; ảnh mới cần tải lên lại.'
+     :c==='not_writer'||c==='not_granted'||c==='consent_required'||c==='not_declared'?'Tài khoản này không có quyền lưu trang.'
+     :c==='capability_disabled'||c==='capability_removed'?'Không lưu được khi trang đang chia sẻ công khai. Tạm chuyển chia sẻ về riêng tư hoặc trong tổ chức, lưu, rồi bật lại.'
+     :c==='too_large'?'Lần lưu này quá nặng. Lưu ít ảnh hơn mỗi lần, hoặc dùng ảnh và video nhỏ hơn.'
+     :c==='rate_limited'?'Lưu quá nhanh. Đợi khoảng một phút rồi bấm lưu lại.':'Lưu không thành công do lỗi máy chủ. Thử lại sau ít phút.';
+    if(c!=='conflict')try{sessionStorage.removeItem('hlab-draft')}catch(x){}}
+  finally{CMS.saving=false}}
+addEventListener('beforeunload',e=>{if(CMS.dirty&&!CMS.saving){e.preventDefault();e.returnValue=''}});
+
+/* ================= hero: showreel video or render-pass viewer ================= */
+let useReel=false;
+function setReel(src,poster){const vp=$('vp');let v=vp.querySelector('video');useReel=!!src;$('hero').hidden=useReel;$('vctl').hidden=useReel;
+  if(!src){if(v)v.remove();return}
+  if(!v){v=document.createElement('video');v.muted=true;v.loop=true;v.playsInline=true;v.setAttribute('aria-label','Showreel Hlab.studio');vp.prepend(v)}
+  if(v.getAttribute('src')!==src)v.src=src;if(poster)v.poster=poster;if(reduce)v.controls=true;else{v.autoplay=true;v.play().catch(()=>{})}}
+const hv=$('hero'),K=knot(.34),btns=[...document.querySelectorAll('.passes button')],tcEl=$('tc');
+let pass=3,auto=!reduce,ang=.6,frame=0,hw=0,hh=0,hc;
+function setPass(n){pass=n;btns.forEach((b,i)=>b.setAttribute('aria-pressed',i===n));if(reduce)drawHero()}
+btns.forEach((b,i)=>b.addEventListener('click',()=>{auto=false;setPass(i)}));
+function sizeHero(){hw=hv.getBoundingClientRect().width;if(!hw)return;hh=hw/1.25;hc=prep(hv,hw,hh);drawHero()}
+function drawHero(){if(!hc||useReel)return;const c=hc,w=hw,h=hh;
+  if(pass===3){const g=c.createLinearGradient(0,0,0,h);g.addColorStop(0,'#2A2350');g.addColorStop(.6,'#3A3348');g.addColorStop(1,'#141219');c.fillStyle=g;c.fillRect(0,0,w,h)}
+  else{c.fillStyle=pass===1?'#2B2A31':'#0E0D12';c.fillRect(0,0,w,h)}
+  if(pass===0){c.strokeStyle='rgba(255,255,255,.06)';c.lineWidth=1;for(let x=0;x<w;x+=w/14){c.beginPath();c.moveTo(x,0);c.lineTo(x,h);c.stroke()}for(let y=0;y<h;y+=w/14){c.beginPath();c.moveTo(0,y);c.lineTo(w,y);c.stroke()}}
+  render3d(c,w,h,[{...K,col:[255,214,64],gl:.6}],{mode:['wire','clay','final','final'][pass],rz:ang,ry:.35*Math.sin(ang*.7),rx:.55,scale:.36,oy:.47,rim:[140,120,255]});if(pass===3)post(c,w,h,.5)}
+new ResizeObserver(sizeHero).observe(hv);
+const tc=f=>{const p=n=>String(n).padStart(2,'0'),s=Math.floor(f/25);return`${p(Math.floor(s/3600))}:${p(Math.floor(s/60)%60)}:${p(s%60)}:${p(f%25)}`};
+let last=0,acc=0,pt=0,vis=true;new IntersectionObserver(e=>{vis=e[0].isIntersecting}).observe(hv);
+function loop(t){requestAnimationFrame(loop);if(!vis||document.hidden||!heroActive||useReel){last=t;return}const dt=Math.min(.1,(t-last)/1000||0);last=t;ang+=dt*.4;acc+=dt;
+  if(auto){pt+=dt;if(pt>2.6){pt=0;setPass((pass+1)%4)}}if(acc>=.04){frame+=Math.floor(acc*25);acc%=.04;tcEl.textContent=tc(frame)}drawHero()}
+setPass(reduce?3:0);if(!reduce)requestAnimationFrame(loop);
+
+/* ================= misc ================= */
+document.querySelectorAll('[data-copy]').forEach(b=>b.addEventListener('click',()=>{const el=$(b.dataset.copy);const ok=()=>{b.textContent='Đã sao chép';setTimeout(()=>b.textContent='Sao chép',1600)};
+  try{navigator.clipboard.writeText(el.textContent).then(ok,()=>{getSelection().selectAllChildren(el);b.textContent='Đã chọn, nhấn Ctrl+C'})}catch(e){getSelection().selectAllChildren(el)}}));
+$('menuBtn').addEventListener('click',()=>{const o=$('top').classList.toggle('open');$('menuBtn').setAttribute('aria-expanded',o)});
+let rt;addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(()=>{['fgrid','grid','vDetail'].forEach(id=>{const r=$(id);if(r.offsetParent===null)return;r.querySelectorAll('.th canvas').forEach(c=>c.remove());fillThumbs(r)})},300)});
+
+/* ================= boot ================= */
+(async()=>{
+  const ok=await load();await applyFont(SITE.font||'inter');renderHome();
+  if(!ok)$('grid').innerHTML='<p class="empty">Không tải được danh sách dự án. Tải lại trang để thử lại.</p>';
+  route();
+  try{const cl=window.claude;if(cl&&cl.use){const [u,a]=await Promise.all([cl.use('user'),cl.use('artifact')]);ARTF=a;CAN_EDIT=!!a&&!!(u&&await u.canEdit());
+    $('adminLink').hidden=!CAN_EDIT;
+    if(CAN_EDIT){try{const d=JSON.parse(sessionStorage.getItem('hlab-draft')||'null');if(d){sessionStorage.removeItem('hlab-draft');CMS.draftSite=d.site;CMS.draftProj=d.proj;CMS.dirty=true}}catch(e){}}
+    if(location.hash==='#quan-tri'||location.hash.startsWith('#du-an-'))route()}}catch(e){}
+})();
+})();
 </script>

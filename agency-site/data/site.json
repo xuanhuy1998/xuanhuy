@@ -1,0 +1,125 @@
+{
+ "hero": {
+  "badge": "Đang nhận dự án quý 1/2026",
+  "title": "Hình ảnh cho thương hiệu, từ phác thảo đến khung hình cuối",
+  "lede": "Hlab.studio làm thiết kế 2D, motion graphics, VFX compositing và 3D CGI cho TVC, phim và nội dung số. Dưới đây là những gì chúng tôi đã làm."
+ },
+ "showreel": {
+  "video": null,
+  "poster": null,
+  "url": ""
+ },
+ "stats": [
+  {
+   "value": "140+",
+   "label": "Dự án đã giao"
+  },
+  {
+   "value": "18",
+   "label": "Artist toàn thời gian"
+  },
+  {
+   "value": "2016",
+   "label": "Năm thành lập"
+  },
+  {
+   "value": "8",
+   "label": "Ngành hàng"
+  }
+ ],
+ "clients": [
+  "Nhãn đồ uống",
+  "Hãng ô tô",
+  "Ngân hàng số",
+  "Chủ đầu tư BĐS",
+  "Studio game",
+  "Thương hiệu thời trang"
+ ],
+ "testimonials": [
+  {
+   "quote": "Shot set extension con đèo nhìn như quay thật. Đạo diễn bên tôi không chỉ ra được đường ghép.",
+   "name": "Thu Hà",
+   "role": "Producer, production house"
+  },
+  {
+   "quote": "Bộ 6 video dọc giao trong 10 ngày, đúng nhịp nhạc từng cái.",
+   "name": "Quang Nam",
+   "role": "Trưởng nhóm nội dung số, chuỗi đồ uống"
+  },
+  {
+   "quote": "Packshot 3D dựng từ file thiết kế khi sản phẩm còn chưa sản xuất. Ra mắt đúng ngày.",
+   "name": "Lan Vy",
+   "role": "Brand manager, ngành FMCG"
+  }
+ ],
+ "studio": {
+  "intro": "Hlab.studio là nhóm họa sĩ, animator, artist 3D và compositor làm chung trên một pipeline. Mỗi dự án có một người làm từ đầu đến cuối, nên ý tưởng không thất lạc giữa các khâu.",
+  "team": [
+   {
+    "name": "Hoàng Lâm",
+    "role": "Creative director"
+   },
+   {
+    "name": "Ngọc Trâm",
+    "role": "Art director 2D"
+   },
+   {
+    "name": "Đức Minh",
+    "role": "VFX supervisor"
+   },
+   {
+    "name": "Bảo Anh",
+    "role": "Lead 3D artist"
+   }
+  ],
+  "tools": [
+   "Houdini",
+   "Nuke",
+   "Blender",
+   "Cinema 4D",
+   "Redshift",
+   "After Effects",
+   "DaVinci Resolve",
+   "Photoshop",
+   "Illustrator"
+  ]
+ },
+ "process": [
+  {
+   "title": "Nhận brief",
+   "time": "1–2 ngày",
+   "desc": "Đọc kịch bản, moodboard, ngân sách và deadline. Gửi báo giá theo hạng mục."
+  },
+  {
+   "title": "Styleframe",
+   "time": "4–6 ngày",
+   "desc": "2–3 hướng hình ảnh tĩnh để chốt phong cách trước khi sản xuất."
+  },
+  {
+   "title": "Animatic",
+   "time": "3–5 ngày",
+   "desc": "Dựng thô đúng thời lượng, khớp nhạc và voice-over."
+  },
+  {
+   "title": "Sản xuất",
+   "time": "10–20 ngày",
+   "desc": "Dựng 3D, animation, mô phỏng, quay phông xanh. Bản xem giữa kỳ."
+  },
+  {
+   "title": "Comp và chỉnh màu",
+   "time": "4–7 ngày",
+   "desc": "Ghép lớp, keying, chỉnh màu, âm thanh. Hai vòng sửa."
+  },
+  {
+   "title": "Bàn giao",
+   "time": "1–2 ngày",
+   "desc": "Master theo chuẩn đài và nền tảng, bản cắt ngắn, file nguồn."
+  }
+ ],
+ "contact": {
+  "email": "hello@hlab.studio",
+  "phone": "028 7300 0000",
+  "address": "TP.HCM"
+ },
+ "font": "inter"
+}
