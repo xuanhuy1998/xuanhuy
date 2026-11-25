@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>TOEIC 850 Coach</title>
+<meta name="description" content="Theo dõi và cá nhân hoá lộ trình học từ vựng TOEIC từ 700 lên 850+: flashcard lặp lại ngắt quãng, mini game ôn luyện, 1500 từ thông dụng.">
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#home"><i></i>TOEIC <b>850</b></a>
+    <nav class="tabs" aria-label="Điều hướng chính">
+      <a class="tab" href="#home" data-route="home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="7" cy="7" r="3"/><circle cx="17" cy="7" r="3" fill="currentColor"/><circle cx="7" cy="17" r="3" fill="currentColor"/><circle cx="17" cy="17" r="3"/></svg>Tổng quan</a>
+      <a class="tab" href="#learn" data-route="learn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="14" height="15" rx="2"/><path d="M7 3h12a2 2 0 0 1 2 2v13"/></svg>Flashcard</a>
+      <a class="tab" href="#games" data-route="games"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="11" rx="5"/><path d="M7 11v3M5.5 12.5h3"/><circle cx="16" cy="11.5" r="1" fill="currentColor"/><circle cx="18" cy="14" r="1" fill="currentColor"/></svg>Mini game</a>
+      <a class="tab" href="#words" data-route="words"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h10"/></svg>Từ vựng</a>
+      <a class="tab" href="#profile" data-route="profile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>Lộ trình</a>
+    </nav>
+    <div class="chips-top" id="topChips"></div>
+  </div>
+</header>
+<main class="wrap" id="view" tabindex="-1"></main>
+<div class="toast" id="toast" hidden></div>
+<script src="data/words-1.js"></script>
+<script src="data/words-2.js"></script>
+<script src="data/words-3.js"></script>
+<script src="data/words-4.js"></script>
+<script src="data/words-5.js"></script>
+<script src="data/words-6.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
