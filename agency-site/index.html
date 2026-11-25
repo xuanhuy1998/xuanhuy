@@ -397,8 +397,39 @@ a.uc:hover{transform:translateY(-3px)}
 .cta::after{content:"";position:absolute;width:150px;height:28px;border-radius:999px;background:var(--ink);left:46%;bottom:-8px;rotate:-12deg}
 .cta>*{position:relative;z-index:1}
 @media (prefers-reduced-motion:reduce){.tk,.stk,.hero h1,.hero .lede,.hero .acts{animation:none}.pc,.tier,.uc{transition:none}.cur{display:none}}
+
+/* ===== 2027: native motion, floating glass nav, variable type ===== */
+.skip{position:absolute;left:-9999px;top:0;z-index:60;background:var(--y);color:var(--y-ink);font-weight:700;padding:10px 16px;border-radius:999px;text-decoration:none}
+.skip:focus{left:max(16px,env(safe-area-inset-left,0px));top:calc(12px + env(safe-area-inset-top,0px))}
+.fnav{position:fixed;z-index:40;top:calc(12px + env(safe-area-inset-top,0px));left:50%;translate:-50% -140%;display:flex;align-items:center;gap:4px;padding:6px;border-radius:999px;
+  background:color-mix(in srgb,var(--dark) 82%,transparent);backdrop-filter:blur(18px) saturate(1.5);-webkit-backdrop-filter:blur(18px) saturate(1.5);border:1px solid rgba(255,255,255,.12);box-shadow:0 12px 30px rgba(0,0,0,.25);transition:translate .45s cubic-bezier(.2,.8,.2,1);max-width:calc(100% - 24px)}
+.fnav.show{translate:-50% 0}
+.fnav a{color:var(--on-dark);text-decoration:none;font-size:.82rem;font-weight:500;padding:8px 13px;border-radius:999px;white-space:nowrap}
+.fnav a:hover{background:rgba(255,255,255,.1)}
+.fnav .fl-logo{display:flex;align-items:center;padding:4px 8px 4px 4px}
+.fnav .fl-logo i{width:28px;height:28px;border-radius:999px;background:var(--y);display:grid;place-items:center}
+.fnav .fl-logo i::after{content:"";width:11px;height:8px;border:2px solid var(--y-ink);border-radius:2px}
+.fnav .fl-cta{background:var(--y);color:var(--y-ink);font-weight:700}
+.fnav .fl-cta:hover{background:var(--y);filter:brightness(1.05)}
+@media (max-width:700px){.fnav .fl-link{display:none}}
+.hw{display:inline-block;transition:font-variation-settings .45s cubic-bezier(.3,1.6,.5,1),color .25s}
+@media (hover:hover){.hw:hover{font-variation-settings:"wght" 800,"wdth" 75;color:var(--y)}}
+.btn-y,.pill-w{transition:translate .25s cubic-bezier(.2,.8,.2,1),filter .2s}
+::view-transition-group(proj-media){animation-duration:.5s;animation-timing-function:cubic-bezier(.2,.8,.2,1)}
+::view-transition-old(root),::view-transition-new(root){animation-duration:.28s}
+@supports (animation-timeline: scroll()){
+  @media (prefers-reduced-motion:no-preference){
+    @media (min-width:881px){.hero:not(.compact){animation:heroShrink linear both;animation-timeline:scroll(root);animation-range:0 640px}}
+    @keyframes heroShrink{to{scale:.965;border-radius:44px}}
+    .grid .pc .th,.fgrid .pc .th{animation:unmask linear both;animation-timeline:view();animation-range:entry 0% entry 70%}
+    @keyframes unmask{from{clip-path:inset(10% 10% 10% 10% round 28px)}to{clip-path:inset(0 0 0 0 round 18px)}}
+  }
+}
+@media (prefers-reduced-motion:reduce){.fnav{transition:none}.hw{transition:none}}
 </style>
 
+<a class="skip" href="#du-an">Bỏ qua phần đầu, xem dự án</a>
+<nav class="fnav" id="fnav" aria-label="Điều hướng nhanh"><a class="fl-logo" href="#trang-chu" aria-label="Hlab.studio, trang chủ"><i></i></a><a class="fl-link" href="#du-an">Dự án</a><a class="fl-link" href="#dich-vu">Dịch vụ</a><a class="fl-link" href="#quy-trinh">Quy trình</a><a class="fl-link" href="#bang-gia">Bảng giá</a><a class="fl-cta" href="#lien-he">Trao đổi về dự án</a></nav>
 <div class="shell">
 <header class="hero" id="top">
   <div class="nav">
@@ -524,7 +555,7 @@ const catOf=id=>CATS.find(c=>c.id===id)||CATS[0];
 const FONTS={
  inter:{n:'Gọn, trung tính',d:'Inter Tight',b:'Inter',dw:400,tt:'uppercase',ls:'-.005em',w:'300;400;500;600;700'},
  bigsh:{n:'Áp phích điện ảnh',d:'Big Shoulders Display',b:'Be Vietnam Pro',dw:700,tt:'uppercase',ls:'.01em',w:'400;500;600;700;800'},
- brico:{n:'Studio đương đại',d:'Bricolage Grotesque',b:'Be Vietnam Pro',dw:600,tt:'none',ls:'-.025em',w:'400;500;600;700'},
+ brico:{n:'Studio đương đại',d:'Bricolage Grotesque',b:'Be Vietnam Pro',dw:600,tt:'none',ls:'-.025em',w:'ax:opsz,wdth,wght@12..96,75..100,200..800'},
  unb:{n:'Hình học bản rộng',d:'Unbounded',b:'Manrope',dw:500,tt:'uppercase',ls:'-.01em',w:'300;400;500;600;700'},
  fraun:{n:'Biên tập cao cấp',d:'Fraunces',b:'Hanken Grotesk',dw:400,tt:'none',ls:'-.015em',w:'300;400;500;600;700'},
  space:{n:'Kỹ thuật VFX',d:'Space Grotesk',b:'Plus Jakarta Sans',dw:500,tt:'uppercase',ls:'-.01em',w:'300;400;500;600;700'},
@@ -533,7 +564,7 @@ const FONTS={
  corm:{n:'Cổ điển thanh lịch',d:'Cormorant Garamond',b:'Mona Sans',dw:500,tt:'none',ls:'0',w:'300;400;500;600;700'}};
 const fontLinks=new Set();
 function linkFont(fam,w){const k=fam+'|'+w;if(fontLinks.has(k))return Promise.resolve();fontLinks.add(k);
-  return new Promise(r=>{const l=document.createElement('link');l.rel='stylesheet';l.href='https://fonts.googleapis.com/css2?family='+encodeURIComponent(fam).replace(/%20/g,'+')+(w?':wght@'+w:'')+'&display=swap';l.onload=l.onerror=()=>r();document.head.appendChild(l)})}
+  return new Promise(r=>{const l=document.createElement('link');l.rel='stylesheet';l.href='https://fonts.googleapis.com/css2?family='+encodeURIComponent(fam).replace(/%20/g,'+')+(w?(w.startsWith('ax:')?':'+w.slice(3):':wght@'+w):'')+'&display=swap';l.onload=l.onerror=()=>r();document.head.appendChild(l)})}
 async function applyFont(key){const o=FONTS[key]||FONTS.inter;
   if(key!=='inter'){await Promise.all([linkFont(o.d,o.w),linkFont(o.b,'400;500;600')]);await Promise.all([document.fonts.load(`${o.dw} 40px "${o.d}"`,'Hình ảnh'),document.fonts.load(`400 16px "${o.b}"`,'Hình ảnh')]).catch(()=>{})}
   const r=document.documentElement.style;r.setProperty('--display',`"${o.d}","Inter Tight",system-ui,sans-serif`);r.setProperty('--body',`"${o.b}","Inter",system-ui,sans-serif`);
@@ -684,7 +715,7 @@ const initials=n=>(n||'?').trim().split(/\s+/).map(w=>w[0]).join('').slice(0,2).
 let cat='all',sb='all';
 function renderHome(){const s=SITE||{},hero=s.hero||{};
   $('hBadge').querySelector('span').textContent=hero.badge||'';$('hBadge').hidden=!hero.badge;
-  $('hTitle').textContent=hero.title||'Hlab.studio';$('hLede').textContent=hero.lede||'';
+  $('hTitle').innerHTML=String(hero.title||'Hlab.studio').split(/\s+/).map(w=>`<span class="hw">${esc(w)}</span>`).join(' ');$('hTitle').setAttribute('aria-label',hero.title||'Hlab.studio');$('hLede').textContent=hero.lede||'';
   const reel=s.showreel||{},ru=safeUrl(reel.url);$('reelLink').hidden=!ru;if(ru)$('reelLink').href=ru;
   setReel(reel.video?media(reel.video):'',reel.poster?media(reel.poster):'');
   const V=visible(),F=V.filter(p=>p.featured).slice(0,3);
@@ -739,7 +770,7 @@ function renderDetail(id){const V=visible(),p=V.find(x=>x.id===id)||(CAN_EDIT?PR
    ${p.credits?`<p class="hint" style="margin-top:28px"><b style="color:var(--ink)">Đội ngũ:</b> ${esc(p.credits)}</p>`:''}
    <div class="dcta"><h2>Cần làm một dự án tương tự?</h2><a class="btn-y" href="#lien-he">Liên hệ Hlab.studio</a></div>
    ${nx.length?`<div class="nextp"><span>Dự án khác</span>${nx.map(cardHTML).join('')}</div>`:''}</article>`;
-  requestAnimationFrame(()=>{if(!compare($('dCmp'),p))$('dHint').hidden=true;fillThumbs(el)})}
+  if(!compare($('dCmp'),p))$('dHint').hidden=true;requestAnimationFrame(()=>fillThumbs(el))}
 
 /* ================= router ================= */
 let CAN_EDIT=false,ARTF=null,heroActive=true;
@@ -758,7 +789,16 @@ let lastHash=location.hash.slice(1);
 addEventListener('hashchange',()=>{const nh=location.hash.slice(1);
   if(lastHash==='quan-tri'&&nh!=='quan-tri'&&CMS.dirty&&!CMS.leaveOk){CMS.leaveOk=true;history.replaceState(null,'','#quan-tri');const s=$('cStatus');if(s){s.className='st bad';s.textContent='Có thay đổi chưa lưu. Bấm "Lưu và xuất bản", hoặc bấm lại liên kết vừa rồi để rời trang và bỏ thay đổi.'}return}
   if(nh!=='quan-tri'&&lastHash==='quan-tri'&&CMS.dirty){CMS.draftSite=null;CMS.draftProj=null;CMS.pending={};CMS.del=new Set();CMS.dirty=false;applyFont(SITE.font||'inter')}
-  CMS.leaveOk=false;lastHash=nh;route()});
+  CMS.leaveOk=false;const prev=lastHash;lastHash=nh;
+  const toDet=nh.startsWith('du-an-'),fromDet=prev.startsWith('du-an-');
+  if(!canVT||!(toDet||fromDet)||nh==='quan-tri'||prev==='quan-tri'){nameMedia(null);route();return}
+  if(fromDet&&!toDet)nameMedia(document.querySelector('#dCmp .cmp'));
+  document.startViewTransition(()=>{route();
+    if(toDet)nameMedia(document.querySelector('#dCmp .cmp'));
+    else{const id=prev.slice(6),c=[...document.querySelectorAll('#fgrid .pc,#grid .pc')].find(a=>a.dataset.id===id&&a.offsetParent);nameMedia(c?c.querySelector('.th'):null)}})});
+const canVT=!!document.startViewTransition&&!reduce;
+function nameMedia(el){document.querySelectorAll('.vt-on').forEach(e=>{e.style.viewTransitionName='';e.classList.remove('vt-on')});if(el){el.style.viewTransitionName='proj-media';el.classList.add('vt-on')}}
+document.addEventListener('click',e=>{const a=e.target.closest('a.pc');if(a&&canVT)nameMedia(a.querySelector('.th'))},true);
 
 /* ================= CMS ================= */
 const CMS={tab:'projects',sel:null,dirty:false,leaveOk:false,q:'',fc:'all',pending:{},del:new Set(),draftSite:null,draftProj:null,saving:false,confirmDel:false};
@@ -989,6 +1029,15 @@ if(matchMedia('(pointer: fine)').matches&&!reduce){document.body.classList.add('
   addEventListener('pointermove',e=>{tx=e.clientX;ty=e.clientY;const on=!!e.target.closest('.pc');cur.classList.toggle('on',on);if(!raf)raf=requestAnimationFrame(step)},{passive:true});
   document.addEventListener('pointerleave',()=>cur.classList.remove('on'))}
 
+/* ================= floating nav, magnetic buttons, structured data ================= */
+$('fnav').inert=true;new IntersectionObserver(e=>{const sh=!e[0].isIntersecting;$('fnav').classList.toggle('show',sh);$('fnav').inert=!sh},{rootMargin:'-80px 0px 0px 0px'}).observe($('top'));
+if(matchMedia('(pointer: fine)').matches&&!reduce){let mag=null;
+  addEventListener('pointermove',e=>{const b=e.target.closest('.btn-y,.pill-w');if(mag&&mag!==b){mag.style.translate='';mag=null}
+    if(b){const r=b.getBoundingClientRect();b.style.translate=`${(e.clientX-r.left-r.width/2)*.22}px ${(e.clientY-r.top-r.height/2)*.35}px`;mag=b}},{passive:true})}
+function structured(){const V=visible(),ct=(SITE.contact||{});let el=$('ld');if(!el){el=document.createElement('script');el.type='application/ld+json';el.id='ld';document.body.appendChild(el)}
+  el.textContent=JSON.stringify({'@context':'https://schema.org','@type':'Organization',name:'Hlab.studio',description:(SITE.hero||{}).lede||'',email:ct.email||undefined,telephone:ct.phone||undefined,address:ct.address||undefined,
+    knowsAbout:CATS.map(c=>c.name),subjectOf:V.slice(0,30).map(p=>({'@type':'CreativeWork',name:p.title,genre:catOf(p.cat).name,dateCreated:String(p.year||''),description:p.summary||''}))})}
+
 /* ================= misc ================= */
 document.querySelectorAll('[data-copy]').forEach(b=>b.addEventListener('click',()=>{const el=$(b.dataset.copy);const ok=()=>{b.textContent='Đã sao chép';setTimeout(()=>b.textContent='Sao chép',1600)};
   try{navigator.clipboard.writeText(el.textContent).then(ok,()=>{getSelection().selectAllChildren(el);b.textContent='Đã chọn, nhấn Ctrl+C'})}catch(e){getSelection().selectAllChildren(el)}}));
@@ -997,7 +1046,7 @@ let rt;addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(()=>{['fgri
 
 /* ================= boot ================= */
 (async()=>{
-  const ok=await load();await applyFont(SITE.font||'inter');renderHome();
+  const ok=await load();await applyFont(SITE.font||'inter');renderHome();structured();
   if(!ok)$('grid').innerHTML='<p class="empty">Không tải được danh sách dự án. Tải lại trang để thử lại.</p>';
   route();
   try{const cl=window.claude;if(cl&&cl.use){const [u,a]=await Promise.all([cl.use('user'),cl.use('artifact')]);ARTF=a;CAN_EDIT=!!a&&!!(u&&await u.canEdit());
