@@ -1,7 +1,7 @@
 {
  "hero": {
   "badge": "Đang nhận dự án quý 1/2026",
-  "title": "Thiết kế 2D và motion graphics cho thương hiệu",
+  "title": "Thiết kế {logo} 2D và *motion graphics* cho thương hiệu",
   "lede": "Hlab.studio giúp thương hiệu và agency kể câu chuyện bằng hình: key visual, styleframe, explainer, video mạng xã hội và logo animation. Cần thêm VFX hay 3D, cùng một đội làm luôn.",
   "cta": "Trao đổi về dự án"
  },
@@ -263,7 +263,7 @@
   }
  ],
  "cta": {
-  "title": "Sẵn sàng kể câu chuyện của bạn bằng hình?",
+  "title": "Cùng kể câu chuyện thương hiệu bằng *hình ảnh chuyển động*",
   "text": "Gửi mục tiêu, thông điệp và kênh phát. Chúng tôi trả lời trong một ngày làm việc với hướng làm, thời gian và khung báo giá. Không ép mua."
  },
  "commitments": [
